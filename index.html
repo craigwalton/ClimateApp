@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Climate App</title>
+</head>
+
+<body onload="onLoad()">
+
+    <main>
+        <div style="margin: 10px; position: relative;">
+            <img src="https://www.open.edu/openlearn/pluginfile.php/101161/mod_oucontent/oucontent/890/639dcd57/4078d39e/s250_3_011i.jpg"
+                width="1000" alt="climate graphic" />
+            <div style="position: absolute; left: 200px; top: 50px;">
+                <div style="text-align: center; width: 100%;"><span id="slider-sun-value">?</span> Wm<sup>-2</sup></div>
+                <input type="range" min="300" max="400" value="342" class="slider" id="slider-sun"
+                    oninput="updateSliderValue(this)"><br />
+                <label for="slider-sun">Intercepted solar radiation</label>
+            </div>
+            <div style="position: absolute; left: 80px; top: 300px;">
+                <div id="slider-cloud-albedo-value" style="text-align: center; width: 100%;">50%</div>
+                <input type="range" min="0" max="100" value="22" class="slider" id="slider-cloud-albedo"
+                    oninput="updateSliderValue(this)"><br />
+                <label for="slider-cloud-albedo">Cloud albedo</label>
+            </div>
+            <div style="position: absolute; left: 80px; top: 500px;">
+                <div id="slider-surface-albedo-value" style="text-align: center; width: 100%;">50%</div>
+                <input type="range" min="0" max="100" value="9" class="slider" id="slider-surface-albedo"
+                    oninput="updateSliderValue(this)"><br />
+                <label for="slider-surface-albedo">Surface albedo</label>
+            </div>
+            <div style="position: absolute; left: 10px; top: 10px; width: 150px;">
+                Reflected solar radiation escaping to space: <span id="reflected-solar-radiation">?</span>
+                Wm<sup>-2</sup>
+            </div>
+            <div style="position: absolute; left: 250px; top: 500px; width: 150px;">
+                Absorbed by surface: <span id="absorbed-by-surface">?</span> Wm<sup>-2</sup>
+            </div>
+            <div style="position: absolute; left: 400px; top: 600px;">
+                GMST <span id="gmst">?</span> &#176;C
+            </div>
+        </div>
+    </main>
+
+    <script>
+        function updateSliderValue(slider) {
+            setLabel(slider.id + "-value", parseFloat(slider.value));
+            recompute();
+        }
+
+        function onLoad() {
+            setAll();
+            recompute();
+        }
+
+        function setAll() {
+            var sliders = document.getElementsByTagName('input');
+            for (var i = 0; i < sliders.length; i++) {
+                updateSliderValue(sliders[i]);
+            }
+        }
+
+        function getSliderValue(id) {
+            return parseFloat(document.getElementById(id).value);
+        }
+
+        function setLabel(id, value) {
+            document.getElementById(id).innerText = value.toFixed(0);
+        }
+
+        function recompute() {
+            var solarInput = getSliderValue('slider-sun');
+            var cloudAlbedo = getSliderValue('slider-cloud-albedo');
+            var surfaceAlbedo = getSliderValue('slider-surface-albedo');
+            var reflected = ((cloudAlbedo + surfaceAlbedo) / 100) * solarInput;
+            setLabel('reflected-solar-radiation', reflected);
+            var absorbed = solarInput - reflected;
+            setLabel('absorbed-by-surface', absorbed);
+            var boltzmannConstant = 5.6704E-8;
+            var gmst = toCelsius(Math.pow(absorbed / boltzmannConstant, 0.25));
+            setLabel('gmst', gmst);
+        }
+
+        function toCelsius(kelvin) {
+            return kelvin - 273.15;
+        }
+    </script>
+
+</body>
+
+</html>
