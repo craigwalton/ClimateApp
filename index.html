@@ -17,50 +17,50 @@
                 <div style="text-align: center; width: 100%;"><span id="value-sun">?</span> Wm<sup>-2</sup></div>
                 <input type="range" min="100" max="400" value="100" class="slider" id="slider-sun"
                     oninput="onSliderInput(this)"><br />
-                <label for="slider-sun">Intercepted solar radiation</label>
+                <label for="slider-sun">Intercepted SW solar radiation</label>
             </div>
             <div style="position: absolute; left: 80px; top: 300px;">
-                <div id="value-cloud-albedo" style="text-align: center; width: 100%;"></div>
+                <div style="text-align: center; width: 100%;"><span id="value-cloud-albedo"></span>%</div>
                 <input type="range" min="0" max="100" value="22" class="slider" id="slider-cloud-albedo"
                     oninput="onSliderInput(this)"><br />
                 <label for="slider-cloud-albedo">Cloud albedo</label>
             </div>
             <div style="position: absolute; left: 300px; top: 320px;">
-                <div id="value-absorbed-by-atmosphere" style="text-align: center; width: 100%;"></div>
+                <div style="text-align: center; width: 100%;"><span id="value-absorbed-by-atmosphere"></span>%</div>
                 <input type="range" min="0" max="100" value="20" class="slider" id="slider-absorbed-by-atmosphere"
                     oninput="onSliderInput(this)"><br />
-                <label for="slider-absorbed-by-atmosphere">Absorbed by atmoshpere</label>
+                <label for="slider-absorbed-by-atmosphere">SW Absorbed by atmoshpere</label>
             </div>
             <div style="position: absolute; left: 80px; top: 500px;">
-                <div id="value-surface-albedo" style="text-align: center; width: 100%;"></div>
+                <div style="text-align: center; width: 100%;"><span id="value-surface-albedo"></span>%</div>
                 <input type="range" min="0" max="100" value="9" class="slider" id="slider-surface-albedo"
                     oninput="onSliderInput(this)"><br />
                 <label for="slider-surface-albedo">Surface albedo</label>
             </div>
             <div style="position: absolute; left: 10px; top: 10px; width: 150px;">
-                Reflected solar radiation escaping to space: <span id="reflected-solar-radiation">?</span>
+                Reflected SW solar radiation escaping to space: <span id="reflected-solar-radiation">?</span>
                 Wm<sup>-2</sup>
             </div>
             <div style="position: absolute; left: 250px; top: 500px; width: 150px;">
-                Absorbed by surface: <span id="absorbed-by-surface">?</span> Wm<sup>-2</sup>
+                SW Absorbed by surface: <span id="absorbed-by-surface">?</span> Wm<sup>-2</sup>
             </div>
             <div style="position: absolute; left: 400px; top: 600px;">
                 GMST <span id="gmst">?</span> &#176;C
             </div>
             <div style="position: absolute; left: 750px; top: 500px; width: 150px;">
-                Longwave radiation emitted by surface <span id="emitted-by-surface">?</span> Wm<sup>-2</sup>
+                LW radiation emitted by surface <span id="emitted-by-surface">?</span> Wm<sup>-2</sup>
             </div>
             <div style="position: absolute; left: 850px; top: 300px;">
-                <div id="value-atmospheric-window" style="text-align: center; width: 100%;"></div>
-                <input type="range" min="0" max="100" value="10" class="slider" id="slider-atmospheric-window"
+                <div style="text-align: center; width: 100%;"><span id="value-atmospheric-window"></span>%</div>
+                <input type="range" min="0" max="100" value="11" class="slider" id="slider-atmospheric-window"
                     oninput="onSliderInput(this)"><br />
                 <label for="slider-atmospheric-window">Atmospheric window</label>
             </div>
             <div style="position: absolute; left: 800px; top: 50px; width: 150px;">
-                Through window <span id="through-window">?</span> Wm<sup>-2</sup>
+                LW Through window <span id="through-window">?</span> Wm<sup>-2</sup>
             </div>
             <div style="position: absolute; left: 650px; top: 300px; width: 150px;">
-                Absorbed by greenhouse gases and clouds <span id="absorbed-by-ghg-clouds">?</span> Wm<sup>-2</sup>
+                LW Absorbed by greenhouse gases and clouds <span id="absorbed-by-ghg-clouds">?</span> Wm<sup>-2</sup>
             </div>
             <div style="position: absolute; left: 500px; top: 320px;">
                 <div id="value-back-radiation" style="text-align: center; width: 100%;"></div>
@@ -69,10 +69,13 @@
                 <label for="slider-back-radiation">Back radiation</label>
             </div>
             <div style="position: absolute; left: 500px; top: 500px; width: 150px;">
-                Back radiation from atmosphere and clouds <span id="back-radiation">?</span> Wm<sup>-2</sup>
+                LW Back radiation from atmosphere and clouds <span id="back-radiation">?</span> Wm<sup>-2</sup>
             </div>
             <div style="position: absolute; left: 500px; top: 10px; width: 150px;">
-                Emitted by clouds and atmosphere into space <span id="emitted-to-space">?</span> Wm<sup>-2</sup>
+                LW Emitted by clouds and atmosphere into space <span id="emitted-to-space">?</span> Wm<sup>-2</sup>
+            </div>
+            <div style="position: absolute; left: 400px; top: 450px; width: 150px;">
+                Convection & latent heat <span id="convection-latent-heat">?</span> Wm<sup>-2</sup>
             </div>
         </div>
     </main>
@@ -98,29 +101,30 @@
         function recompute() {
             var solarInput = getSliderValue('slider-sun');
             var cloudAlbedo = getSliderValue('slider-cloud-albedo');
-            var swAbsorbedByAtmosphere = getSliderValue('slider-absorbed-by-atmosphere');
+            var swAbsorbedByAtmospherePercentage = getSliderValue('slider-absorbed-by-atmosphere');
+            var swAbsorbedByAtmosphere = solarInput * swAbsorbedByAtmospherePercentage / 100;
             var surfaceAlbedo = getSliderValue('slider-surface-albedo');
             var reflected = ((cloudAlbedo + surfaceAlbedo) / 100) * solarInput;
             setLabel('reflected-solar-radiation', reflected);
             var swAbsorbedBySurface = solarInput - reflected - swAbsorbedByAtmosphere;
             setLabel('absorbed-by-surface', swAbsorbedBySurface);
-            
-            // var atmosphericWindow = getSliderValue('slider-atmospheric-window');
-            // var throughWindow = (atmosphericWindow / 100) * emittedBySurface;
-            // setLabel('through-window', throughWindow);
-            var lwEmittedToSpace = solarInput - reflected;// - throughWindow;
-            setLabel('emitted-to-space', lwEmittedToSpace);
-            
-            var backRadiationPercent = getSliderValue('slider-back-radiation');
-            var backRadiationValue = getSliderValue('slider-back-radiation');
-            setLabel('back-radiation', backRadiationValue);
-            var lwEmittedBySurface = swAbsorbedBySurface + backRadiationValue;
+            var backRadiationPercentage = getSliderValue('slider-back-radiation');
+            // TODO: how should changing the slider affect this value?
+            var backRadiation = backRadiationPercentage / 100 * solarInput;
+            setLabel('back-radiation', backRadiation);
+            var surfaceEnergy = backRadiation + swAbsorbedBySurface;
+            var convectionAndLatentHeat = 0.21 * surfaceEnergy;
+            setLabel('convection-latent-heat', convectionAndLatentHeat);
+            var lwEmittedBySurface = surfaceEnergy - convectionAndLatentHeat;
             setLabel('emitted-by-surface', lwEmittedBySurface);
-            var lwAbsorbedByGhgClouds = lwEmittedBySurface
+            var atmosphericWindowPercentage = getSliderValue('slider-atmospheric-window');
+            var throughWindow = (atmosphericWindowPercentage / 100) * lwEmittedBySurface;
+            setLabel('through-window', throughWindow);
+            var lwAbsorbedByGhgClouds = lwEmittedBySurface - throughWindow;
             setLabel('absorbed-by-ghg-clouds', lwAbsorbedByGhgClouds);
-            var boltzmannConstant = 5.6704E-8;
-            var gmst = toCelsius(Math.pow(lwEmittedBySurface / boltzmannConstant, 0.25));
-            setLabel('gmst', gmst);
+            var lwEmittedToSpace = solarInput - reflected - throughWindow;
+            setLabel('emitted-to-space', lwEmittedToSpace);
+            setLabel('gmst', computeGmst(lwEmittedBySurface));
         }
 
         function getSliderValue(id) {
@@ -133,6 +137,11 @@
 
         function toCelsius(kelvin) {
             return kelvin - 273.15;
+        }
+
+        function computeGmst(emittedRadiation) {
+            var boltzmannConstant = 5.6704E-8;
+            return toCelsius(Math.pow(emittedRadiation / boltzmannConstant, 0.25));
         }
     </script>
 
