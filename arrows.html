@@ -9,7 +9,7 @@
 
 <body>
 
-    <svg width="400" height="400" viewBox="-50 -50 400 400">
+    <svg width="500" height="400" viewBox="-150 -50 400 400">
         <path id="scattered" d="" stroke="black" stroke-width="2" fill="aliceblue" />
         <path id="reflected" d="" stroke="black" stroke-width="2" fill="orange" />
         <path id="absorbed-surface" d="" stroke="black" stroke-width="2" fill="none" />
@@ -24,12 +24,12 @@
     const scatteredROut = scatteredRIn + scatteredValue;
     const scatteredZ = 20;
     document.getElementById('scattered').setAttribute('d', `
-        M 100 0
+        M 0 0
         l 0 ${scatteredZ}
         a ${scatteredRIn} ${scatteredRIn} 0 0 1 -${scatteredRIn * 2} 0
-        L 0 0
-        L -${scatteredValue} 0
-        L -${scatteredValue} ${scatteredZ}
+        l 0 -${scatteredZ}
+        l -${scatteredValue} 0
+        l 0 ${scatteredZ}
         a ${scatteredROut} ${scatteredROut} 0 0 0 ${scatteredROut * 2} 0
         l 0 -${scatteredZ}
         Z
@@ -40,12 +40,12 @@
     const reflectedROut = reflectedRIn + reflectedValue;
     const reflectedZ = 120;
     document.getElementById('reflected').setAttribute('d', `
-        M ${100 + scatteredValue} 0
+        M ${scatteredValue} 0
         l 0 ${reflectedZ}
         a ${reflectedRIn} ${reflectedRIn} 0 0 1 -${reflectedRIn * 2} 0
-        L -${scatteredValue} 0
-        L -${scatteredValue + reflectedValue} 0
-        L -${scatteredValue + reflectedValue} ${reflectedZ}
+        l 0 -${reflectedZ}
+        l -${reflectedValue} 0
+        l 0 ${reflectedZ}
         a ${reflectedROut} ${reflectedROut} 0 0 0 ${reflectedROut * 2} 0
         l 0 -${reflectedZ}
         Z
@@ -54,7 +54,7 @@
     const absorbedSurfaceValue = 49;
     const absorbedSurfaceZ = 250;
     document.getElementById('absorbed-surface').setAttribute('d', `
-        M ${100 + scatteredValue + reflectedValue} 0
+        M ${scatteredValue + reflectedValue} 0
         l 0 ${absorbedSurfaceZ}
         l ${absorbedSurfaceValue} 0
         l 0 -${absorbedSurfaceZ}
@@ -67,7 +67,7 @@
     const absorbedAtmosphereROut = 50;
     const absorbedAtmosphereRIn = absorbedAtmosphereROut - absorbedAtmosphereValue;
     document.getElementById('absorbed-atmosphere').setAttribute('d', `
-        M ${100 + scatteredValue + reflectedValue + absorbedSurfaceValue} 0
+        M ${scatteredValue + reflectedValue + absorbedSurfaceValue} 0
         l 0 ${absorbedAtmosphereZ}
         a ${absorbedAtmosphereROut} ${absorbedAtmosphereROut} 0 0 0 ${absorbedAtmosphereROut} ${absorbedAtmosphereROut}
         l ${absorbedAtmosphereX} 0
