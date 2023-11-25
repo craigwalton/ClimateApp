@@ -10,92 +10,90 @@
 <body onload="onLoad()"
     style="margin: 0; font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;">
     <main style="position: relative;">
-        <!-- <img src="graphics/drawing.svg" width="1000" alt="climate graphic" /> -->
 
+        <div style="width: 100%; height: 800px;">
+            <div id="space" style="height: 10%; background-color: rgb(128,128,128); display: flex; justify-content: center;">
+                <div style="width: 800px; background-color: rgba(128, 128, 1, 0.1); position: relative; margin: 10px;">
+                    <div style="position: absolute; width: 150px; left: 0;">
+                        Reflected SW solar radiation escaping to space: <span id="reflected-solar-radiation">?</span>
+                        Wm<sup>-2</sup>
+                    </div>
+                    <div style="position: absolute; width: 150px; left: 400px;">
+                        LW Emitted by clouds and atmosphere into space <span id="emitted-to-space">?</span> Wm<sup>-2</sup>
+                    </div>
+
+                    <div style="position: absolute; width: 150px; left: 600px;">
+                        LW Through window <span id="through-window">?</span> Wm<sup>-2</sup>
+                    </div>
+                </div>
+            </div>
+            <div id="atmosphere" style="height: 80%; background-color: lightblue; display: flex; justify-content: center;">
+                <div style="width: 800px; background-color: rgba(128, 128, 1, 0.1); position: relative; margin: 10px;">
+                    <svg width="100" height="100" viewBox="-20 0 100 100">
+                        <polygon points="0,0 20,20 10,20 10,100 -10,100 -10,20 -20,20" fill="rgb(200,30,0)" stroke="red" stroke-width="1" />
+                      </svg>
+                    <div style="position: absolute; left: 200px; top: 50px;">
+                        <div style="text-align: center; width: 100%;"><span id="value-sun">?</span> Wm<sup>-2</sup></div>
+                        <input type="range" min="100" max="400" value="100" class="slider" id="slider-sun"
+                            oninput="onSliderInput(this)"><br />
+                        <label for="slider-sun">Intercepted SW solar radiation</label>
+                    </div>
+                    <div style="position: absolute; left: 80px; top: 300px;">
+                        <div style="text-align: center; width: 100%;"><span id="value-cloud-albedo"></span>%</div>
+                        <input type="range" min="0" max="100" value="22" class="slider" id="slider-cloud-albedo"
+                            oninput="onSliderInput(this)"><br />
+                        <label for="slider-cloud-albedo">Cloud albedo</label>
+                    </div>
+                    <div style="position: absolute; left: 300px; top: 320px;">
+                        <div style="text-align: center; width: 100%;"><span id="value-absorbed-by-atmosphere"></span>%</div>
+                        <input type="range" min="0" max="100" value="20" class="slider" id="slider-absorbed-by-atmosphere"
+                            oninput="onSliderInput(this)"><br />
+                        <label for="slider-absorbed-by-atmosphere">SW Absorbed by atmoshpere</label>
+                    </div>
+                    <div style="position: absolute; left: 80px; top: 500px;">
+                        <div style="text-align: center; width: 100%;"><span id="value-surface-albedo"></span>%</div>
+                        <input type="range" min="0" max="100" value="9" class="slider" id="slider-surface-albedo"
+                            oninput="onSliderInput(this)"><br />
+                        <label for="slider-surface-albedo">Surface albedo</label>
+                    </div>
+                    <div style="position: absolute; left: 250px; top: 500px; width: 150px;">
+                        SW Absorbed by surface: <span id="absorbed-by-surface">?</span> Wm<sup>-2</sup>
+                    </div>
+                    <div style="position: absolute; left: 750px; top: 500px; width: 150px;">
+                        LW radiation emitted by surface <span id="emitted-by-surface">?</span> Wm<sup>-2</sup>
+                    </div>
+                    <div style="position: absolute; left: 850px; top: 300px;">
+                        <div style="text-align: center; width: 100%;"><span id="value-atmospheric-window"></span>%</div>
+                        <input type="range" min="0" max="100" value="11" class="slider" id="slider-atmospheric-window"
+                            oninput="onSliderInput(this)"><br />
+                        <label for="slider-atmospheric-window">Atmospheric window</label>
+                    </div>
+                    <div style="position: absolute; left: 650px; top: 300px; width: 150px;">
+                        LW Absorbed by greenhouse gases and clouds <span id="absorbed-by-ghg-clouds">?</span>
+                        Wm<sup>-2</sup>
+                    </div>
+                    <div style="position: absolute; left: 500px; top: 320px;">
+                        <div id="value-back-radiation" style="text-align: center; width: 100%;"></div>
+                        <input type="range" min="0" max="100" value="95" class="slider" id="slider-back-radiation"
+                            oninput="onSliderInput(this)"><br />
+                        <label for="slider-back-radiation">Back radiation</label>
+                    </div>
+                    <div style="position: absolute; left: 500px; top: 500px; width: 150px;">
+                        LW Back radiation from atmosphere and clouds <span id="back-radiation">?</span> Wm<sup>-2</sup>
+                    </div>
+                    <div style="position: absolute; left: 400px; top: 450px; width: 150px;">
+                        Convection & latent heat <span id="convection-latent-heat">?</span> Wm<sup>-2</sup>
+                    </div>
+                </div>
+            </div>
+            <div id="earth" style="height: 10%; background-color: brown;">
+                <div
+                    style="height: 100%; align-items: center; align-content: center; justify-content: center; display: flex;">
+                    GMST <span id="gmst">?</span> &#176;C
+                </div>
+            </div>
+        </div>
     </main>
-
-    <div style="width: 100%; height: 800px;">
-        <div id="space" style="height: 10%; background-color: gray; display: flex; justify-content: center;">
-            <div style="width: 800px; background-color: rgba(128, 128, 1, 0.1); position: relative; margin: 10px;">
-                <div style="position: absolute; width: 150px; left: 0px;">
-                    Reflected SW solar radiation escaping to space: <span id="reflected-solar-radiation">?</span>
-                    Wm<sup>-2</sup>
-                </div>
-                <div style="position: absolute; width: 150px; left: 400px;">
-                    LW Emitted by clouds and atmosphere into space <span id="emitted-to-space">?</span> Wm<sup>-2</sup>
-                </div>
-
-                <div style="position: absolute; width: 150px; left: 600px;">
-                    LW Through window <span id="through-window">?</span> Wm<sup>-2</sup>
-                </div>
-            </div>
-        </div>
-        <div id="atmosphere" style="height: 80%; background-color: lightblue; display: flex; justify-content: center;">
-            <div style="width: 800px; background-color: rgba(128, 128, 1, 0.1); position: relative; margin: 10px;">
-                <svg width="100" height="100" viewBox="-20 0 100 100">
-                    <polygon points="0,0 20,20 10,20 10,100 -10,100 -10,20 -20,20" fill="rgb(200,30,0)" stroke="red" stroke-width="1" />
-                  </svg>
-                <div style="position: absolute; left: 200px; top: 50px;">
-                    <div style="text-align: center; width: 100%;"><span id="value-sun">?</span> Wm<sup>-2</sup></div>
-                    <input type="range" min="100" max="400" value="100" class="slider" id="slider-sun"
-                        oninput="onSliderInput(this)"><br />
-                    <label for="slider-sun">Intercepted SW solar radiation</label>
-                </div>
-                <div style="position: absolute; left: 80px; top: 300px;">
-                    <div style="text-align: center; width: 100%;"><span id="value-cloud-albedo"></span>%</div>
-                    <input type="range" min="0" max="100" value="22" class="slider" id="slider-cloud-albedo"
-                        oninput="onSliderInput(this)"><br />
-                    <label for="slider-cloud-albedo">Cloud albedo</label>
-                </div>
-                <div style="position: absolute; left: 300px; top: 320px;">
-                    <div style="text-align: center; width: 100%;"><span id="value-absorbed-by-atmosphere"></span>%</div>
-                    <input type="range" min="0" max="100" value="20" class="slider" id="slider-absorbed-by-atmosphere"
-                        oninput="onSliderInput(this)"><br />
-                    <label for="slider-absorbed-by-atmosphere">SW Absorbed by atmoshpere</label>
-                </div>
-                <div style="position: absolute; left: 80px; top: 500px;">
-                    <div style="text-align: center; width: 100%;"><span id="value-surface-albedo"></span>%</div>
-                    <input type="range" min="0" max="100" value="9" class="slider" id="slider-surface-albedo"
-                        oninput="onSliderInput(this)"><br />
-                    <label for="slider-surface-albedo">Surface albedo</label>
-                </div>
-                <div style="position: absolute; left: 250px; top: 500px; width: 150px;">
-                    SW Absorbed by surface: <span id="absorbed-by-surface">?</span> Wm<sup>-2</sup>
-                </div>
-                <div style="position: absolute; left: 750px; top: 500px; width: 150px;">
-                    LW radiation emitted by surface <span id="emitted-by-surface">?</span> Wm<sup>-2</sup>
-                </div>
-                <div style="position: absolute; left: 850px; top: 300px;">
-                    <div style="text-align: center; width: 100%;"><span id="value-atmospheric-window"></span>%</div>
-                    <input type="range" min="0" max="100" value="11" class="slider" id="slider-atmospheric-window"
-                        oninput="onSliderInput(this)"><br />
-                    <label for="slider-atmospheric-window">Atmospheric window</label>
-                </div>
-                <div style="position: absolute; left: 650px; top: 300px; width: 150px;">
-                    LW Absorbed by greenhouse gases and clouds <span id="absorbed-by-ghg-clouds">?</span>
-                    Wm<sup>-2</sup>
-                </div>
-                <div style="position: absolute; left: 500px; top: 320px;">
-                    <div id="value-back-radiation" style="text-align: center; width: 100%;"></div>
-                    <input type="range" min="0" max="100" value="95" class="slider" id="slider-back-radiation"
-                        oninput="onSliderInput(this)"><br />
-                    <label for="slider-back-radiation">Back radiation</label>
-                </div>
-                <div style="position: absolute; left: 500px; top: 500px; width: 150px;">
-                    LW Back radiation from atmosphere and clouds <span id="back-radiation">?</span> Wm<sup>-2</sup>
-                </div>
-                <div style="position: absolute; left: 400px; top: 450px; width: 150px;">
-                    Convection & latent heat <span id="convection-latent-heat">?</span> Wm<sup>-2</sup>
-                </div>
-            </div>
-        </div>
-        <div id="earth" style="height: 10%; background-color: brown;">
-            <div
-                style="height: 100%; align-items: center; align-content: center; justify-content: center; display: flex;">
-                GMST <span id="gmst">?</span> &#176;C
-            </div>
-        </div>
-    </div>
 
     <script>
         function onLoad() {
