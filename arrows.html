@@ -7,76 +7,86 @@
     <title>SVG Arrows</title>
 </head>
 
-<body>
+    <body>
 
-    <svg width="500" height="400" viewBox="-150 -50 400 400">
-        <path id="scattered" d="" stroke="black" stroke-width="2" fill="aliceblue" />
-        <path id="reflected" d="" stroke="black" stroke-width="2" fill="orange" />
-        <path id="absorbed-surface" d="" stroke="black" stroke-width="2" fill="none" />
-        <path id="absorbed-atmosphere" d="" stroke="black" stroke-width="2" fill="pink" />
-    </svg>
-</body>
+        <svg width="600" height="600" viewBox="-200 -50 600 600">
+            <defs>
+                <linearGradient id="grad1" x1="0%" y1="0%" x2="0%" y2="100%">
+                    <stop offset="0%" style="stop-color:rgb(240,210,161); stop-opacity:1" />
+                    <stop offset="100%" style="stop-color:rgb(235,195,128); stop-opacity:1" />
+                </linearGradient>
+            </defs>
+            <path id="left" d="" stroke-width="2" fill="url(#grad1)" fill-rule="evenodd" stroke="#b69f79" />
+        </svg>
+
+    </body>
 
 <script>
 
     const scatteredValue = 22;
-    const scatteredRIn = 50;
+    const scatteredRIn = 80;
     const scatteredROut = scatteredRIn + scatteredValue;
     const scatteredZ = 20;
-    document.getElementById('scattered').setAttribute('d', `
-        M 0 0
-        l 0 ${scatteredZ}
-        a ${scatteredRIn} ${scatteredRIn} 0 0 1 -${scatteredRIn * 2} 0
-        l 0 -${scatteredZ}
-        l -${scatteredValue} 0
-        l 0 ${scatteredZ}
-        a ${scatteredROut} ${scatteredROut} 0 0 0 ${scatteredROut * 2} 0
-        l 0 -${scatteredZ}
-        Z
-    `);
-
     const reflectedValue = 9;
+    const reflectedZ = 120;
     const reflectedRIn = scatteredROut;
     const reflectedROut = reflectedRIn + reflectedValue;
-    const reflectedZ = 120;
-    document.getElementById('reflected').setAttribute('d', `
-        M ${scatteredValue} 0
-        l 0 ${reflectedZ}
-        a ${reflectedRIn} ${reflectedRIn} 0 0 1 -${reflectedRIn * 2} 0
-        l 0 -${reflectedZ}
-        l -${reflectedValue} 0
-        l 0 ${reflectedZ}
-        a ${reflectedROut} ${reflectedROut} 0 0 0 ${reflectedROut * 2} 0
-        l 0 -${reflectedZ}
-        Z
-    `);
-
     const absorbedSurfaceValue = 49;
     const absorbedSurfaceZ = 250;
-    document.getElementById('absorbed-surface').setAttribute('d', `
-        M ${scatteredValue + reflectedValue} 0
-        l 0 ${absorbedSurfaceZ}
-        l ${absorbedSurfaceValue} 0
-        l 0 -${absorbedSurfaceZ}
-        Z
-    `);
-
     const absorbedAtmosphereValue = 30;
     const absorbedAtmosphereZ = 80;
     const absorbedAtmosphereX = 80;
     const absorbedAtmosphereROut = 50;
     const absorbedAtmosphereRIn = absorbedAtmosphereROut - absorbedAtmosphereValue;
-    document.getElementById('absorbed-atmosphere').setAttribute('d', `
-        M ${scatteredValue + reflectedValue + absorbedSurfaceValue} 0
-        l 0 ${absorbedAtmosphereZ}
+    const arrowWidth = 5;
+    let data = `
+        M 0 0
+        l 0 ${scatteredZ}
+        a ${scatteredRIn} ${scatteredRIn} 0 0 1 -${scatteredRIn * 2} 0
+        l 0 -${scatteredZ}`;
+    // Reflected arrow head.
+    const reflectedArrow = (scatteredValue + reflectedValue) / 2 + arrowWidth;
+    data += `
+        l ${arrowWidth} 0
+        l -${reflectedArrow} -${reflectedArrow}
+        l -${reflectedArrow} ${reflectedArrow}
+        l ${arrowWidth} 0`;
+    data += `
+        l 0 ${reflectedZ}
+        a ${reflectedROut} ${reflectedROut} 0 0 0 ${reflectedROut * 2} 0
+        L ${reflectedValue + scatteredValue} ${absorbedSurfaceZ}`;
+    // Absorbed surface arrow head.
+    const absorbedSurfaceArrow = (absorbedSurfaceValue) / 2 + arrowWidth;
+    data += `
+        l -${arrowWidth} 0
+        l ${absorbedSurfaceArrow} ${absorbedSurfaceArrow}
+        l ${absorbedSurfaceArrow} -${absorbedSurfaceArrow}
+        l -${arrowWidth} 0`;
+    data += `
+        L ${reflectedValue + scatteredValue + absorbedSurfaceValue} ${absorbedAtmosphereZ}
         a ${absorbedAtmosphereROut} ${absorbedAtmosphereROut} 0 0 0 ${absorbedAtmosphereROut} ${absorbedAtmosphereROut}
-        l ${absorbedAtmosphereX} 0
-        l 0 -${absorbedAtmosphereValue}
+        l ${absorbedAtmosphereX} 0`;
+    // Absorbed atmosphere arrow head.
+    const absorbedAtmosphereArrow = (absorbedAtmosphereValue) / 2 + arrowWidth;
+    data += `
+        l 0 ${arrowWidth}
+        l ${absorbedAtmosphereArrow} -${absorbedAtmosphereArrow}
+        l -${absorbedAtmosphereArrow} -${absorbedAtmosphereArrow}
+        l 0 ${arrowWidth}
+    `;
+    data += `
         l -${absorbedAtmosphereX} 0
         a ${absorbedAtmosphereRIn} ${absorbedAtmosphereRIn} 0 0 1 -${absorbedAtmosphereRIn} -${absorbedAtmosphereRIn}
         l 0 -${absorbedAtmosphereZ}
-        Z
-    `);
+        Z`;
+    // Inner / negative fill part.
+    data += `
+        M ${scatteredValue} ${scatteredZ}
+        a ${scatteredROut} ${scatteredROut} 0 0 1 -${scatteredROut * 2} 0
+        l 0 ${reflectedZ - scatteredZ}
+        a ${reflectedRIn} ${reflectedRIn} 0 0 0 ${reflectedRIn * 2} 0
+        Z`;
+    document.getElementById('left').setAttribute('d', data);
 </script>
 
 </html>
