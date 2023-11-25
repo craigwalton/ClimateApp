@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SVG Arrows</title>
+</head>
+
+<body>
+
+    <svg width="400" height="400" viewBox="-50 -50 400 400">
+        <path id="scattered" d="" stroke="black" stroke-width="2" fill="aliceblue" />
+        <path id="reflected" d="" stroke="black" stroke-width="2" fill="orange" />
+        <path id="absorbed-surface" d="" stroke="black" stroke-width="2" fill="none" />
+        <path id="absorbed-atmosphere" d="" stroke="black" stroke-width="2" fill="pink" />
+    </svg>
+</body>
+
+<script>
+
+    const scatteredValue = 22;
+    const scatteredRIn = 50;
+    const scatteredROut = scatteredRIn + scatteredValue;
+    const scatteredZ = 20;
+    document.getElementById('scattered').setAttribute('d', `
+        M 100 0
+        l 0 ${scatteredZ}
+        a ${scatteredRIn} ${scatteredRIn} 0 0 1 -${scatteredRIn * 2} 0
+        L 0 0
+        L -${scatteredValue} 0
+        L -${scatteredValue} ${scatteredZ}
+        a ${scatteredROut} ${scatteredROut} 0 0 0 ${scatteredROut * 2} 0
+        l 0 -${scatteredZ}
+        Z
+    `);
+
+    const reflectedValue = 9;
+    const reflectedRIn = scatteredROut;
+    const reflectedROut = reflectedRIn + reflectedValue;
+    const reflectedZ = 120;
+    document.getElementById('reflected').setAttribute('d', `
+        M ${100 + scatteredValue} 0
+        l 0 ${reflectedZ}
+        a ${reflectedRIn} ${reflectedRIn} 0 0 1 -${reflectedRIn * 2} 0
+        L -${scatteredValue} 0
+        L -${scatteredValue + reflectedValue} 0
+        L -${scatteredValue + reflectedValue} ${reflectedZ}
+        a ${reflectedROut} ${reflectedROut} 0 0 0 ${reflectedROut * 2} 0
+        l 0 -${reflectedZ}
+        Z
+    `);
+
+    const absorbedSurfaceValue = 49;
+    const absorbedSurfaceZ = 250;
+    document.getElementById('absorbed-surface').setAttribute('d', `
+        M ${100 + scatteredValue + reflectedValue} 0
+        l 0 ${absorbedSurfaceZ}
+        l ${absorbedSurfaceValue} 0
+        l 0 -${absorbedSurfaceZ}
+        Z
+    `);
+
+    const absorbedAtmosphereValue = 30;
+    const absorbedAtmosphereZ = 80;
+    const absorbedAtmosphereX = 80;
+    const absorbedAtmosphereROut = 50;
+    const absorbedAtmosphereRIn = absorbedAtmosphereROut - absorbedAtmosphereValue;
+    document.getElementById('absorbed-atmosphere').setAttribute('d', `
+        M ${100 + scatteredValue + reflectedValue + absorbedSurfaceValue} 0
+        l 0 ${absorbedAtmosphereZ}
+        a ${absorbedAtmosphereROut} ${absorbedAtmosphereROut} 0 0 0 ${absorbedAtmosphereROut} ${absorbedAtmosphereROut}
+        l ${absorbedAtmosphereX} 0
+        l 0 -${absorbedAtmosphereValue}
+        l -${absorbedAtmosphereX} 0
+        a ${absorbedAtmosphereRIn} ${absorbedAtmosphereRIn} 0 0 1 -${absorbedAtmosphereRIn} -${absorbedAtmosphereRIn}
+        l 0 -${absorbedAtmosphereZ}
+        Z
+    `);
+</script>
+
+</html>
