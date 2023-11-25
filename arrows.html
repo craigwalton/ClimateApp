@@ -16,7 +16,17 @@
                     <stop offset="100%" style="stop-color:rgb(235,195,128); stop-opacity:1" />
                 </linearGradient>
             </defs>
-            <path id="left" d="" stroke-width="2" fill="url(#grad1)" fill-rule="evenodd" stroke="#b69f79" />
+            <path id="shortwave" d="" stroke-width="2" fill="url(#grad1)" fill-rule="evenodd" stroke="#b69f79" />
+            <path id="input" d="
+                M 0 -40
+                l 0 40
+                l -10 0
+                l 65 50
+                l 65 -50
+                l -10 0
+                l 0 -40
+                Z
+                " stroke-width="2" fill="url(#grad1)" fill-rule="evenodd" stroke="#b69f79" />
         </svg>
 
     </body>
@@ -26,7 +36,7 @@
     const scatteredValue = 22;
     const scatteredRIn = 80;
     const scatteredROut = scatteredRIn + scatteredValue;
-    const scatteredZ = 20;
+    const scatteredZ = 40;
     const reflectedValue = 9;
     const reflectedZ = 120;
     const reflectedRIn = scatteredROut;
@@ -86,7 +96,7 @@
         l 0 ${reflectedZ - scatteredZ}
         a ${reflectedRIn} ${reflectedRIn} 0 0 0 ${reflectedRIn * 2} 0
         Z`;
-    document.getElementById('left').setAttribute('d', data);
+    document.getElementById('shortwave').setAttribute('d', data);
 </script>
 
 </html>
