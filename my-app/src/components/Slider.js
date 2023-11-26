@@ -9,7 +9,7 @@ const Slider = ({x, y, label, value, onChange}) => {
 
     return (
         <div className="slider-container" style={{position: 'absolute', left: x, top: y}}>
-            <label>{label}</label><br/>
+            <div style={{width: '80%', position: 'absolute', bottom: 60}}>{label}</div><br/>
             <input
                 type="range"
                 min="0"
