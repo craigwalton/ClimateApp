@@ -60,7 +60,7 @@
             <div style="position: absolute; left: 80px; top: 180px;">
                 <label for="slider-cloud-albedo" style="text-align: center; width: 100%; display: inline-block">Cloud albedo</label><br/>
                 <input type="range" min="0" max="100" value="22" class="slider" id="slider-cloud-albedo"
-                       oninput="onSliderInput(this)"><br/>
+                       oninput="onCloudAlbedoSliderInput(this)"><br/>
                 <div style="text-align: center; width: 100%; position: relative; top: 18px;"><b id="value-cloud-albedo"></b>%</div>
             </div>
             <div style="position: absolute; left: 300px; top: 320px;">
@@ -122,13 +122,28 @@
     function onLoad() {
         initializeSliders();
         recompute();
-        draw_shortwave_arrows(22, 9, 49, 30);
+        draw_shortwave_arrows();
     }
 
     function onSliderInput(slider) {
         setLabel(slider.id.replace("slider-", "value-"), parseFloat(slider.value));
         recompute();
-        draw_shortwave_arrows(getSliderValue('slider-cloud-albedo'), getSliderValue('slider-surface-albedo'), getSliderValue('slider-absorbed-by-atmosphere'));
+        draw_shortwave_arrows();
+    }
+
+    function setSliderValue(sliderId, value) {
+        var slider = document.getElementById(sliderId);
+        slider.value = value;
+    }
+
+    function onCloudAlbedoSliderInput(slider) {
+        var cloudAlbedo = parseFloat(slider.value);
+        setLabel(slider.id.replace("slider-", "value-"), cloudAlbedo);
+        // Limit the surface albedo to 100 - cloud albedo.
+        var surfaceAlbedo = Math.min(100 - cloudAlbedo, getSliderValue('slider-surface-albedo'));
+        setSliderValue('slider-surface-albedo', surfaceAlbedo);
+        recompute();
+        draw_shortwave_arrows();
     }
 
     function initializeSliders() {
@@ -184,7 +199,10 @@
         return toCelsius(Math.pow(emittedRadiation / boltzmannConstant, 0.25));
     }
 
-    function draw_shortwave_arrows(scatteredValue, reflectedValue, absorbedAtmosphereValue) {
+    function draw_shortwave_arrows() {
+        const scatteredValue = getSliderValue('slider-cloud-albedo');
+        const reflectedValue = getSliderValue('slider-surface-albedo');
+        const absorbedAtmosphereValue = getSliderValue('slider-absorbed-by-atmosphere');
         const absorbedSurfaceValue = 100 - scatteredValue - reflectedValue - absorbedAtmosphereValue;
         const scatteredRIn = 80;
         const scatteredROut = scatteredRIn + scatteredValue;
