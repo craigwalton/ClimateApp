@@ -1,15 +1,14 @@
-import React, { useState } from 'react';
 import './Slider.css';
 
-const Slider = ({ x, y, label }) => {
-    const [value, setValue] = useState(50);
+const Slider = ({x, y, label, value, onChange}) => {
 
     const handleSliderChange = (event) => {
-        setValue(event.target.value);
+        const valueInt = parseInt(event.target.value, 10);
+        onChange(valueInt);
     };
 
     return (
-        <div className="slider-container" style={{ position: 'absolute', left: x, top: y }}>
+        <div className="slider-container" style={{position: 'absolute', left: x, top: y}}>
             <label>{label}</label><br/>
             <input
                 type="range"
