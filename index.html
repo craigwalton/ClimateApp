@@ -128,6 +128,7 @@
     function onSliderInput(slider) {
         setLabel(slider.id.replace("slider-", "value-"), parseFloat(slider.value));
         recompute();
+        draw_shortwave_arrows(getSliderValue('slider-cloud-albedo'), getSliderValue('slider-surface-albedo'), getSliderValue('slider-absorbed-by-atmosphere'));
     }
 
     function initializeSliders() {
@@ -183,7 +184,8 @@
         return toCelsius(Math.pow(emittedRadiation / boltzmannConstant, 0.25));
     }
 
-    function draw_shortwave_arrows(scatteredValue, reflectedValue, absorbedSurfaceValue, absorbedAtmosphereValue) {
+    function draw_shortwave_arrows(scatteredValue, reflectedValue, absorbedAtmosphereValue) {
+        const absorbedSurfaceValue = 100 - scatteredValue - reflectedValue - absorbedAtmosphereValue;
         const scatteredRIn = 80;
         const scatteredROut = scatteredRIn + scatteredValue;
         const scatteredZ = 100;
