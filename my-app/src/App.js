@@ -1,11 +1,12 @@
 import React, {useState} from 'react';
 import './App.css';
 import Slider from './components/Slider';
+import Label from './components/Label';
 
 function App() {
-    const [slider1Value, setSlider1Value] = useState(33);
-    const [slider2Value, setSlider2Value] = useState(33);
-    const [slider3Value, setSlider3Value] = useState(33);
+    const [slider1Value, setSlider1Value] = useState(22);
+    const [slider2Value, setSlider2Value] = useState(9);
+    const [slider3Value, setSlider3Value] = useState(20);
 
     const handleSliderChange = (slider, newValue) => {
         if (slider === 1) {
@@ -30,9 +31,11 @@ function App() {
 
     return (
         <div className="App">
+            <Label x={300} y={100} label={"Incoming solar radiation"} value={100}/>
             <Slider x={100} y={200} label={"Reflected by clouds"} value={slider1Value} onChange={(newValue) => handleSliderChange(1, newValue)}/>
             <Slider x={100} y={400} label={"Reflected by surface"} value={slider2Value} onChange={(newValue) => handleSliderChange(2, newValue)}/>
             <Slider x={300} y={300} label={"Absorbed by atmosphere"} value={slider3Value} onChange={(newValue) => handleSliderChange(3, newValue)}/>
+            <Label x={300} y={600} label={"Absorbed by surface"} value={100 - slider1Value - slider2Value - slider3Value}/>
         </div>
     );
 }
