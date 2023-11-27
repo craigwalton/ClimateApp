@@ -35,9 +35,9 @@ function App() {
             <ShortwaveArrows x={0} y={100} scattered={slider1Value} reflected={slider2Value} atmosphere={slider3Value} />
             <Label x={205} y={95} label={"Incoming solar radiation"} value={100}/>
             <Slider x={75} y={208 + slider1Value / 2} label={"Reflected by clouds"} value={slider1Value} onChange={(newValue) => handleSliderChange(1, newValue)}/>
-            <Slider x={75} y={400} label={"Reflected by surface"} value={slider2Value} onChange={(newValue) => handleSliderChange(2, newValue)}/>
+            <Slider x={75} y={395 - slider2Value / 2} label={"Reflected by surface"} value={slider2Value} onChange={(newValue) => handleSliderChange(2, newValue)}/>
             <Slider x={300} y={250} label={"Absorbed by atmosphere"} value={slider3Value} onChange={(newValue) => handleSliderChange(3, newValue)}/>
-            <Label x={300} y={600} label={"Absorbed by surface"} value={100 - slider1Value - slider2Value - slider3Value}/>
+            <Label x={174 + (slider1Value + slider2Value + (100 - slider3Value)) / 2 * (5/6)} y={450} label={"Absorbed by surface"} value={100 - slider1Value - slider2Value - slider3Value}/>
         </div>
     );
 }

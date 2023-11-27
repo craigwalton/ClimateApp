@@ -35,12 +35,12 @@ function drawArrow(scatteredValue, reflectedValue, atmosphereValue) {
     const scatteredRIn = 80;
     const scatteredROut = scatteredRIn + scatteredValue;
     const scatteredZ = 100;
-    const reflectedZ = 300;
+    const reflectedZ = 400;
     const reflectedRIn = scatteredROut;
     const reflectedROut = reflectedRIn + reflectedValue;
     const absorbedSurfaceZ = 400;
     const atmosphereZ = 200;
-    const atmosphereX = 80;
+    const atmosphereX = 160;
     const atmosphereROut = 50;
     const atmosphereRIn = atmosphereROut - atmosphereValue;
     const arrowWidth = 5;
@@ -57,7 +57,7 @@ function drawArrow(scatteredValue, reflectedValue, atmosphereValue) {
             l ${-reflectedArrow} ${reflectedArrow}
             l ${arrowWidth} 0`;
     data += `
-            l 0 ${reflectedZ}
+            l 0 ${reflectedZ - reflectedROut}
             a ${reflectedROut} ${reflectedROut} 0 0 0 ${reflectedROut * 2} 0
             L ${reflectedValue + scatteredValue} ${absorbedSurfaceZ}`;
     // Absorbed surface arrow head.
@@ -70,24 +70,31 @@ function drawArrow(scatteredValue, reflectedValue, atmosphereValue) {
     data += `
             L ${reflectedValue + scatteredValue + absorbedSurfaceValue} ${atmosphereZ}
             a ${atmosphereROut} ${atmosphereROut} 0 0 0 ${atmosphereROut} ${atmosphereROut}
-            l ${atmosphereX} 0`;
+            l ${atmosphereX - absorbedSurfaceValue} 0`;
     // Absorbed atmosphere arrow head.
-    const absorbedAtmosphereArrow = (atmosphereValue) / 2 + arrowWidth;
+    const atmosphereArrow = (atmosphereValue) / 2 + arrowWidth;
     data += `
             l 0 ${arrowWidth}
-            l ${absorbedAtmosphereArrow} ${-absorbedAtmosphereArrow}
-            l ${-absorbedAtmosphereArrow} ${-absorbedAtmosphereArrow}
+            l ${atmosphereArrow} ${-atmosphereArrow}
+            l ${-atmosphereArrow} ${-atmosphereArrow}
             l 0 ${arrowWidth}`;
-    data += `
-            l ${-atmosphereX} 0
-            a ${atmosphereRIn} ${atmosphereRIn} 0 0 1 ${-atmosphereRIn} ${-atmosphereRIn}
-            l 0 ${-atmosphereZ}
-            Z`;
+    if (atmosphereRIn > 0) {
+        data += `
+                l ${-atmosphereX + absorbedSurfaceValue} 0
+                a ${atmosphereRIn} ${atmosphereRIn} 0 0 1 ${-atmosphereRIn} ${-atmosphereRIn}
+                l 0 ${-atmosphereZ}`;
+    }
+    else {
+        data += `
+                l ${-atmosphereX + absorbedSurfaceValue - atmosphereRIn} 0
+                l 0 ${-atmosphereZ - atmosphereRIn}`;
+    }
+    data += `Z`;
     // Inner / negative fill part.
     data += `
             M ${scatteredValue} ${scatteredZ}
             a ${scatteredROut} ${scatteredROut} 0 0 1 ${-scatteredROut * 2} 0
-            l 0 ${reflectedZ - scatteredZ}
+            l 0 ${reflectedZ - reflectedROut - scatteredZ}
             a ${reflectedRIn} ${reflectedRIn} 0 0 0 ${reflectedRIn * 2} 0
             Z`;
     return data;
