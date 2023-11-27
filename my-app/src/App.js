@@ -5,9 +5,12 @@ import Label from './components/Label';
 import ShortwaveArrows from './components/ShortwaveArrows';
 
 function App() {
-    const [scatteredValue, setScatteredValue] = useState(22);
-    const [reflectedValue, setReflectedValue] = useState(9);
-    const [atmosphereValue, setAtmosphereValue] = useState(20);
+    const defaultScatteredValue = 22;
+    const defaultReflectedValue = 9;
+    const defaultAtmosphereValue = 20;
+    const [scatteredValue, setScatteredValue] = useState(defaultScatteredValue);
+    const [reflectedValue, setReflectedValue] = useState(defaultReflectedValue);
+    const [atmosphereValue, setAtmosphereValue] = useState(defaultAtmosphereValue);
 
     const handleScatteredSliderChange = (newValue) => {
         setScatteredValue(newValue);
@@ -30,11 +33,18 @@ function App() {
         }
     }
 
+    const reset = () => {
+        setScatteredValue(defaultScatteredValue);
+        setReflectedValue(defaultReflectedValue);
+        setAtmosphereValue(defaultAtmosphereValue);
+    }
+
     const totalReflected = scatteredValue + reflectedValue;
     const absorbedBySurface = 100 - totalReflected - atmosphereValue;
     const scale = 500 / 600;
     return (
         <div className="App">
+            <button type="button" onClick={reset}>Reset</button>
             <ShortwaveArrows x={0} y={100} scattered={scatteredValue} reflected={reflectedValue} atmosphere={atmosphereValue} />
             <Label x={205} y={95} label={"Incoming solar radiation"} value={100}/>
             <Slider x={75} y={210 + scatteredValue / 2 * scale} label={"Reflected by clouds"} value={scatteredValue} onChange={handleScatteredSliderChange}/>
