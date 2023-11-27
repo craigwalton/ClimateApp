@@ -5,39 +5,43 @@ import Label from './components/Label';
 import ShortwaveArrows from './components/ShortwaveArrows';
 
 function App() {
-    const [slider1Value, setSlider1Value] = useState(22);
-    const [slider2Value, setSlider2Value] = useState(9);
-    const [slider3Value, setSlider3Value] = useState(20);
+    const [scatteredValue, setScatteredValue] = useState(22);
+    const [reflectedValue, setReflectedValue] = useState(9);
+    const [atmosphereValue, setAtmosphereValue] = useState(20);
 
-    const handleSliderChange = (slider, newValue) => {
-        if (slider === 1) {
-            setSlider1Value(newValue);
-            constrain(slider2Value, setSlider2Value, slider3Value, setSlider3Value, 100 - newValue);
-        } else if (slider === 2) {
-            setSlider2Value(newValue);
-            constrain(slider1Value, setSlider1Value, slider3Value, setSlider3Value, 100 - newValue);
-        } else if (slider === 3) {
-            setSlider3Value(newValue);
-            constrain(slider1Value, setSlider1Value, slider2Value, setSlider2Value, 100 - newValue);
-        }
-
-        function constrain(value1, setter1, value2, setter2, budget) {
-            if (value1 + value2 > budget) {
-                const newValue1 = Math.round(budget / 2);
-                setter1(newValue1);
-                setter2(budget - newValue1);
-            }
-        }
+    const handleScatteredSliderChange = (newValue) => {
+        setScatteredValue(newValue);
+        constrain(reflectedValue, setReflectedValue, atmosphereValue, setAtmosphereValue, 100 - newValue);
+    };
+    const handleReflectedSliderChange = (newValue) => {
+        setReflectedValue(newValue);
+        constrain(scatteredValue, setScatteredValue, atmosphereValue, setAtmosphereValue, 100 - newValue);
+    };
+    const handleAtmosphereSliderChange = (newValue) => {
+        setAtmosphereValue(newValue);
+        constrain(scatteredValue, setScatteredValue, reflectedValue, setReflectedValue, 100 - newValue);
     };
 
+    function constrain(value1, setter1, value2, setter2, budget) {
+        if (value1 + value2 > budget) {
+            const newValue1 = Math.round(budget / 2);
+            setter1(newValue1);
+            setter2(budget - newValue1);
+        }
+    }
+
+    const totalReflected = scatteredValue + reflectedValue;
+    const absorbedBySurface = 100 - totalReflected - atmosphereValue;
+    const scale = 500 / 600;
     return (
         <div className="App">
-            <ShortwaveArrows x={0} y={100} scattered={slider1Value} reflected={slider2Value} atmosphere={slider3Value} />
+            <ShortwaveArrows x={0} y={100} scattered={scatteredValue} reflected={reflectedValue} atmosphere={atmosphereValue} />
             <Label x={205} y={95} label={"Incoming solar radiation"} value={100}/>
-            <Slider x={75} y={208 + slider1Value / 2} label={"Reflected by clouds"} value={slider1Value} onChange={(newValue) => handleSliderChange(1, newValue)}/>
-            <Slider x={75} y={395 - slider2Value / 2} label={"Reflected by surface"} value={slider2Value} onChange={(newValue) => handleSliderChange(2, newValue)}/>
-            <Slider x={300} y={250} label={"Absorbed by atmosphere"} value={slider3Value} onChange={(newValue) => handleSliderChange(3, newValue)}/>
-            <Label x={174 + (slider1Value + slider2Value + (100 - slider3Value)) / 2 * (5/6)} y={450} label={"Absorbed by surface"} value={100 - slider1Value - slider2Value - slider3Value}/>
+            <Slider x={75} y={210 + scatteredValue / 2 * scale} label={"Reflected by clouds"} value={scatteredValue} onChange={handleScatteredSliderChange}/>
+            <Slider x={75} y={393 - reflectedValue / 2 * scale} label={"Reflected by surface"} value={reflectedValue} onChange={handleReflectedSliderChange}/>
+            <Slider x={300} y={250} label={"Absorbed by atmosphere"} value={atmosphereValue} onChange={handleAtmosphereSliderChange}/>
+            <Label x={174 + (totalReflected + (100 - atmosphereValue)) / 2 * scale} y={450} label={"Absorbed by surface"} value={absorbedBySurface}/>
+            <Label x={(58 - totalReflected / 2) * scale} y={95} label={"Reflected to space"} value={totalReflected}/>
         </div>
     );
 }
