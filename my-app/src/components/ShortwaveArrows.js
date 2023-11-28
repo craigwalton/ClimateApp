@@ -4,7 +4,7 @@ const ShortwaveArrows = ({x, y, scattered, reflected, atmosphere}) => {
 
     const data = drawArrow(scattered, reflected, atmosphere);
     return (
-        <div className="label-container" style={{position: 'absolute', left: x, top: y}}>
+        <div className="arrow-container" style={{position: 'absolute', left: x, top: y}}>
             <svg width="500" height="500" viewBox="-300 -60 600 600">
                 <defs>
                     <linearGradient id="grad" x1="0%" y1="0%" x2="0%" y2="100%">
