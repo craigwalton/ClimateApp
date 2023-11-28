@@ -44,14 +44,27 @@ function App() {
     const scale = 500 / 600;
     return (
         <div className="App">
-            <button type="button" onClick={reset}>Reset</button>
-            <ShortwaveArrows x={0} y={100} scattered={scatteredValue} reflected={reflectedValue} atmosphere={atmosphereValue} />
-            <Label x={291} y={95} label={"Incoming solar radiation"} value={100}/>
-            <Slider x={162} y={210 + scatteredValue / 2 * scale} label={"Reflected by clouds"} value={scatteredValue} onChange={handleScatteredSliderChange}/>
-            <Slider x={162} y={393 - reflectedValue / 2 * scale} label={"Reflected by surface"} value={reflectedValue} onChange={handleReflectedSliderChange}/>
-            <Slider x={400} y={250} label={"Absorbed by atmosphere"} value={atmosphereValue} onChange={handleAtmosphereSliderChange}/>
-            <Label x={250 + (totalReflected + (100 - atmosphereValue)) / 2 * scale} y={450} label={"Absorbed by surface"} value={absorbedBySurface}/>
-            <Label x={(140 - totalReflected / 2) * scale} y={95} label={"Reflected to space"} value={totalReflected}/>
+            <div id="space-background"></div>
+            <div id="atmosphere-background"></div>
+            <div id="earth-background"></div>
+            <div id="main-content">
+                <div id="centered">
+                    <button type="button" onClick={reset}>Reset</button>
+                    <ShortwaveArrows x={0} y={100} scattered={scatteredValue} reflected={reflectedValue}
+                                     atmosphere={atmosphereValue}/>
+                    <Label x={291} y={95} label={"Incoming solar radiation"} value={100}/>
+                    <Slider x={162} y={210 + scatteredValue / 2 * scale} label={"Reflected by clouds"}
+                            value={scatteredValue} onChange={handleScatteredSliderChange}/>
+                    <Slider x={162} y={393 - reflectedValue / 2 * scale} label={"Reflected by surface"}
+                            value={reflectedValue} onChange={handleReflectedSliderChange}/>
+                    <Slider x={400} y={250} label={"Absorbed by atmosphere"} value={atmosphereValue}
+                            onChange={handleAtmosphereSliderChange}/>
+                    <Label x={250 + (totalReflected + (100 - atmosphereValue)) / 2 * scale} y={450}
+                           label={"Absorbed by surface"} value={absorbedBySurface}/>
+                    <Label x={(140 - totalReflected / 2) * scale} y={95} label={"Reflected to space"}
+                           value={totalReflected}/>
+                </div>
+            </div>
         </div>
     );
 }
