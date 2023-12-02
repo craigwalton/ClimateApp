@@ -1,7 +1,6 @@
-path {
+.shortwave-path {
     stroke-width: 2;
     fill: url(#grad);
     fill-rule: evenodd;
     stroke: #b69f79;
 }
-

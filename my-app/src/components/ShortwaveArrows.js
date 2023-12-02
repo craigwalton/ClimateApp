@@ -12,8 +12,10 @@ const ShortwaveArrows = ({x, y, scattered, reflected, atmosphere}) => {
                         <stop offset="100%" style={{stopColor: 'rgb(235,195,128)', stopOpacity: 1}}/>
                     </linearGradient>
                 </defs>
-                <path d={data}/>
-                <path d="M 0 -40
+                <path className={"shortwave-path"}
+                      d={data}/>
+                <path className={"shortwave-path"}
+                      d="M 0 -40
                          l 0 40
                          l -10 0
                          l 60 50
@@ -31,7 +33,6 @@ function drawArrow(scatteredValue, reflectedValue, atmosphereValue) {
         return '';
     }
     const absorbedSurfaceValue = 100 - scatteredValue - reflectedValue - atmosphereValue;
-    console.log(scatteredValue, reflectedValue, atmosphereValue, absorbedSurfaceValue);
     const scatteredRIn = 80;
     const scatteredROut = scatteredRIn + scatteredValue;
     const scatteredZ = 100;
@@ -43,48 +44,47 @@ function drawArrow(scatteredValue, reflectedValue, atmosphereValue) {
     const atmosphereX = 160;
     const atmosphereROut = 50;
     const atmosphereRIn = atmosphereROut - atmosphereValue;
-    const arrowWidth = 5;
+    const step = 5;
     let data = `
             M 0 0
             l 0 ${scatteredZ}
             a ${scatteredRIn} ${scatteredRIn} 0 0 1 ${-scatteredRIn * 2} 0
             l 0 ${-scatteredZ}`;
     // Reflected arrow head.
-    const reflectedArrow = (scatteredValue + reflectedValue) / 2 + arrowWidth;
+    const reflectedArrow = (scatteredValue + reflectedValue) / 2 + step;
     data += `
-            l ${arrowWidth} 0
+            l ${step} 0
             l ${-reflectedArrow} ${-reflectedArrow}
             l ${-reflectedArrow} ${reflectedArrow}
-            l ${arrowWidth} 0`;
+            l ${step} 0`;
     data += `
             l 0 ${reflectedZ - reflectedROut}
             a ${reflectedROut} ${reflectedROut} 0 0 0 ${reflectedROut * 2} 0
             L ${reflectedValue + scatteredValue} ${absorbedSurfaceZ}`;
     // Absorbed surface arrow head.
-    const absorbedSurfaceArrow = (absorbedSurfaceValue) / 2 + arrowWidth;
+    const absorbedSurfaceArrow = (absorbedSurfaceValue) / 2 + step;
     data += `
-            l ${-arrowWidth} 0
+            l ${-step} 0
             l ${absorbedSurfaceArrow} ${absorbedSurfaceArrow}
             l ${absorbedSurfaceArrow} ${-absorbedSurfaceArrow}
-            l ${-arrowWidth} 0`;
+            l ${-step} 0`;
     data += `
             L ${reflectedValue + scatteredValue + absorbedSurfaceValue} ${atmosphereZ}
             a ${atmosphereROut} ${atmosphereROut} 0 0 0 ${atmosphereROut} ${atmosphereROut}
             l ${atmosphereX - absorbedSurfaceValue} 0`;
     // Absorbed atmosphere arrow head.
-    const atmosphereArrow = (atmosphereValue) / 2 + arrowWidth;
+    const atmosphereArrow = (atmosphereValue) / 2 + step;
     data += `
-            l 0 ${arrowWidth}
+            l 0 ${step}
             l ${atmosphereArrow} ${-atmosphereArrow}
             l ${-atmosphereArrow} ${-atmosphereArrow}
-            l 0 ${arrowWidth}`;
+            l 0 ${step}`;
     if (atmosphereRIn > 0) {
         data += `
                 l ${-atmosphereX + absorbedSurfaceValue} 0
                 a ${atmosphereRIn} ${atmosphereRIn} 0 0 1 ${-atmosphereRIn} ${-atmosphereRIn}
                 l 0 ${-atmosphereZ}`;
-    }
-    else {
+    } else {
         data += `
                 l ${-atmosphereX + absorbedSurfaceValue - atmosphereRIn} 0
                 l 0 ${-atmosphereZ - atmosphereRIn}`;
