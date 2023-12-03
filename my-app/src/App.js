@@ -20,7 +20,8 @@ function App() {
     const [swAbsorbedByAtmosphereSlider, setSwAbsorbedByAtmosphereSlider] = useState(defaultSwAbsorbedByAtmosphere);
     const [convectionSlider, setConvectionSlider] = useState(defaultConvectionValue);
     const [backRadiationSlider, setBackRadiationSlider] = useState(defaultBackRadiation);
-    const [atmosphericWindowSlider, setAtmosphericWindowSlider] = useState(defaultAtmosphericWindow);
+    const [atmosphericWindowPercentageSlider, setAtmosphericWindowPercentageSlider] = useState(defaultAtmosphericWindow);
+    const [atmosphericWindow, setAtmosphericWindow] = useState(0);
     const [lwAbsorbedByAtmosphere, setLwAbsorbedByAtmosphere] = useState(0);
     const [lwEmittedToSpace, setLwEmittedToSpace] = useState(0);
 
@@ -45,9 +46,11 @@ function App() {
         updateLwEmittedToSpace();
         //constrain(scatteredSlider, setScatteredValue, reflectedSlider, setReflectedValue, 100 - newValue);
     };
-    const handleAtmosphericWindowSliderChange = (newValue) => {
-        setAtmosphericWindowSlider(newValue);
-        updateLwAbsorbedByAtmosphere();
+    const handleAtmosphericWindowPercentSliderChange = (newValue) => {
+        setAtmosphericWindowPercentageSlider(newValue);
+        const window = (newValue / 100) * 50;
+        setAtmosphericWindow(window);
+        setLwAbsorbedByAtmosphere(50 - window);
     }
 
     function constrain(value1, setter1, value2, setter2, budget) {
@@ -56,10 +59,6 @@ function App() {
             setter1(newValue1);
             setter2(budget - newValue1);
         }
-    }
-
-    function updateLwAbsorbedByAtmosphere() {
-        setLwAbsorbedByAtmosphere(50 - atmosphericWindowSlider);
     }
 
     function updateLwEmittedToSpace() {
@@ -72,7 +71,7 @@ function App() {
         setSwAbsorbedByAtmosphereSlider(defaultSwAbsorbedByAtmosphere);
         setConvectionSlider(defaultConvectionValue);
         setBackRadiationSlider(defaultBackRadiation);
-        setAtmosphericWindowSlider(defaultAtmosphericWindow);
+        setAtmosphericWindowPercentageSlider(defaultAtmosphericWindow);
     }
 
     const totalReflected = scatteredSlider + reflectedSlider;
@@ -106,16 +105,16 @@ function App() {
                     <BackRadiationArrow x={700} y={370} value={backRadiationSlider}/>
                     <Label x={700} y={450} label={"Back radiation"} value={backRadiationSlider}/>
                     <LongwaveFromSurfaceArrows x={700} y={50} emitted={emittedFromSurface}
-                                               absorbed={lwAbsorbedByAtmosphere} window={atmosphericWindowSlider}/>
-                    <Label x={875 + atmosphericWindowSlider / 2} y={410} label={"Radiated from surface"}
+                                               absorbed={lwAbsorbedByAtmosphere} window={atmosphericWindow}/>
+                    <Label x={875 + atmosphericWindow / 2} y={410} label={"Radiated from surface"}
                            value={emittedFromSurface}/>
                     <Label x={800} y={214} label={"Absorbed by greenhouse gases & clouds"}
                            value={lwAbsorbedByAtmosphere}/>
-                    <Label x={900} y={50} label={"Through window"} value={atmosphericWindowSlider}/>
+                    <Label x={900} y={50} label={"Through window"} value={atmosphericWindow}/>
                     <Slider x={680} y={280} label={"Back radiation"} value={backRadiationSlider}
                             onChange={handleBackRadiationSliderChange}/>
-                    <Slider x={880} y={100} label={"Atmospheric window"} value={atmosphericWindowSlider}
-                            onChange={handleAtmosphericWindowSliderChange}/>
+                    <Slider x={880} y={100} label={"Atmospheric window"} value={atmosphericWindowPercentageSlider}
+                            onChange={handleAtmosphericWindowPercentSliderChange} hideLabel={true}/>
                     {/*Convection & Latent Heat*/}
                     <ConvectionArrow x={500} y={300} value={convectionSlider}/>
                     <Slider x={500} y={340} label={"Convection & Latent Heat"} value={convectionSlider}
