@@ -1,0 +1,5 @@
+.longwave-from-surface-path {
+    stroke-width: 2;
+    fill: url(#longwave-from-surface-gradient);
+    stroke: #b46b6d;
+}

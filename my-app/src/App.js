@@ -6,6 +6,7 @@ import ShortwaveArrows from './components/ShortwaveArrows';
 import ConvectionArrow from "./components/ConvectionArrow";
 import LongwaveToSpaceArrow from "./components/LongwaveToSpaceArrow";
 import BackRadiationArrow from "./components/BackRadiationArrow";
+import LongwaveFromSurfaceArrows from "./components/LongwaveFromSurfaceArrows";
 
 function App() {
     const defaultScatteredValue = 22;
@@ -53,6 +54,9 @@ function App() {
     const absorbedBySurface = 100 - totalReflected - atmosphereValue;
     const emittedToSpace = 57;
     const backRadiation = 40;
+    const emittedFromSurface = 50;
+    const longwaveAbsorbedByAtmosphere = 40;
+    const throughWindow = emittedFromSurface - longwaveAbsorbedByAtmosphere
     const scale = 500 / 600;
     return (
         <div className="App">
@@ -80,6 +84,12 @@ function App() {
                     <Label x={700} y={50} label={"Emitted to space"} value={emittedToSpace}/>
                     <BackRadiationArrow x={700} y={350} value={backRadiation}/>
                     <Label x={700} y={430} label={"Back radiation"} value={backRadiation}/>
+                    <LongwaveFromSurfaceArrows x={700} y={50} emitted={emittedFromSurface}
+                                               absorbed={longwaveAbsorbedByAtmosphere} window={throughWindow} />
+                    <Label x={870} y={430} label={"Emitted"} value={emittedFromSurface}/>
+                    <Label x={800} y={270} label={"Absorbed"} value={longwaveAbsorbedByAtmosphere}/>
+                    <Label x={900} y={30} label={"Through window"} value={throughWindow}/>
+
                     {/*Convection & Latent Heat*/}
                     <ConvectionArrow x={500} y={300} value={convectionValue}/>
                     <Slider x={500} y={350} label={"Convection & Latent Heat"} value={convectionValue}

@@ -35,21 +35,21 @@ function drawArrow(scatteredValue, reflectedValue, atmosphereValue) {
     const absorbedSurfaceValue = 100 - scatteredValue - reflectedValue - atmosphereValue;
     const scatteredRIn = 80;
     const scatteredROut = scatteredRIn + scatteredValue;
-    const scatteredZ = 100;
-    const reflectedZ = 400;
+    const scatteredY = 100;
+    const reflectedY = 400;
     const reflectedRIn = scatteredROut;
     const reflectedROut = reflectedRIn + reflectedValue;
     const absorbedSurfaceZ = 400;
-    const atmosphereZ = 200;
+    const atmosphereY = 200;
     const atmosphereX = 160;
     const atmosphereROut = 50;
     const atmosphereRIn = atmosphereROut - atmosphereValue;
     const step = 5;
     let data = `
             M 0 0
-            l 0 ${scatteredZ}
+            l 0 ${scatteredY}
             a ${scatteredRIn} ${scatteredRIn} 0 0 1 ${-scatteredRIn * 2} 0
-            l 0 ${-scatteredZ}`;
+            l 0 ${-scatteredY}`;
     // Reflected arrow head.
     const reflectedArrow = (scatteredValue + reflectedValue) / 2 + step;
     data += `
@@ -58,7 +58,7 @@ function drawArrow(scatteredValue, reflectedValue, atmosphereValue) {
             l ${-reflectedArrow} ${reflectedArrow}
             l ${step} 0`;
     data += `
-            l 0 ${reflectedZ - reflectedROut}
+            l 0 ${reflectedY - reflectedROut}
             a ${reflectedROut} ${reflectedROut} 0 0 0 ${reflectedROut * 2} 0
             L ${reflectedValue + scatteredValue} ${absorbedSurfaceZ}`;
     // Absorbed surface arrow head.
@@ -69,7 +69,7 @@ function drawArrow(scatteredValue, reflectedValue, atmosphereValue) {
             l ${absorbedSurfaceArrow} ${-absorbedSurfaceArrow}
             l ${-step} 0`;
     data += `
-            L ${reflectedValue + scatteredValue + absorbedSurfaceValue} ${atmosphereZ}
+            L ${reflectedValue + scatteredValue + absorbedSurfaceValue} ${atmosphereY}
             a ${atmosphereROut} ${atmosphereROut} 0 0 0 ${atmosphereROut} ${atmosphereROut}
             l ${atmosphereX - absorbedSurfaceValue} 0`;
     // Absorbed atmosphere arrow head.
@@ -83,18 +83,18 @@ function drawArrow(scatteredValue, reflectedValue, atmosphereValue) {
         data += `
                 l ${-atmosphereX + absorbedSurfaceValue} 0
                 a ${atmosphereRIn} ${atmosphereRIn} 0 0 1 ${-atmosphereRIn} ${-atmosphereRIn}
-                l 0 ${-atmosphereZ}`;
+                l 0 ${-atmosphereY}`;
     } else {
         data += `
                 l ${-atmosphereX + absorbedSurfaceValue - atmosphereRIn} 0
-                l 0 ${-atmosphereZ - atmosphereRIn}`;
+                l 0 ${-atmosphereY - atmosphereRIn}`;
     }
     data += `Z`;
     // Inner / negative fill part.
     data += `
-            M ${scatteredValue} ${scatteredZ}
+            M ${scatteredValue} ${scatteredY}
             a ${scatteredROut} ${scatteredROut} 0 0 1 ${-scatteredROut * 2} 0
-            l 0 ${reflectedZ - reflectedROut - scatteredZ}
+            l 0 ${reflectedY - reflectedROut - scatteredY}
             a ${reflectedRIn} ${reflectedRIn} 0 0 0 ${reflectedRIn * 2} 0
             Z`;
     return data;
