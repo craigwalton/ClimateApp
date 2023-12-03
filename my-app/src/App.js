@@ -4,6 +4,8 @@ import Slider from './components/Slider';
 import Label from './components/Label';
 import ShortwaveArrows from './components/ShortwaveArrows';
 import ConvectionArrow from "./components/ConvectionArrow";
+import LongwaveToSpaceArrow from "./components/LongwaveToSpaceArrow";
+import BackRadiationArrow from "./components/BackRadiationArrow";
 
 function App() {
     const defaultScatteredValue = 22;
@@ -49,6 +51,8 @@ function App() {
 
     const totalReflected = scatteredValue + reflectedValue;
     const absorbedBySurface = 100 - totalReflected - atmosphereValue;
+    const emittedToSpace = 57;
+    const backRadiation = 40;
     const scale = 500 / 600;
     return (
         <div className="App">
@@ -71,6 +75,11 @@ function App() {
                            label={"Absorbed by surface"} value={absorbedBySurface}/>
                     <Label x={(140 - totalReflected / 2) * scale} y={65} label={"Reflected to space"}
                            value={totalReflected}/>
+                    {/*Longwave*/}
+                    <LongwaveToSpaceArrow x={700} y={0} value={emittedToSpace}/>
+                    <Label x={700} y={50} label={"Emitted to space"} value={emittedToSpace}/>
+                    <BackRadiationArrow x={700} y={350} value={backRadiation}/>
+                    <Label x={700} y={430} label={"Back radiation"} value={backRadiation}/>
                     {/*Convection & Latent Heat*/}
                     <ConvectionArrow x={500} y={300} value={convectionValue}/>
                     <Slider x={500} y={350} label={"Convection & Latent Heat"} value={convectionValue}

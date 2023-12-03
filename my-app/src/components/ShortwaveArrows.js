@@ -7,7 +7,7 @@ const ShortwaveArrows = ({x, y, scattered, reflected, atmosphere}) => {
         <div className="arrow-container" style={{position: 'absolute', left: x, top: y}}>
             <svg width="500" height="500" viewBox="-300 -60 600 600">
                 <defs>
-                    <linearGradient id="grad" x1="0%" y1="0%" x2="0%" y2="100%">
+                    <linearGradient id="shortwave-gradient" x1="0%" y1="0%" x2="0%" y2="100%">
                         <stop offset="0%" style={{stopColor: 'rgb(240,210,161)', stopOpacity: 1}}/>
                         <stop offset="100%" style={{stopColor: 'rgb(235,195,128)', stopOpacity: 1}}/>
                     </linearGradient>
