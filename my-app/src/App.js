@@ -57,7 +57,6 @@ function App() {
     const emittedFromSurface = 50;
     const longwaveAbsorbedByAtmosphere = 40;
     const throughWindow = emittedFromSurface - longwaveAbsorbedByAtmosphere
-    const scale = 500 / 600;
     return (
         <div className="App">
             <div id="space-background"></div>
@@ -67,17 +66,17 @@ function App() {
                 <div id="centered">
                     <button type="button" onClick={reset}>Reset</button>
                     {/*Shortwave*/}
-                    <ShortwaveArrows x={0} y={70} scattered={scatteredValue} reflected={reflectedValue}
+                    <ShortwaveArrows x={0} y={0} scattered={scatteredValue} reflected={reflectedValue}
                                      atmosphere={atmosphereValue}/>
-                    <Slider x={162} y={180 + scatteredValue / 2 * scale} label={"Reflected by clouds"}
+                    <Slider x={162} y={140 + scatteredValue / 2} label={"Reflected by clouds"}
                             value={scatteredValue} onChange={handleScatteredSliderChange}/>
-                    <Slider x={162} y={363 - reflectedValue / 2 * scale} label={"Reflected by surface"}
+                    <Slider x={162} y={409 - reflectedValue / 2} label={"Reflected by surface"}
                             value={reflectedValue} onChange={handleReflectedSliderChange}/>
-                    <Slider x={400} y={220} label={"Absorbed by atmosphere"} value={atmosphereValue}
+                    <Slider x={400} y={210} label={"Absorbed by atmosphere"} value={atmosphereValue}
                             onChange={handleAtmosphereSliderChange}/>
-                    <Label x={250 + (totalReflected + (100 - atmosphereValue)) / 2 * scale} y={420}
+                    <Label x={250 + (totalReflected + (100 - atmosphereValue)) / 2} y={450}
                            label={"Absorbed by surface"} value={absorbedBySurface}/>
-                    <Label x={(140 - totalReflected / 2) * scale} y={65} label={"Reflected to space"}
+                    <Label x={(110 - totalReflected / 2)} y={65} label={"Reflected to space"}
                            value={totalReflected}/>
                     {/*Longwave*/}
                     <LongwaveToSpaceArrow x={700} y={0} value={emittedToSpace}/>
@@ -95,9 +94,9 @@ function App() {
                     <Slider x={500} y={350} label={"Convection & Latent Heat"} value={convectionValue}
                             onChange={handleConvectionSliderChange}/>
                     {/*Surface*/}
-                    <Label x={400} y={530} label={"GMST"} value={0}/>
+                    <Label x={500} y={530} label={"GMST"} value={0}/>
                     {/*Space*/}
-                    <Label x={291} y={65} label={"Incoming solar radiation"} value={100}/>
+                    <Label x={300} y={62} label={"Incoming solar radiation"} value={100}/>
                 </div>
             </div>
         </div>
