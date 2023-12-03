@@ -17,7 +17,7 @@ const LongwaveFromSurfaceArrows = ({x, y, emitted, absorbed, window}) => {
                 <path className={"longwave-from-surface-path"}
                       d={data}/>
                 <path className={"longwave-from-surface-path"}
-                      d={`M 200 450
+                      d={`M ${200 + window / 2} 450
                           l 0 -40
                           l ${step} 0
                           l ${-emittedArrow} ${-emittedArrow}
@@ -33,10 +33,11 @@ const LongwaveFromSurfaceArrows = ({x, y, emitted, absorbed, window}) => {
 function drawArrow(emitted, absorbed, window) {
     const step = 5;
     const height = 450;
+    const startX = 200 + window / 2;
     // Through window arrow.
     const windowArrow = (window) / 2 + step;
     const windowY = 400;
-    let data = `M 200 ${height}
+    let data = `M ${startX} ${height}
                 l 0 ${-windowY}
                 l ${step} 0
                 l ${-windowArrow} ${-windowArrow}
@@ -47,15 +48,15 @@ function drawArrow(emitted, absorbed, window) {
     const absorbedROut = 50;
     const absorbedRIn = absorbedROut - absorbed;
     const absorbedY = 250;
-    const absorbedX = 40;
+    const absorbedX = 80;
     data += `l 0 ${absorbedY - absorbed / 2}
              a ${absorbedROut} ${absorbedROut} 0 0 0 ${-absorbedROut} ${-absorbedROut}
-             l ${-absorbedX} 0
+             L ${absorbedX} ${absorbedY - absorbed / 2}
              l 0 ${-step}
              l ${-absorbedArrow} ${absorbedArrow}
              l ${absorbedArrow} ${absorbedArrow}
              l 0 ${-step}
-             l ${absorbedX} 0
+             L ${startX - emitted - absorbedRIn} ${absorbedY + absorbed / 2}
              a ${absorbedRIn} ${absorbedRIn} 0 0 1 ${absorbedRIn} ${absorbedRIn}
              l 0 ${windowY - absorbedY}
              Z`;

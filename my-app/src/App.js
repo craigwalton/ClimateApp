@@ -107,12 +107,12 @@ function App() {
                     <Label x={700} y={450} label={"Back radiation"} value={backRadiationSlider}/>
                     <LongwaveFromSurfaceArrows x={700} y={50} emitted={emittedFromSurface}
                                                absorbed={lwAbsorbedByAtmosphere} window={atmosphericWindowSlider} />
-                    <Label x={875} y={410} label={"Radiated from surface"} value={emittedFromSurface}/>
+                    <Label x={875 + atmosphericWindowSlider / 2} y={410} label={"Radiated from surface"} value={emittedFromSurface}/>
                     <Label x={800} y={214} label={"Absorbed by greenhouse gases & clouds"} value={lwAbsorbedByAtmosphere}/>
-                    <Label x={895} y={50} label={"Through window"} value={atmosphericWindowSlider}/>
+                    <Label x={900} y={50} label={"Through window"} value={atmosphericWindowSlider}/>
                     <Slider x={680} y={280} label={"Back radiation"} value={backRadiationSlider}
                             onChange={handleBackRadiationSliderChange}/>
-                    <Slider x={875} y={100} label={"Atmospheric window"} value={atmosphericWindowSlider}
+                    <Slider x={880} y={100} label={"Atmospheric window"} value={atmosphericWindowSlider}
                             onChange={handleAtmosphericWindowSliderChange}/>
                     {/*Convection & Latent Heat*/}
                     <ConvectionArrow x={500} y={300} value={convectionSlider}/>
