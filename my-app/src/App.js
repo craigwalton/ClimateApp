@@ -68,11 +68,11 @@ function App() {
                     {/*Shortwave*/}
                     <ShortwaveArrows x={0} y={0} scattered={scatteredValue} reflected={reflectedValue}
                                      atmosphere={atmosphereValue}/>
-                    <Slider x={162} y={140 + scatteredValue / 2} label={"Reflected by clouds"}
+                    <Slider x={162} y={170 + scatteredValue / 2} label={"Reflected by clouds"}
                             value={scatteredValue} onChange={handleScatteredSliderChange}/>
-                    <Slider x={162} y={409 - reflectedValue / 2} label={"Reflected by surface"}
+                    <Slider x={162} y={439 - reflectedValue / 2} label={"Reflected by surface"}
                             value={reflectedValue} onChange={handleReflectedSliderChange}/>
-                    <Slider x={400} y={210} label={"Absorbed by atmosphere"} value={atmosphereValue}
+                    <Slider x={400} y={240} label={"Absorbed by atmosphere"} value={atmosphereValue}
                             onChange={handleAtmosphereSliderChange}/>
                     <Label x={250 + (totalReflected + (100 - atmosphereValue)) / 2} y={450}
                            label={"Absorbed by surface"} value={absorbedBySurface}/>
@@ -88,10 +88,9 @@ function App() {
                     <Label x={870} y={430} label={"Emitted"} value={emittedFromSurface}/>
                     <Label x={800} y={270} label={"Absorbed"} value={longwaveAbsorbedByAtmosphere}/>
                     <Label x={900} y={30} label={"Through window"} value={throughWindow}/>
-
                     {/*Convection & Latent Heat*/}
                     <ConvectionArrow x={500} y={300} value={convectionValue}/>
-                    <Slider x={500} y={350} label={"Convection & Latent Heat"} value={convectionValue}
+                    <Slider x={500} y={340} label={"Convection & Latent Heat"} value={convectionValue}
                             onChange={handleConvectionSliderChange}/>
                     {/*Surface*/}
                     <Label x={500} y={530} label={"GMST"} value={0}/>

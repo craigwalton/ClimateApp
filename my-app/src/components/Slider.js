@@ -10,7 +10,9 @@ const Slider = ({x, y, label, value, onChange}) => {
     return (
         <div className="slider-container" style={{position: 'absolute', left: x, top: y, width: 0}}>
             <div style={{width: 130, position: 'absolute', left: -65}}>
-                <div style={{position: 'absolute', bottom: 40}}>{label}</div><br/>
+                <div style={{height: 20, marginTop: 10}}>
+                    <b>{value}</b>
+                </div>
                 <input
                     type="range"
                     min="0"
@@ -18,8 +20,8 @@ const Slider = ({x, y, label, value, onChange}) => {
                     value={value}
                     onChange={handleSliderChange}
                     style={{width: '100%'}}
-                /><br/>
-                <b>{value}</b>
+                />
+                <div>{label}</div>
             </div>
         </div>
     );
