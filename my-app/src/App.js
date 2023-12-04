@@ -21,17 +21,20 @@ function App() {
     const [convectionSlider, setConvectionSlider] = useState(defaultConvectionValue);
     const [backRadiationSlider, setBackRadiationSlider] = useState(defaultBackRadiation);
     const [atmosphericWindowPercentageSlider, setAtmosphericWindowPercentageSlider] = useState(defaultAtmosphericWindow);
-    const [atmosphericWindow, setAtmosphericWindow] = useState(0);
-    const [lwAbsorbedByAtmosphere, setLwAbsorbedByAtmosphere] = useState(0);
-    const [lwEmittedToSpace, setLwEmittedToSpace] = useState(0);
+    const [atmosphericWindow, setAtmosphericWindow] = useState(12);
+    const [lwAbsorbedByAtmosphere, setLwAbsorbedByAtmosphere] = useState(102);
+    const [lwEmittedToSpace, setLwEmittedToSpace] = useState(57);
+    const [lwEmittedFromSurface, setLwEmittedFromSurface] = useState(114);
 
     const handleScatteredSliderChange = (newValue) => {
         setScatteredSlider(newValue);
         constrain(reflectedSlider, setReflectedSlider, swAbsorbedByAtmosphereSlider, setSwAbsorbedByAtmosphereSlider, 100 - newValue);
+        updateLwEmittedToSpace();
     };
     const handleReflectedSliderChange = (newValue) => {
         setReflectedSlider(newValue);
         constrain(scatteredSlider, setScatteredSlider, swAbsorbedByAtmosphereSlider, setSwAbsorbedByAtmosphereSlider, 100 - newValue);
+        updateLwEmittedToSpace();
     };
     const handleSwAbsorbedByAtmosphereSliderChange = (newValue) => {
         setSwAbsorbedByAtmosphereSlider(newValue);
@@ -50,7 +53,8 @@ function App() {
         setAtmosphericWindowPercentageSlider(newValue);
         const window = (newValue / 100) * 50;
         setAtmosphericWindow(window);
-        setLwAbsorbedByAtmosphere(50 - window);
+        updateLwAbsorbedByAtmosphere();
+        updateLwEmittedToSpace();
     }
 
     function constrain(value1, setter1, value2, setter2, budget) {
@@ -62,7 +66,11 @@ function App() {
     }
 
     function updateLwEmittedToSpace() {
-        setLwEmittedToSpace(convectionSlider + swAbsorbedByAtmosphereSlider + 12 - backRadiationSlider);
+        setLwEmittedToSpace(100 - reflectedSlider - scatteredSlider - atmosphericWindow);
+    }
+
+    function updateLwAbsorbedByAtmosphere() {
+        setLwAbsorbedByAtmosphere(lwEmittedFromSurface - atmosphericWindow);
     }
 
     const reset = () => {
@@ -76,7 +84,6 @@ function App() {
 
     const totalReflected = scatteredSlider + reflectedSlider;
     const absorbedBySurface = 100 - totalReflected - swAbsorbedByAtmosphereSlider;
-    const emittedFromSurface = 50;
 
     return (
         <div className="App">
@@ -104,10 +111,10 @@ function App() {
                     <Label x={700} y={50} label={"Emitted to space"} value={lwEmittedToSpace}/>
                     <BackRadiationArrow x={700} y={370} value={backRadiationSlider}/>
                     <Label x={700} y={450} label={"Back radiation"} value={backRadiationSlider}/>
-                    <LongwaveFromSurfaceArrows x={700} y={50} emitted={emittedFromSurface}
+                    <LongwaveFromSurfaceArrows x={700} y={50} emitted={lwEmittedFromSurface}
                                                absorbed={lwAbsorbedByAtmosphere} window={atmosphericWindow}/>
-                    <Label x={875 + atmosphericWindow / 2} y={410} label={"Radiated from surface"}
-                           value={emittedFromSurface}/>
+                    <Label x={900 - lwEmittedFromSurface / 2 + atmosphericWindow / 2} y={410} label={"Radiated from surface"}
+                           value={lwEmittedFromSurface}/>
                     <Label x={800} y={214} label={"Absorbed by greenhouse gases & clouds"}
                            value={lwAbsorbedByAtmosphere}/>
                     <Label x={900} y={50} label={"Through window"} value={atmosphericWindow}/>

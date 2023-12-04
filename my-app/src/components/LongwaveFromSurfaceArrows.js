@@ -5,7 +5,6 @@ const LongwaveFromSurfaceArrows = ({x, y, emitted, absorbed, window}) => {
     const data = drawArrow(emitted, absorbed, window);
     const step = 5;
     const emittedArrow = (emitted) / 2 + step;
-    console.log(emitted, absorbed, window);
     return (
         <div className="arrow-container" style={{position: 'absolute', left: x, top: y}}>
             <svg width="250" height="450" viewBox="0 0 250 450">
@@ -49,17 +48,22 @@ function drawArrow(emitted, absorbed, window) {
     const absorbedROut = 50;
     const absorbedRIn = absorbedROut - absorbed;
     const absorbedY = 250;
-    const absorbedX = 80;
+    const absorbedX = 60;
     data += `l 0 ${absorbedY - absorbed / 2}
              a ${absorbedROut} ${absorbedROut} 0 0 0 ${-absorbedROut} ${-absorbedROut}
              L ${absorbedX} ${absorbedY - absorbed / 2}
              l 0 ${-step}
              l ${-absorbedArrow} ${absorbedArrow}
              l ${absorbedArrow} ${absorbedArrow}
-             l 0 ${-step}
-             L ${startX - emitted - absorbedRIn} ${absorbedY + absorbed / 2}
-             a ${absorbedRIn} ${absorbedRIn} 0 0 1 ${absorbedRIn} ${absorbedRIn}
-             l 0 ${windowY - absorbedY}
+             l 0 ${-step}`;
+    if (absorbedRIn > 0) {
+        data += `L ${startX - emitted - absorbedRIn} ${absorbedY + absorbed / 2}
+                 a ${absorbedRIn} ${absorbedRIn} 0 0 1 ${absorbedRIn} ${absorbedRIn}`;
+    }
+    else {
+        data += `L ${startX - emitted} ${absorbedY + absorbed / 2}`;
+    }
+    data += `l 0 ${windowY - absorbedY}
              Z`;
     return data;
 }
