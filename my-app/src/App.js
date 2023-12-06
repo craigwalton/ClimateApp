@@ -24,26 +24,32 @@ function App() {
     const [backRadiationSlider, setBackRadiationSlider] = useState(defaultBackRadiation);
     const [atmosphericWindowPercentageSlider, setAtmosphericWindowPercentageSlider] = useState(defaultAtmosphericWindow);
 
-    //
-    const [atmosphericWindow, setAtmosphericWindow] = useState(12);
-    const [lwAbsorbedByAtmosphere, setLwAbsorbedByAtmosphere] = useState(102);
-    const [lwEmittedToSpace, setLwEmittedToSpace] = useState(57);
+    // Computed values.
     const [lwEmittedFromSurface, setLwEmittedFromSurface] = useState(114);
+    const [atmosphericWindow, setAtmosphericWindow] = useState(12);
+    useEffect(() => {
+        setAtmosphericWindow((atmosphericWindowPercentageSlider / 100) * lwEmittedFromSurface);
+    }, [atmosphericWindowPercentageSlider, lwEmittedFromSurface]);
+    const [lwEmittedToSpace, setLwEmittedToSpace] = useState(57);
+    useEffect(() => {
+        setLwEmittedToSpace(100 - reflectedSlider - scatteredSlider - atmosphericWindow);
+    }, [reflectedSlider, scatteredSlider, atmosphericWindow]);
     const [absorbedBySurface, setAbsorbedBySurface] = useState(0);
     useEffect(() => {
-        const absorbedBySurface = 100 - (scatteredSlider + reflectedSlider) - swAbsorbedByAtmosphereSlider;
-        setAbsorbedBySurface(absorbedBySurface);
+        setAbsorbedBySurface(100 - (scatteredSlider + reflectedSlider) - swAbsorbedByAtmosphereSlider);
     }, [scatteredSlider, reflectedSlider, swAbsorbedByAtmosphereSlider]);
+    const [lwAbsorbedByAtmosphere, setLwAbsorbedByAtmosphere] = useState(102);
+    useEffect(() => {
+        setLwAbsorbedByAtmosphere(lwEmittedFromSurface - atmosphericWindow);
+    }, [lwEmittedFromSurface, atmosphericWindow]);
 
     const handleScatteredSliderChange = (newValue) => {
         setScatteredSlider(newValue);
         constrain(reflectedSlider, setReflectedSlider, swAbsorbedByAtmosphereSlider, setSwAbsorbedByAtmosphereSlider, 100 - newValue);
-        updateLwEmittedToSpace();
     };
     const handleReflectedSliderChange = (newValue) => {
         setReflectedSlider(newValue);
         constrain(scatteredSlider, setScatteredSlider, swAbsorbedByAtmosphereSlider, setSwAbsorbedByAtmosphereSlider, 100 - newValue);
-        updateLwEmittedToSpace();
     };
     const handleSwAbsorbedByAtmosphereSliderChange = (newValue) => {
         setSwAbsorbedByAtmosphereSlider(newValue);
@@ -55,15 +61,10 @@ function App() {
     };
     const handleBackRadiationSliderChange = (newValue) => {
         setBackRadiationSlider(newValue);
-        updateLwEmittedToSpace();
         //constrain(scatteredSlider, setScatteredValue, reflectedSlider, setReflectedValue, 100 - newValue);
     };
     const handleAtmosphericWindowPercentSliderChange = (newValue) => {
         setAtmosphericWindowPercentageSlider(newValue);
-        const window = (newValue / 100) * 50;
-        setAtmosphericWindow(window);
-        updateLwAbsorbedByAtmosphere();
-        updateLwEmittedToSpace();
     }
 
     function constrain(value1, setter1, value2, setter2, budget) {
@@ -72,14 +73,6 @@ function App() {
             setter1(newValue1);
             setter2(budget - newValue1);
         }
-    }
-
-    function updateLwEmittedToSpace() {
-        setLwEmittedToSpace(100 - reflectedSlider - scatteredSlider - atmosphericWindow);
-    }
-
-    function updateLwAbsorbedByAtmosphere() {
-        setLwAbsorbedByAtmosphere(lwEmittedFromSurface - atmosphericWindow);
     }
 
     const reset = () => {
