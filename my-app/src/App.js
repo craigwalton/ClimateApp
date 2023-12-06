@@ -92,7 +92,6 @@ function App() {
             <div id="earth-background"></div>
             <div id="main-content">
                 <div id="centered">
-                    <button type="button" onClick={reset}>Reset</button>
                     {/*Shortwave*/}
                     <ShortwaveArrows x={0} y={0} scattered={scatteredSlider} reflected={reflectedSlider}
                                      atmosphere={swAbsorbedByAtmosphereSlider}/>
@@ -134,6 +133,7 @@ function App() {
                     <div style={{position: 'absolute', left: 520, top: 280, width: 140}}>
                         Greenhouse gases & clouds
                     </div>
+                    <button type="button" onClick={reset} style={{position: 'relative'}}>Reset</button>
                 </div>
             </div>
         </div>
