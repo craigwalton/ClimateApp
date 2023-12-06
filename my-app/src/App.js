@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, {useEffect, useState} from 'react';
 import './App.css';
 import Slider from './components/Slider';
 import Label from './components/Label';
@@ -15,16 +15,25 @@ function App() {
     const defaultConvectionValue = 30;
     const defaultBackRadiation = 96;
     const defaultAtmosphericWindow = 10;
+
+    // User input
     const [scatteredSlider, setScatteredSlider] = useState(defaultScatteredValue);
     const [reflectedSlider, setReflectedSlider] = useState(defaultReflectedValue);
     const [swAbsorbedByAtmosphereSlider, setSwAbsorbedByAtmosphereSlider] = useState(defaultSwAbsorbedByAtmosphere);
     const [convectionSlider, setConvectionSlider] = useState(defaultConvectionValue);
     const [backRadiationSlider, setBackRadiationSlider] = useState(defaultBackRadiation);
     const [atmosphericWindowPercentageSlider, setAtmosphericWindowPercentageSlider] = useState(defaultAtmosphericWindow);
+
+    //
     const [atmosphericWindow, setAtmosphericWindow] = useState(12);
     const [lwAbsorbedByAtmosphere, setLwAbsorbedByAtmosphere] = useState(102);
     const [lwEmittedToSpace, setLwEmittedToSpace] = useState(57);
     const [lwEmittedFromSurface, setLwEmittedFromSurface] = useState(114);
+    const [absorbedBySurface, setAbsorbedBySurface] = useState(0);
+    useEffect(() => {
+        const absorbedBySurface = 100 - (scatteredSlider + reflectedSlider) - swAbsorbedByAtmosphereSlider;
+        setAbsorbedBySurface(absorbedBySurface);
+    }, [scatteredSlider, reflectedSlider, swAbsorbedByAtmosphereSlider]);
 
     const handleScatteredSliderChange = (newValue) => {
         setScatteredSlider(newValue);
@@ -82,9 +91,6 @@ function App() {
         setAtmosphericWindowPercentageSlider(defaultAtmosphericWindow);
     }
 
-    const totalReflected = scatteredSlider + reflectedSlider;
-    const absorbedBySurface = 100 - totalReflected - swAbsorbedByAtmosphereSlider;
-
     return (
         <div className="App">
             <div id="space-background"></div>
@@ -102,10 +108,10 @@ function App() {
                             value={reflectedSlider} onChange={handleReflectedSliderChange}/>
                     <Slider x={400} y={240} label={"Absorbed by atmosphere"} value={swAbsorbedByAtmosphereSlider}
                             onChange={handleSwAbsorbedByAtmosphereSliderChange}/>
-                    <Label x={250 + (totalReflected + (100 - swAbsorbedByAtmosphereSlider)) / 2} y={450}
+                    <Label x={250 + (scatteredSlider + reflectedSlider + (100 - swAbsorbedByAtmosphereSlider)) / 2} y={450}
                            label={"Absorbed by surface"} value={absorbedBySurface}/>
-                    <Label x={(110 - totalReflected / 2)} y={50} label={"Reflected to space"}
-                           value={totalReflected}/>
+                    <Label x={(110 - (scatteredSlider + reflectedSlider) / 2)} y={50} label={"Reflected to space"}
+                           value={scatteredSlider + reflectedSlider}/>
                     {/*Longwave*/}
                     <LongwaveToSpaceArrow x={700} y={0} value={lwEmittedToSpace}/>
                     <Label x={700} y={50} label={"Emitted to space"} value={lwEmittedToSpace}/>
