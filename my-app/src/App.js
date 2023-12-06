@@ -43,6 +43,12 @@ function App() {
     useEffect(() => {
         setLwAbsorbedByAtmosphere(lwEmittedFromSurface - atmosphericWindow);
     }, [lwEmittedFromSurface, atmosphericWindow]);
+    const [gmst, setGmst] = useState(null);
+    useEffect(() => {
+        const boltzmannConstant = 5.6704E-8;
+        const solarRadiationAbsolute = 342;
+        setGmst(toCelsius(Math.pow((lwEmittedFromSurface / 100 * solarRadiationAbsolute) / boltzmannConstant, 0.25)));
+    }, [lwEmittedFromSurface]);
 
     const handleScatteredSliderChange = (newValue) => {
         setScatteredSlider(newValue);
@@ -76,6 +82,10 @@ function App() {
         }
     }
 
+    function toCelsius(kelvin) {
+        return kelvin - 273.15;
+    }
+
     const reset = () => {
         setScatteredSlider(defaultScatteredValue);
         setReflectedSlider(defaultReflectedValue);
@@ -101,7 +111,8 @@ function App() {
                             value={reflectedSlider} onChange={handleReflectedSliderChange}/>
                     <Slider x={400} y={240} label={"Absorbed by atmosphere"} value={swAbsorbedByAtmosphereSlider}
                             onChange={handleSwAbsorbedByAtmosphereSliderChange}/>
-                    <Label x={250 + (scatteredSlider + reflectedSlider + (100 - swAbsorbedByAtmosphereSlider)) / 2} y={450}
+                    <Label x={250 + (scatteredSlider + reflectedSlider + (100 - swAbsorbedByAtmosphereSlider)) / 2}
+                           y={450}
                            label={"Absorbed by surface"} value={absorbedBySurface}/>
                     <Label x={(110 - (scatteredSlider + reflectedSlider) / 2)} y={50} label={"Reflected to space"}
                            value={scatteredSlider + reflectedSlider}/>
@@ -112,7 +123,8 @@ function App() {
                     <Label x={700} y={450} label={"Back radiation"} value={backRadiationSlider}/>
                     <LongwaveFromSurfaceArrows x={700} y={50} emitted={lwEmittedFromSurface}
                                                absorbed={lwAbsorbedByAtmosphere} window={atmosphericWindow}/>
-                    <Label x={900 - lwEmittedFromSurface / 2 + atmosphericWindow / 2} y={410} label={"Radiated from surface"}
+                    <Label x={900 - lwEmittedFromSurface / 2 + atmosphericWindow / 2} y={410}
+                           label={"Radiated from surface"}
                            value={lwEmittedFromSurface}/>
                     <Label x={800} y={214} label={"Absorbed by greenhouse gases & clouds"}
                            value={lwAbsorbedByAtmosphere}/>
@@ -126,7 +138,7 @@ function App() {
                     <Slider x={500} y={340} label={"Convection & Latent Heat"} value={convectionSlider}
                             onChange={handleConvectionSliderChange}/>
                     {/*Surface*/}
-                    <Label x={500} y={530} label={"GMST"} value={0}/>
+                    <Label x={500} y={530} label={"GMST"} value={gmst}/>
                     {/*Space*/}
                     <Label x={300} y={62} label={"Incoming solar radiation"} value={100}/>
                     {/*Other*/}
