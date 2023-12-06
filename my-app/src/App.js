@@ -9,6 +9,7 @@ import BackRadiationArrow from "./components/BackRadiationArrow";
 import LongwaveFromSurfaceArrows from "./components/LongwaveFromSurfaceArrows";
 
 function App() {
+    const solarInput = 100;
     const defaultScatteredValue = 22;
     const defaultReflectedValue = 9;
     const defaultSwAbsorbedByAtmosphere = 20;
@@ -26,19 +27,19 @@ function App() {
 
     // Computed values.
     const [lwEmittedFromSurface, setLwEmittedFromSurface] = useState(114);
-    const [atmosphericWindow, setAtmosphericWindow] = useState(12);
+    const [atmosphericWindow, setAtmosphericWindow] = useState(null);
     useEffect(() => {
         setAtmosphericWindow((atmosphericWindowPercentageSlider / 100) * lwEmittedFromSurface);
     }, [atmosphericWindowPercentageSlider, lwEmittedFromSurface]);
-    const [lwEmittedToSpace, setLwEmittedToSpace] = useState(57);
+    const [lwEmittedToSpace, setLwEmittedToSpace] = useState(null);
     useEffect(() => {
-        setLwEmittedToSpace(100 - reflectedSlider - scatteredSlider - atmosphericWindow);
+        setLwEmittedToSpace(solarInput - reflectedSlider - scatteredSlider - atmosphericWindow);
     }, [reflectedSlider, scatteredSlider, atmosphericWindow]);
-    const [absorbedBySurface, setAbsorbedBySurface] = useState(0);
+    const [absorbedBySurface, setAbsorbedBySurface] = useState(null);
     useEffect(() => {
-        setAbsorbedBySurface(100 - (scatteredSlider + reflectedSlider) - swAbsorbedByAtmosphereSlider);
+        setAbsorbedBySurface(solarInput - (scatteredSlider + reflectedSlider) - swAbsorbedByAtmosphereSlider);
     }, [scatteredSlider, reflectedSlider, swAbsorbedByAtmosphereSlider]);
-    const [lwAbsorbedByAtmosphere, setLwAbsorbedByAtmosphere] = useState(102);
+    const [lwAbsorbedByAtmosphere, setLwAbsorbedByAtmosphere] = useState(null);
     useEffect(() => {
         setLwAbsorbedByAtmosphere(lwEmittedFromSurface - atmosphericWindow);
     }, [lwEmittedFromSurface, atmosphericWindow]);
