@@ -1,13 +1,13 @@
 import './Slider.css';
 
-const Slider = ({x, y, label, value, onChange, hideLabel=false}) => {
+const Slider = ({x, y, label, value, onChange, hideValue=false}) => {
 
     const handleSliderChange = (event) => {
         const valueInt = parseInt(event.target.value, 10);
         onChange(valueInt);
     };
 
-    var labelDisplay = hideLabel ? 'none' : 'block';
+    var labelDisplay = hideValue ? 'none' : 'block';
     return (
         <div className="slider-container" style={{position: 'absolute', left: x, top: y, width: 0}}>
             <div style={{width: 130, position: 'absolute', left: -65}}>

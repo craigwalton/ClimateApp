@@ -1,6 +1,6 @@
 import './Label.css';
 
-const Label = ({x, y, label, value}) => {
+const Label = ({x, y, value, label=""}) => {
 
     const formattedValue = Math.round(value);
 
