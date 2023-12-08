@@ -11,8 +11,8 @@ import LongwaveFromSurfaceArrows from "./components/LongwaveFromSurfaceArrows";
 function App() {
     const solarInput = 100;
     const defaultScatteredValue = 22;
-    const defaultSwAbsorbedByAtmosphere = 26;
-    const defaultReflectedValue = 15;
+    const defaultSwAbsorbedByAtmosphere = 20 * 100 / 78;
+    const defaultReflectedValue = 9 * 100 / 58
     const defaultConvectionValue = 30;
     const defaultBackRadiation = 95;
     const defaultAtmosphericWindow = 10;
