@@ -26,15 +26,6 @@ function App() {
     const [atmosphericWindowPercentageSlider, setAtmosphericWindowSlider] = useState(defaultAtmosphericWindow);
 
     // Computed values.
-    const [lwEmittedFromSurface, setLwEmittedFromSurface] = useState(114);
-    const [atmosphericWindow, setAtmosphericWindow] = useState(null);
-    useEffect(() => {
-        setAtmosphericWindow((atmosphericWindowPercentageSlider / 100) * lwEmittedFromSurface);
-    }, [atmosphericWindowPercentageSlider, lwEmittedFromSurface]);
-    const [lwEmittedToSpace, setLwEmittedToSpace] = useState(null);
-    useEffect(() => {
-        setLwEmittedToSpace(solarInput - reflectedSlider - scatteredSlider - atmosphericWindow);
-    }, [reflectedSlider, scatteredSlider, atmosphericWindow]);
     const [scattered, setScattered] = useState(null);
     useEffect(() => {
         setScattered((scatteredSlider / 100) * solarInput);
@@ -51,6 +42,18 @@ function App() {
     useEffect(() => {
         setAbsorbedBySurface(solarInput - (scattered + swAbsorbedByAtmosphere + reflected));
     }, [scattered, swAbsorbedByAtmosphere, reflected]);
+    const [lwEmittedFromSurface, setLwEmittedFromSurface] = useState(null);
+    useEffect(() => {
+        setLwEmittedFromSurface(absorbedBySurface + backRadiationSlider - convectionSlider);
+    }, [absorbedBySurface, backRadiationSlider, convectionSlider]);
+    const [atmosphericWindow, setAtmosphericWindow] = useState(null);
+    useEffect(() => {
+        setAtmosphericWindow((atmosphericWindowPercentageSlider / 100) * lwEmittedFromSurface);
+    }, [atmosphericWindowPercentageSlider, lwEmittedFromSurface]);
+    const [lwEmittedToSpace, setLwEmittedToSpace] = useState(null);
+    useEffect(() => {
+        setLwEmittedToSpace(solarInput - reflectedSlider - scatteredSlider - atmosphericWindow);
+    }, [reflectedSlider, scatteredSlider, atmosphericWindow]);
     const [lwAbsorbedByAtmosphere, setLwAbsorbedByAtmosphere] = useState(null);
     useEffect(() => {
         setLwAbsorbedByAtmosphere(lwEmittedFromSurface - atmosphericWindow);
