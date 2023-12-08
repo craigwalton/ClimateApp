@@ -131,7 +131,7 @@ function App() {
                     <div style={{position: 'absolute', left: 520, top: 280, width: 140}}>
                         Greenhouse gases & clouds
                     </div>
-                    <button type="button" onClick={reset} style={{position: 'relative'}}>Reset</button>
+                    <button type="button" onClick={reset} style={{position: 'relative', top: 10}}>Reset</button>
                 </div>
             </div>
         </div>
