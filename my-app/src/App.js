@@ -23,7 +23,7 @@ function App() {
     const [swAbsorbedByAtmosphereSlider, setSwAbsorbedByAtmosphereSlider] = useState(defaultSwAbsorbedByAtmosphere);
     const [convectionSlider, setConvectionSlider] = useState(defaultConvectionValue);
     const [backRadiationSlider, setBackRadiationSlider] = useState(defaultBackRadiation);
-    const [atmosphericWindowPercentageSlider, setAtmosphericWindowPercentageSlider] = useState(defaultAtmosphericWindow);
+    const [atmosphericWindowPercentageSlider, setAtmosphericWindowSlider] = useState(defaultAtmosphericWindow);
 
     // Computed values.
     const [lwEmittedFromSurface, setLwEmittedFromSurface] = useState(114);
@@ -78,7 +78,7 @@ function App() {
         setBackRadiationSlider(newValue);
     };
     const handleAtmosphericWindowPercentSliderChange = (newValue) => {
-        setAtmosphericWindowPercentageSlider(newValue);
+        setAtmosphericWindowSlider(newValue);
     }
 
     function toCelsius(kelvin) {
@@ -91,7 +91,7 @@ function App() {
         setSwAbsorbedByAtmosphereSlider(defaultSwAbsorbedByAtmosphere);
         setConvectionSlider(defaultConvectionValue);
         setBackRadiationSlider(defaultBackRadiation);
-        setAtmosphericWindowPercentageSlider(defaultAtmosphericWindow);
+        setAtmosphericWindowSlider(defaultAtmosphericWindow);
     }
 
     return (
