@@ -23,7 +23,7 @@ function App() {
     const [swAbsorbedByAtmosphereSlider, setSwAbsorbedByAtmosphereSlider] = useState(defaultSwAbsorbedByAtmosphere);
     const [convectionSlider, setConvectionSlider] = useState(defaultConvectionValue);
     const [backRadiationSlider, setBackRadiationSlider] = useState(defaultBackRadiation);
-    const [atmosphericWindowPercentageSlider, setAtmosphericWindowSlider] = useState(defaultAtmosphericWindow);
+    const [atmosphericWindowSlider, setAtmosphericWindowSlider] = useState(defaultAtmosphericWindow);
 
     // Computed values.
     const [scattered, setScattered] = useState(null);
@@ -48,8 +48,8 @@ function App() {
     }, [absorbedBySurface, backRadiationSlider, convectionSlider]);
     const [atmosphericWindow, setAtmosphericWindow] = useState(null);
     useEffect(() => {
-        setAtmosphericWindow((atmosphericWindowPercentageSlider / 100) * lwEmittedFromSurface);
-    }, [atmosphericWindowPercentageSlider, lwEmittedFromSurface]);
+        setAtmosphericWindow((atmosphericWindowSlider / 100) * lwEmittedFromSurface);
+    }, [atmosphericWindowSlider, lwEmittedFromSurface]);
     const [lwEmittedToSpace, setLwEmittedToSpace] = useState(null);
     useEffect(() => {
         setLwEmittedToSpace(solarInput - reflectedSlider - scatteredSlider - atmosphericWindow);
@@ -64,25 +64,6 @@ function App() {
         const solarRadiationAbsolute = 342;
         setGmst(toCelsius(Math.pow((lwEmittedFromSurface / 100 * solarRadiationAbsolute) / boltzmannConstant, 0.25)));
     }, [lwEmittedFromSurface]);
-
-    const handleScatteredSliderChange = (newValue) => {
-        setScatteredSlider(newValue);
-    };
-    const handleReflectedSliderChange = (newValue) => {
-        setReflectedSlider(newValue);
-    };
-    const handleSwAbsorbedByAtmosphereSliderChange = (newValue) => {
-        setSwAbsorbedByAtmosphereSlider(newValue);
-    };
-    const handleConvectionSliderChange = (newValue) => {
-        setConvectionSlider(newValue);
-    };
-    const handleBackRadiationSliderChange = (newValue) => {
-        setBackRadiationSlider(newValue);
-    };
-    const handleAtmosphericWindowPercentSliderChange = (newValue) => {
-        setAtmosphericWindowSlider(newValue);
-    }
 
     function toCelsius(kelvin) {
         return kelvin - 273.15;
@@ -109,13 +90,13 @@ function App() {
                                      atmosphere={swAbsorbedByAtmosphere}/>
                     <Label x={178} y={200 + scattered / 2} value={scattered}/>
                     <Slider x={162} y={190 + scattered} label={"Reflected by clouds"}
-                            value={scatteredSlider} onChange={handleScatteredSliderChange} hideValue={true}/>
+                            value={scatteredSlider} onChange={setScatteredSlider} hideValue={true}/>
                     <Label x={178} y={470 - reflected / 2} label={""} value={reflected}/>
                     <Slider x={162} y={460} label={"Reflected by surface"}
-                            value={reflectedSlider} onChange={handleReflectedSliderChange} hideValue={true}/>
+                            value={reflectedSlider} onChange={setReflectedSlider} hideValue={true}/>
                     <Label x={410} y={271} value={swAbsorbedByAtmosphere}/>
                     <Slider x={400} y={280} label={"Absorbed by atmosphere"} value={swAbsorbedByAtmosphereSlider} hideValue={true}
-                            onChange={handleSwAbsorbedByAtmosphereSliderChange}/>
+                            onChange={setSwAbsorbedByAtmosphereSlider}/>
                     <Label x={250 + (scattered + reflected + (100 - swAbsorbedByAtmosphere)) / 2}
                            y={450}
                            label={"Absorbed by surface"} value={absorbedBySurface}/>
@@ -135,13 +116,13 @@ function App() {
                            value={lwAbsorbedByAtmosphere}/>
                     <Label x={900} y={50} label={"Through window"} value={atmosphericWindow}/>
                     <Slider x={680} y={280} label={"Back radiation"} value={backRadiationSlider}
-                            onChange={handleBackRadiationSliderChange}/>
-                    <Slider x={880} y={100} label={"Atmospheric window"} value={atmosphericWindowPercentageSlider}
-                            onChange={handleAtmosphericWindowPercentSliderChange} hideValue={true}/>
+                            onChange={setBackRadiationSlider}/>
+                    <Slider x={880} y={100} label={"Atmospheric window"} value={atmosphericWindowSlider}
+                            onChange={setAtmosphericWindowSlider} hideValue={true}/>
                     {/*Convection & Latent Heat*/}
                     <ConvectionArrow x={500} y={300} value={convectionSlider}/>
                     <Slider x={500} y={340} label={"Convection & Latent Heat"} value={convectionSlider}
-                            onChange={handleConvectionSliderChange}/>
+                            onChange={setConvectionSlider}/>
                     {/*Surface*/}
                     <Label x={500} y={530} label={"GMST"} value={gmst} valueSuffix={" °C"}/>
                     {/*Space*/}
