@@ -1,6 +1,6 @@
 import './Label.css';
 
-const Label = ({x, y, value, label=""}) => {
+const Label = ({x, y, value, valueSuffix="", label=""}) => {
 
     const formattedValue = Math.round(value);
 
@@ -8,7 +8,7 @@ const Label = ({x, y, value, label=""}) => {
         <div className="label-container" style={{position: 'absolute', left: x, top: y, width: 0}}>
             <div style={{width: 100, position: 'absolute', left: -50}}>
                 <label>{label}</label><br/>
-                <b>{formattedValue}</b>
+                <b>{formattedValue+valueSuffix}</b>
             </div>
         </div>
     );

@@ -143,7 +143,7 @@ function App() {
                     <Slider x={500} y={340} label={"Convection & Latent Heat"} value={convectionSlider}
                             onChange={handleConvectionSliderChange}/>
                     {/*Surface*/}
-                    <Label x={500} y={530} label={"GMST"} value={gmst}/>
+                    <Label x={500} y={530} label={"GMST"} value={gmst} valueSuffix={" °C"}/>
                     {/*Space*/}
                     <Label x={300} y={62} label={"Incoming solar radiation"} value={100}/>
                     {/*Other*/}
