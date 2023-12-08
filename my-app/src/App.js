@@ -103,10 +103,10 @@ function App() {
                     <Label x={(110 - (scattered + reflected) / 2)} y={50} label={"Reflected to space"}
                            value={scattered + reflected}/>
                     {/*Longwave*/}
-                    <LongwaveToSpaceArrow x={700} y={0} value={lwEmittedToSpace}/>
-                    <Label x={700} y={50} label={"Emitted to space"} value={lwEmittedToSpace}/>
-                    <BackRadiationArrow x={700} y={370} value={backRadiationSlider}/>
-                    <Label x={700} y={450} label={"Back radiation"} value={backRadiationSlider}/>
+                    <LongwaveToSpaceArrow x={650} y={0} value={lwEmittedToSpace}/>
+                    <Label x={650} y={50} label={"Emitted to space"} value={lwEmittedToSpace}/>
+                    <BackRadiationArrow x={650} y={370} value={backRadiationSlider}/>
+                    <Label x={650} y={450} label={"Back radiation"} value={backRadiationSlider}/>
                     <LongwaveFromSurfaceArrows x={700} y={50} emitted={lwEmittedFromSurface}
                                                absorbed={lwAbsorbedByAtmosphere} window={atmosphericWindow}/>
                     <Label x={900 - lwEmittedFromSurface / 2 + atmosphericWindow / 2} y={410}
@@ -115,7 +115,7 @@ function App() {
                     <Label x={800} y={214} label={"Absorbed by greenhouse gases & clouds"}
                            value={lwAbsorbedByAtmosphere}/>
                     <Label x={900} y={50} label={"Through window"} value={atmosphericWindow}/>
-                    <Slider x={680} y={280} label={"Back radiation"} value={backRadiationSlider}
+                    <Slider x={630} y={280} label={"Back radiation"} value={backRadiationSlider}
                             onChange={setBackRadiationSlider}/>
                     <Slider x={880} y={100} label={"Atmospheric window"} value={atmosphericWindowSlider}
                             onChange={setAtmosphericWindowSlider} hideValue={true}/>
