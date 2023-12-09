@@ -15,7 +15,7 @@ function App() {
     const defaultReflectedValue = 9 * 100 / 58
     const defaultConvectionValue = 30;
     const defaultBackRadiation = 95;
-    const defaultAtmosphericWindow = 10;
+    const defaultAtmosphericWindow = (12 * 100) / 114;
 
     // User input
     const [scatteredSlider, setScatteredSlider] = useState(defaultScatteredValue);
@@ -52,12 +52,16 @@ function App() {
     }, [atmosphericWindowSlider, lwEmittedFromSurface]);
     const [lwEmittedToSpace, setLwEmittedToSpace] = useState(null);
     useEffect(() => {
-        setLwEmittedToSpace(solarInput - reflectedSlider - scatteredSlider - atmosphericWindow);
+        setLwEmittedToSpace(solarInput - reflected - scattered - atmosphericWindow);
     }, [reflectedSlider, scatteredSlider, atmosphericWindow]);
     const [lwAbsorbedByAtmosphere, setLwAbsorbedByAtmosphere] = useState(null);
     useEffect(() => {
         setLwAbsorbedByAtmosphere(lwEmittedFromSurface - atmosphericWindow);
     }, [lwEmittedFromSurface, atmosphericWindow]);
+    const [backRadiation, setBackRadiation] = useState(null);
+    useEffect(() => {
+        setBackRadiation(backRadiationSlider);
+    }, [backRadiationSlider]);
     const [gmst, setGmst] = useState(null);
     useEffect(() => {
         const boltzmannConstant = 5.6704E-8;
@@ -105,9 +109,9 @@ function App() {
                     {/*Longwave*/}
                     <LongwaveToSpaceArrow x={650} y={0} value={lwEmittedToSpace}/>
                     <Label x={650} y={50} label={"Emitted to space"} value={lwEmittedToSpace}/>
-                    <BackRadiationArrow x={650} y={370} value={backRadiationSlider}/>
-                    <Label x={650} y={450} label={"Back radiation"} value={backRadiationSlider}/>
-                    <LongwaveFromSurfaceArrows x={700} y={50} emitted={lwEmittedFromSurface}
+                    <BackRadiationArrow x={650} y={370} value={backRadiation}/>
+                    <Label x={650} y={450} label={"Back radiation"} value={backRadiation}/>
+                    <LongwaveFromSurfaceArrows x={650} y={50} emitted={lwEmittedFromSurface}
                                                absorbed={lwAbsorbedByAtmosphere} window={atmosphericWindow}/>
                     <Label x={900 - lwEmittedFromSurface / 2 + atmosphericWindow / 2} y={410}
                            label={"Radiated from surface"}

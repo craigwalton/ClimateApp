@@ -7,7 +7,7 @@ const LongwaveFromSurfaceArrows = ({x, y, emitted, absorbed, window}) => {
     const emittedArrow = (emitted) / 2 + step;
     return (
         <div className="arrow-container" style={{position: 'absolute', left: x, top: y}}>
-            <svg width="250" height="450" viewBox="0 0 250 450">
+            <svg width="300" height="450" viewBox="-50 0 300 450">
                 <defs>
                     <linearGradient id="longwave-from-surface-gradient" x1="0%" y1="0%" x2="0%" y2="100%">
                         <stop offset="0%" style={{stopColor: 'rgb(187,77,93)', stopOpacity: 1}}/>
