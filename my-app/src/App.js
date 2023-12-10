@@ -53,7 +53,7 @@ function App() {
     const [lwEmittedToSpace, setLwEmittedToSpace] = useState(null);
     useEffect(() => {
         setLwEmittedToSpace(solarInput - reflected - scattered - atmosphericWindow);
-    }, [reflectedSlider, scatteredSlider, atmosphericWindow]);
+    }, [reflected, scattered, atmosphericWindow]);
     const [lwAbsorbedByAtmosphere, setLwAbsorbedByAtmosphere] = useState(null);
     useEffect(() => {
         setLwAbsorbedByAtmosphere(lwEmittedFromSurface - atmosphericWindow);
