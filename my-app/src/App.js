@@ -80,6 +80,18 @@ function App() {
         setAtmosphericWindowSlider(defaultAtmosphericWindow);
     }
 
+    useEffect(() => {
+        const listener = event => {
+            if (event.code === "KeyR") {
+                reset();
+            }
+        };
+        document.addEventListener("keydown", listener);
+        return () => {
+            document.removeEventListener("keydown", listener);
+        };
+    }, []);
+
     return (
         <div className="App">
             <div id="space-background"></div>
