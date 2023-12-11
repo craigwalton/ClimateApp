@@ -14,7 +14,7 @@ function App() {
     const defaultSwAbsorbedByAtmosphere = 20 * 100 / 78;
     const defaultReflectedValue = 9 * 100 / 58
     const defaultConvectionValue = 30;
-    const defaultBackRadiation = 95;
+    const defaultBackRadiation = 100 * 95 / 102;
     const defaultAtmosphericWindow = (12 * 100) / 114;
 
     // User input
@@ -43,25 +43,23 @@ function App() {
         setAbsorbedBySurface(solarInput - (scattered + swAbsorbedByAtmosphere + reflected));
     }, [scattered, swAbsorbedByAtmosphere, reflected]);
     const [lwEmittedFromSurface, setLwEmittedFromSurface] = useState(null);
-    useEffect(() => {
-        setLwEmittedFromSurface(absorbedBySurface + backRadiationSlider - convectionSlider);
-    }, [absorbedBySurface, backRadiationSlider, convectionSlider]);
     const [atmosphericWindow, setAtmosphericWindow] = useState(null);
+    const [lwAbsorbedByAtmosphere, setLwAbsorbedByAtmosphere] = useState(null);
+    const [backRadiation, setBackRadiation] = useState(null);
     useEffect(() => {
-        setAtmosphericWindow((atmosphericWindowSlider / 100) * lwEmittedFromSurface);
-    }, [atmosphericWindowSlider, lwEmittedFromSurface]);
+        const emitted = (absorbedBySurface - convectionSlider) / (1 - (1 - atmosphericWindowSlider / 100) * (backRadiationSlider / 100));
+        const throughWindow = emitted * (atmosphericWindowSlider / 100);
+        const absorbed = emitted * (1 - atmosphericWindowSlider / 100);
+        const backRadiation = absorbed * backRadiationSlider / 100;
+        setLwEmittedFromSurface(emitted);
+        setAtmosphericWindow(throughWindow);
+        setLwAbsorbedByAtmosphere(absorbed);
+        setBackRadiation(backRadiation);
+    }, [absorbedBySurface, convectionSlider, atmosphericWindowSlider, backRadiationSlider]);
     const [lwEmittedToSpace, setLwEmittedToSpace] = useState(null);
     useEffect(() => {
         setLwEmittedToSpace(solarInput - reflected - scattered - atmosphericWindow);
     }, [reflected, scattered, atmosphericWindow]);
-    const [lwAbsorbedByAtmosphere, setLwAbsorbedByAtmosphere] = useState(null);
-    useEffect(() => {
-        setLwAbsorbedByAtmosphere(lwEmittedFromSurface - atmosphericWindow);
-    }, [lwEmittedFromSurface, atmosphericWindow]);
-    const [backRadiation, setBackRadiation] = useState(null);
-    useEffect(() => {
-        setBackRadiation(backRadiationSlider);
-    }, [backRadiationSlider]);
     const [gmst, setGmst] = useState(null);
     useEffect(() => {
         const boltzmannConstant = 5.6704E-8;
@@ -119,8 +117,8 @@ function App() {
                     <Label x={800} y={214} label={"Absorbed by greenhouse gases & clouds"}
                            value={lwAbsorbedByAtmosphere}/>
                     <Label x={900} y={50} label={"Through window"} value={atmosphericWindow}/>
-                    <Slider x={630} y={280} label={"Back radiation"} value={backRadiationSlider}
-                            onChange={setBackRadiationSlider}/>
+                    <Slider x={630} y={300} label={"Back radiation"} value={backRadiationSlider}
+                            onChange={setBackRadiationSlider} hideValue={true}/>
                     <Slider x={880} y={100} label={"Atmospheric window"} value={atmosphericWindowSlider}
                             onChange={setAtmosphericWindowSlider} hideValue={true}/>
                     {/*Convection & Latent Heat*/}
