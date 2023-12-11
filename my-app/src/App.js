@@ -14,7 +14,7 @@ function App() {
     const defaultSwAbsorbedByAtmosphere = 20 * 100 / 78;
     const defaultReflectedValue = 9 * 100 / 58
     const defaultConvectionValue = 30;
-    const defaultBackRadiation = 100 * 95 / 102;
+    const defaultBackRadiation = 100 * 95 / (95 + 57);
     const defaultAtmosphericWindow = (12 * 100) / 114;
 
     // User input
@@ -47,15 +47,24 @@ function App() {
     const [lwAbsorbedByAtmosphere, setLwAbsorbedByAtmosphere] = useState(null);
     const [backRadiation, setBackRadiation] = useState(null);
     useEffect(() => {
-        const emitted = (absorbedBySurface - convectionSlider) / (1 - (1 - atmosphericWindowSlider / 100) * (backRadiationSlider / 100));
-        const throughWindow = emitted * (atmosphericWindowSlider / 100);
-        const absorbed = emitted * (1 - atmosphericWindowSlider / 100);
-        const backRadiation = absorbed * backRadiationSlider / 100;
-        setLwEmittedFromSurface(emitted);
-        setAtmosphericWindow(throughWindow);
-        setLwAbsorbedByAtmosphere(absorbed);
-        setBackRadiation(backRadiation);
-    }, [absorbedBySurface, convectionSlider, atmosphericWindowSlider, backRadiationSlider]);
+        function computeLongwaveRadiationEmittedFromSurface(backRadiationProportion, windowProportion) {
+            const numerator = absorbedBySurface - convectionSlider + backRadiationProportion *
+                (swAbsorbedByAtmosphere + convectionSlider);
+            const denominator = 1 - backRadiationProportion * (1 - windowProportion);
+            return numerator / denominator;
+        }
+
+        const backRadiationProportion = backRadiationSlider / 100;
+        const windowProportion = atmosphericWindowSlider / 100;
+        const lwEmitted = computeLongwaveRadiationEmittedFromSurface(backRadiationProportion, windowProportion);
+        const lwAbsorbed = lwEmitted * (1 - windowProportion);
+        setLwEmittedFromSurface(lwEmitted);
+        setAtmosphericWindow(lwEmitted * windowProportion);
+        setLwAbsorbedByAtmosphere(lwAbsorbed);
+        const ghgAndCloudInput = (lwAbsorbed + swAbsorbedByAtmosphere + convectionSlider);
+        setBackRadiation(ghgAndCloudInput * backRadiationProportion);
+        setLwEmittedToSpace(ghgAndCloudInput * (1 - backRadiationProportion));
+    }, [swAbsorbedByAtmosphere, absorbedBySurface, convectionSlider, atmosphericWindowSlider, backRadiationSlider]);
     const [lwEmittedToSpace, setLwEmittedToSpace] = useState(null);
     useEffect(() => {
         setLwEmittedToSpace(solarInput - reflected - scattered - atmosphericWindow);
@@ -90,7 +99,7 @@ function App() {
         return () => {
             document.removeEventListener("keydown", listener);
         };
-    }, []);
+    });
 
     return (
         <div className="App">
