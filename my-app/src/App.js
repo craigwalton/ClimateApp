@@ -13,7 +13,7 @@ function App() {
     const defaultScatteredValue = 22;
     const defaultSwAbsorbedByAtmosphere = 20 * 100 / 78;
     const defaultReflectedValue = 9 * 100 / 58
-    const defaultConvectionValue = 30;
+    const defaultConvectionSlider = 100 * 30 / 49;
     const defaultBackRadiation = 100 * 95 / (95 + 57);
     const defaultAtmosphericWindow = (12 * 100) / 114;
 
@@ -21,7 +21,7 @@ function App() {
     const [scatteredSlider, setScatteredSlider] = useState(defaultScatteredValue);
     const [reflectedSlider, setReflectedSlider] = useState(defaultReflectedValue);
     const [swAbsorbedByAtmosphereSlider, setSwAbsorbedByAtmosphereSlider] = useState(defaultSwAbsorbedByAtmosphere);
-    const [convectionSlider, setConvectionSlider] = useState(defaultConvectionValue);
+    const [convectionSlider, setConvectionSlider] = useState(defaultConvectionSlider);
     const [backRadiationSlider, setBackRadiationSlider] = useState(defaultBackRadiation);
     const [atmosphericWindowSlider, setAtmosphericWindowSlider] = useState(defaultAtmosphericWindow);
 
@@ -42,14 +42,18 @@ function App() {
     useEffect(() => {
         setAbsorbedBySurface(solarInput - (scattered + swAbsorbedByAtmosphere + reflected));
     }, [scattered, swAbsorbedByAtmosphere, reflected]);
+    const [convection, setConvection] = useState(null);
+    useEffect(() => {
+        setConvection((convectionSlider / 100) * absorbedBySurface);
+    });
     const [lwEmittedFromSurface, setLwEmittedFromSurface] = useState(null);
     const [atmosphericWindow, setAtmosphericWindow] = useState(null);
     const [lwAbsorbedByAtmosphere, setLwAbsorbedByAtmosphere] = useState(null);
     const [backRadiation, setBackRadiation] = useState(null);
     useEffect(() => {
         function computeLongwaveRadiationEmittedFromSurface(backRadiationProportion, windowProportion) {
-            const numerator = absorbedBySurface - convectionSlider + backRadiationProportion *
-                (swAbsorbedByAtmosphere + convectionSlider);
+            const numerator = absorbedBySurface - convection + backRadiationProportion *
+                (swAbsorbedByAtmosphere + convection);
             const denominator = 1 - backRadiationProportion * (1 - windowProportion);
             return numerator / denominator;
         }
@@ -61,10 +65,10 @@ function App() {
         setLwEmittedFromSurface(lwEmitted);
         setAtmosphericWindow(lwEmitted * windowProportion);
         setLwAbsorbedByAtmosphere(lwAbsorbed);
-        const ghgAndCloudInput = (lwAbsorbed + swAbsorbedByAtmosphere + convectionSlider);
+        const ghgAndCloudInput = (lwAbsorbed + swAbsorbedByAtmosphere + convection);
         setBackRadiation(ghgAndCloudInput * backRadiationProportion);
         setLwEmittedToSpace(ghgAndCloudInput * (1 - backRadiationProportion));
-    }, [swAbsorbedByAtmosphere, absorbedBySurface, convectionSlider, atmosphericWindowSlider, backRadiationSlider]);
+    }, [swAbsorbedByAtmosphere, absorbedBySurface, convection, atmosphericWindowSlider, backRadiationSlider]);
     const [lwEmittedToSpace, setLwEmittedToSpace] = useState(null);
     useEffect(() => {
         setLwEmittedToSpace(solarInput - reflected - scattered - atmosphericWindow);
@@ -84,7 +88,7 @@ function App() {
         setScatteredSlider(defaultScatteredValue);
         setReflectedSlider(defaultReflectedValue);
         setSwAbsorbedByAtmosphereSlider(defaultSwAbsorbedByAtmosphere);
-        setConvectionSlider(defaultConvectionValue);
+        setConvectionSlider(defaultConvectionSlider);
         setBackRadiationSlider(defaultBackRadiation);
         setAtmosphericWindowSlider(defaultAtmosphericWindow);
     }
@@ -143,8 +147,9 @@ function App() {
                     <Slider x={880} y={100} label={"Atmospheric window"} value={atmosphericWindowSlider}
                             onChange={setAtmosphericWindowSlider} hideValue={true}/>
                     {/*Convection & Latent Heat*/}
-                    <ConvectionArrow x={500} y={300} value={convectionSlider}/>
-                    <Slider x={500} y={340} label={"Convection & Latent Heat"} value={convectionSlider}
+                    <ConvectionArrow x={500} y={300} value={convection}/>
+                    <Label x={520} y={372} value={convection}/>
+                    <Slider x={500} y={390} label={"Convection & Latent Heat"} value={convectionSlider} hideValue={true}
                             onChange={setConvectionSlider}/>
                     {/*Surface*/}
                     <Label x={500} y={530} label={"GMST"} value={gmst} valueSuffix={" °C"}/>
