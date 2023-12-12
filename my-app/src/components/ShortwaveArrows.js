@@ -6,8 +6,8 @@ const ShortwaveArrows = ({x, y, scattered, reflected, atmosphere}) => {
             <svg width="500" height="600" viewBox="-250 -100 500 600">
                 <defs>
                     <linearGradient id="shortwave-gradient" x1="0%" y1="0%" x2="0%" y2="100%">
-                        <stop offset="0%" style={{stopColor: 'rgb(240,210,161)', stopOpacity: 1}}/>
-                        <stop offset="100%" style={{stopColor: 'rgb(235,195,128)', stopOpacity: 1}}/>
+                        <stop offset="0%" style={{stopColor: 'rgb(217,178,82)', stopOpacity: 1}}/>
+                        <stop offset="100%" style={{stopColor: 'rgb(218,154,70)', stopOpacity: 1}}/>
                     </linearGradient>
                 </defs>
                 <path className={"shortwave-path"}

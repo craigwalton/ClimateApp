@@ -10,17 +10,17 @@ html, body, #root {
 
 #space-background {
     height: 100px;
-    background-color: rgb(128, 128, 128);
+    background: linear-gradient(to bottom, #303334, #585b60);
 }
 
 #atmosphere-background {
     height: 400px;
-    background: #66c5ea;
+    background: linear-gradient(170deg, #E4EfE9, #93A5CF);
 }
 
 #earth-background {
     height: 100px;
-    background-color: #eecd7b;
+    background: linear-gradient(to bottom, #d6c695, #b99064);
 }
 
 #centered {
@@ -48,4 +48,13 @@ html, body, #root {
 
 .slider-container {
     z-index: 2;
+}
+
+.white-label {
+    color: white;
+    text-shadow: 0 0 3px #000000;
+}
+
+.black-label {
+    color: black;
 }

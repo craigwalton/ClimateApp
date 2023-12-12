@@ -2,6 +2,7 @@ import React, {useEffect, useState} from 'react';
 import './App.css';
 import Slider from './components/Slider';
 import Label from './components/Label';
+import ValueLabel from './components/ValueLabel';
 import ShortwaveArrows from './components/ShortwaveArrows';
 import ConvectionArrow from "./components/ConvectionArrow";
 import LongwaveToSpaceArrow from "./components/LongwaveToSpaceArrow";
@@ -115,46 +116,47 @@ function App() {
                     {/*Shortwave*/}
                     <ShortwaveArrows x={0} y={0} scattered={scattered} reflected={reflected}
                                      atmosphere={swAbsorbedByAtmosphere}/>
-                    <Label x={178} y={200 + scattered / 2} value={scattered}/>
+                    <ValueLabel x={178} y={220 + scattered / 2} value={scattered}/>
                     <Slider x={162} y={190 + scattered} label={"Reflected by clouds"}
                             value={scatteredSlider} onChange={setScatteredSlider} hideValue={true}/>
-                    <Label x={178} y={470 - reflected / 2} label={""} value={reflected}/>
+                    <ValueLabel x={178} y={490 - reflected / 2} value={reflected}/>
                     <Slider x={162} y={460} label={"Reflected by surface"}
                             value={reflectedSlider} onChange={setReflectedSlider} hideValue={true}/>
-                    <Label x={410} y={271} value={swAbsorbedByAtmosphere}/>
-                    <Slider x={400} y={280} label={"Absorbed by atmosphere"} value={swAbsorbedByAtmosphereSlider} hideValue={true}
-                            onChange={setSwAbsorbedByAtmosphereSlider}/>
-                    <Label x={250 + (scattered + reflected + (100 - swAbsorbedByAtmosphere)) / 2}
-                           y={450}
-                           label={"Absorbed by surface"} value={absorbedBySurface}/>
-                    <Label x={(110 - (scattered + reflected) / 2)} y={50} label={"Reflected to space"}
-                           value={scattered + reflected}/>
+                    <ValueLabel x={410} y={291} value={swAbsorbedByAtmosphere}/>
+                    <Slider x={400} y={280} label={"Absorbed by atmosphere"} value={swAbsorbedByAtmosphereSlider}
+                            hideValue={true} onChange={setSwAbsorbedByAtmosphereSlider}/>
+                    <ValueLabel x={250 + (scattered + reflected + (100 - swAbsorbedByAtmosphere)) / 2} y={450}
+                                label={"Absorbed by surface"} value={absorbedBySurface}/>
+                    <ValueLabel x={110 - (scattered + reflected) / 2} y={90} value={scattered + reflected}/>
+                    <Label x={110 - (scattered + reflected) / 2} y={30} label={"Reflected to space"}
+                           className={"white-label"}/>
                     {/*Longwave*/}
                     <LongwaveToSpaceArrow x={650} y={0} value={lwEmittedToSpace}/>
-                    <Label x={650} y={50} label={"Emitted to space"} value={lwEmittedToSpace}/>
+                    <Label x={650} y={30} label={"Emitted to space"} className={"white-label"}/>
+                    <ValueLabel x={650} y={90} value={lwEmittedToSpace}/>
                     <BackRadiationArrow x={650} y={370} value={backRadiation}/>
-                    <Label x={650} y={450} label={"Back radiation"} value={backRadiation}/>
+                    <ValueLabel x={650} y={450} label={"Back radiation"} value={backRadiation}/>
                     <LongwaveFromSurfaceArrows x={650} y={50} emitted={lwEmittedFromSurface}
                                                absorbed={lwAbsorbedByAtmosphere} window={atmosphericWindow}/>
-                    <Label x={900 - lwEmittedFromSurface / 2 + atmosphericWindow / 2} y={410}
-                           label={"Radiated from surface"}
-                           value={lwEmittedFromSurface}/>
-                    <Label x={800} y={214} label={"Absorbed by greenhouse gases & clouds"}
-                           value={lwAbsorbedByAtmosphere}/>
-                    <Label x={900} y={50} label={"Through window"} value={atmosphericWindow}/>
+                    <ValueLabel x={900 - lwEmittedFromSurface / 2 + atmosphericWindow / 2} y={410}
+                                label={"Radiated from surface"} value={lwEmittedFromSurface}/>
+                    <ValueLabel x={800} y={214} label={"Absorbed by greenhouse gases & clouds"}
+                                value={lwAbsorbedByAtmosphere}/>
+                    <Label x={900} y={30} label={"Through window"} className={"white-label"}/>
+                    <ValueLabel x={900} y={90} value={atmosphericWindow}/>
                     <Slider x={630} y={300} label={"Back radiation"} value={backRadiationSlider}
                             onChange={setBackRadiationSlider} hideValue={true}/>
                     <Slider x={880} y={100} label={"Atmospheric window"} value={atmosphericWindowSlider}
                             onChange={setAtmosphericWindowSlider} hideValue={true}/>
                     {/*Convection & Latent Heat*/}
                     <ConvectionArrow x={500} y={300} value={convection}/>
-                    <Label x={520} y={372} value={convection}/>
+                    <ValueLabel x={520} y={392} value={convection}/>
                     <Slider x={500} y={390} label={"Convection & Latent Heat"} value={convectionSlider} hideValue={true}
                             onChange={setConvectionSlider}/>
                     {/*Surface*/}
-                    <Label x={500} y={530} label={"GMST"} value={gmst} valueSuffix={" °C"}/>
+                    <ValueLabel x={500} y={530} label={"GMST"} value={gmst} valueSuffix={" °C"}/>
                     {/*Space*/}
-                    <Label x={300} y={62} label={"Incoming solar radiation"} value={100}/>
+                    <ValueLabel x={300} y={62} label={"Incoming solar radiation"} value={100}/>
                     {/*Other*/}
                     <div style={{position: 'absolute', left: 520, top: 280, width: 140}}>
                         Greenhouse gases & clouds

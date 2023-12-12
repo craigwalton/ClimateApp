@@ -1,5 +1,5 @@
 .convection-path {
-    stroke-width: 2;
+    stroke-width: 1;
     fill: url(#convection-gradient);
-    stroke: #3698a9;
+    stroke: #30883e;
 }

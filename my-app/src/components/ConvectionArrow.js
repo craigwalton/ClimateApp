@@ -10,8 +10,8 @@ const ConvectionArrow = ({x, y, value}) => {
             <svg width="120" height="200" viewBox="-60 -200 120 200" style={{position: "relative", left: -40}}>
                 <defs>
                     <linearGradient id="convection-gradient" x1="0%" y1="0%" x2="0%" y2="100%">
-                        <stop offset="0%" style={{stopColor: 'rgb(161,240,231)', stopOpacity: 1}}/>
-                        <stop offset="100%" style={{stopColor: 'rgb(70,128,112)', stopOpacity: 1}}/>
+                        <stop offset="0%" style={{stopColor: 'rgb(92,199,179)', stopOpacity: 1}}/>
+                        <stop offset="100%" style={{stopColor: 'rgb(103,180,139)', stopOpacity: 1}}/>
                     </linearGradient>
                 </defs>
                 <path className={"convection-path"}

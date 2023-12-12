@@ -1,5 +1,5 @@
 .back-radiation-path {
-    stroke-width: 2;
+    stroke-width: 1;
     fill: url(#back-radiation-gradient);
-    stroke: #b46b6d;
+    stroke: #7c4547;
 }

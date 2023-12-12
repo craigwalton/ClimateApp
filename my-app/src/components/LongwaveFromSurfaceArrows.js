@@ -10,8 +10,8 @@ const LongwaveFromSurfaceArrows = ({x, y, emitted, absorbed, window}) => {
             <svg width="300" height="450" viewBox="-50 0 300 450">
                 <defs>
                     <linearGradient id="longwave-from-surface-gradient" x1="0%" y1="0%" x2="0%" y2="100%">
-                        <stop offset="0%" style={{stopColor: 'rgb(187,77,93)', stopOpacity: 1}}/>
-                        <stop offset="100%" style={{stopColor: 'rgb(157,66,114)', stopOpacity: 1}}/>
+                        <stop offset="0%" style={{stopColor: 'rgb(228,122,106)', stopOpacity: 1}}/>
+                        <stop offset="100%" style={{stopColor: 'rgb(197,141,128)', stopOpacity: 1}}/>
                     </linearGradient>
                 </defs>
                 <path className={"longwave-from-surface-path"}
