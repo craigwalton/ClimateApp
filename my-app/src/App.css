@@ -37,3 +37,15 @@ html, body, #root {
     height: 600px;
     width: 100%;
 }
+
+.arrow-container {
+    z-index: 0;
+}
+
+.label-container {
+    z-index: 1;
+}
+
+.slider-container {
+    z-index: 2;
+}
