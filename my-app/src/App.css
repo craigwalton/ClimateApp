@@ -58,3 +58,18 @@ html, body, #root {
 .black-label {
     color: black;
 }
+
+.layer-text {
+    font-weight: bold;
+    position: absolute;
+}
+
+.layer-label-container {
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    width: 600px;
+    height: 30px;
+    transform: rotate(-90deg);
+    transform-origin: top left;
+}
