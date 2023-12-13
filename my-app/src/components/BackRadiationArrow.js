@@ -15,13 +15,13 @@ const BackRadiationArrow = ({x, y, value}) => {
                     </linearGradient>
                 </defs>
                 <path className={"back-radiation-path"}
-                      d={`M ${-halfWidth} -20
-                          l 0 100
+                      d={`M ${-halfWidth} -30
+                          l 0 110
                           l ${-step} 0
                           l ${arrowHead} ${arrowHead}
                           l ${arrowHead} ${-arrowHead}
                           l ${-step} 0
-                          l 0 -100
+                          l 0 -110
                           Z`}/>
             </svg>
         </div>
