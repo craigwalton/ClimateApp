@@ -145,8 +145,8 @@ function App() {
                                                absorbed={lwAbsorbedByAtmosphere} window={atmosphericWindow}/>
                     <ValueLabel x={900 - lwEmittedFromSurface / 2 + atmosphericWindow / 2} y={410}
                                 label={"Radiated from surface"} value={lwEmittedFromSurface}/>
-                    <ValueLabel x={800} y={214} label={"Absorbed by greenhouse gases & clouds"}
-                                value={lwAbsorbedByAtmosphere}/>
+                    <Label x={815} y={260} label={"Absorbed by greenhouse gases & clouds"}/>
+                    <ValueLabel x={760} y={290} value={lwAbsorbedByAtmosphere}/>
                     <Label x={900} y={30} label={"Through window"} className={"white-label"}/>
                     <ValueLabel x={900} y={100} value={atmosphericWindow}/>
                     <Slider x={630} y={300} label={"Back radiation"} value={backRadiationSlider}
