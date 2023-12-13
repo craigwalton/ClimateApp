@@ -136,9 +136,9 @@ function App() {
                     <Label x={110 - (scattered + reflected) / 2} y={30} label={"Reflected to space"}
                            className={"white-label"}/>
                     {/*Longwave*/}
-                    <LongwaveToSpaceArrow x={650} y={0} value={lwEmittedToSpace}/>
-                    <Label x={650} y={30} label={"Emitted to space"} className={"white-label"}/>
-                    <ValueLabel x={650} y={100} value={lwEmittedToSpace}/>
+                    <LongwaveToSpaceArrow x={580} y={0} value={lwEmittedToSpace}/>
+                    <Label x={580} y={30} label={"Emitted to space"} className={"white-label"}/>
+                    <ValueLabel x={580} y={100} value={lwEmittedToSpace}/>
                     <BackRadiationArrow x={650} y={370} value={backRadiation}/>
                     <ValueLabel x={650} y={450} label={"Back radiation"} value={backRadiation}/>
                     <LongwaveFromSurfaceArrows x={650} y={50} emitted={lwEmittedFromSurface}
@@ -177,7 +177,7 @@ function App() {
                     {/*Second cloud has greater z-index with opacity 0.5.*/}
                     <img src={"/graphics/cloud-2.png"} alt={"cloud Image by bs_k1d"} className={"cloud-image"}
                          style={{zIndex: 1, left: 110, top: 250, width: 140, opacity: 0.5}}/>
-                    <button type="button" onClick={reset} style={{position: 'relative', top: 10}}>Reset</button>
+                    <button type="button" onClick={reset} style={{position: 'relative', top: 10, left: -40}}>Reset</button>
                 </div>
             </div>
         </div>
