@@ -21,6 +21,7 @@ const Slider = ({x, y, label, value, onChange, hideValue=false}) => {
                     value={value}
                     onChange={handleSliderChange}
                     style={{width: '100%'}}
+                    className={"slider"}
                 />
                 <div>{label}</div>
             </div>

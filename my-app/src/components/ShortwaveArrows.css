@@ -3,4 +3,5 @@
     fill: url(#shortwave-gradient);
     fill-rule: evenodd;
     stroke: #c7884b;
+    filter: drop-shadow( 0px 0px 2px rgba(0, 0, 0, .3));
 }

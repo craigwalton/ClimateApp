@@ -7,7 +7,7 @@ const LongwaveToSpaceArrow = ({x, y, value}) => {
     const arrowHead = halfWidth + 5;
     return (
         <div className="arrow-container" style={{position: 'absolute', left: x, top: y}}>
-            <svg width="120" height="200" viewBox="-60 0 120 200" style={{position: "relative", left: -60}}>
+            <svg width="120" height="210" viewBox="-60 0 120 210" style={{position: "relative", left: -60}}>
                 <defs>
                     <linearGradient id="longwave-to-space-gradient" x1="0%" y1="0%" x2="0%" y2="100%">
                         <stop offset="0%" style={{stopColor: 'rgb(228,122,106)', stopOpacity: 1}}/>
