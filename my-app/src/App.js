@@ -132,13 +132,13 @@ function App() {
                             hideValue={true} onChange={setSwAbsorbedByAtmosphereSlider}/>
                     <ValueLabel x={250 + (scattered + reflected + (100 - swAbsorbedByAtmosphere)) / 2} y={450}
                                 label={"Absorbed by surface"} value={absorbedBySurface}/>
-                    <ValueLabel x={110 - (scattered + reflected) / 2} y={90} value={scattered + reflected}/>
+                    <ValueLabel x={110 - (scattered + reflected) / 2} y={100} value={scattered + reflected}/>
                     <Label x={110 - (scattered + reflected) / 2} y={30} label={"Reflected to space"}
                            className={"white-label"}/>
                     {/*Longwave*/}
                     <LongwaveToSpaceArrow x={650} y={0} value={lwEmittedToSpace}/>
                     <Label x={650} y={30} label={"Emitted to space"} className={"white-label"}/>
-                    <ValueLabel x={650} y={90} value={lwEmittedToSpace}/>
+                    <ValueLabel x={650} y={100} value={lwEmittedToSpace}/>
                     <BackRadiationArrow x={650} y={370} value={backRadiation}/>
                     <ValueLabel x={650} y={450} label={"Back radiation"} value={backRadiation}/>
                     <LongwaveFromSurfaceArrows x={650} y={50} emitted={lwEmittedFromSurface}
@@ -148,7 +148,7 @@ function App() {
                     <ValueLabel x={800} y={214} label={"Absorbed by greenhouse gases & clouds"}
                                 value={lwAbsorbedByAtmosphere}/>
                     <Label x={900} y={30} label={"Through window"} className={"white-label"}/>
-                    <ValueLabel x={900} y={90} value={atmosphericWindow}/>
+                    <ValueLabel x={900} y={100} value={atmosphericWindow}/>
                     <Slider x={630} y={300} label={"Back radiation"} value={backRadiationSlider}
                             onChange={setBackRadiationSlider} hideValue={true}/>
                     <Slider x={880} y={100} label={"Atmospheric window"} value={atmosphericWindowSlider}
