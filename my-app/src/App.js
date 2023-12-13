@@ -163,9 +163,18 @@ function App() {
                     {/*Space*/}
                     <ValueLabel x={300} y={62} label={"Incoming solar radiation"} value={100}/>
                     {/*Other*/}
-                    <div style={{position: 'absolute', left: 520, top: 280, width: 140}}>
-                        Greenhouse gases & clouds
+                    <div style={{position: 'absolute', left: 460, top: 230, width: 220}}>
+                        {/*https://www.freepik.com/free-vector/collection-3d-white-clouds-isolated-white_20111680.htm#query=3d%20cloud&position=0&from_view=keyword&track=ais&uuid=492040cd-bdb2-485d-b6ae-ed471f741f63">Image by bs_k1d*/}
+                        <img src={"/graphics/cloud-1.png"} alt={"cloud Image by bs_k1d"} className={"cloud-image"}/>
+                        <div style={{position: "absolute", top: 48, width: '100%', fontWeight: "bold"}}>
+                            Greenhouse gases<br/>& clouds
+                        </div>
                     </div>
+                    <img src={"/graphics/cloud-2.png"} alt={"cloud Image by bs_k1d"} className={"cloud-image"}
+                         style={{zIndex: 0, left: 110, top: 250, width: 140}}/>
+                    {/*Second cloud has greater z-index with opacity 0.5.*/}
+                    <img src={"/graphics/cloud-2.png"} alt={"cloud Image by bs_k1d"} className={"cloud-image"}
+                         style={{zIndex: 1, left: 110, top: 250, width: 140, opacity: 0.5}}/>
                     <button type="button" onClick={reset} style={{position: 'relative', top: 10}}>Reset</button>
                 </div>
             </div>
