@@ -143,9 +143,11 @@ function App() {
                     <ValueLabel x={650} y={450} label={"Back radiation"} value={backRadiation}/>
                     <LongwaveFromSurfaceArrows x={650} y={50} emitted={lwEmittedFromSurface}
                                                absorbed={lwAbsorbedByAtmosphere} window={atmosphericWindow}/>
-                    <ValueLabel x={900 - lwEmittedFromSurface / 2 + atmosphericWindow / 2} y={410}
-                                label={"Radiated from surface"} value={lwEmittedFromSurface}/>
-                    <Label x={815} y={260} label={"Absorbed by greenhouse gases & clouds"}/>
+                    <Label x={900 - lwEmittedFromSurface / 2 + atmosphericWindow / 2} y={450}
+                                label={"Radiated from surface"}/>
+                    <ValueLabel x={900 - lwEmittedFromSurface / 2 + atmosphericWindow / 2} y={430}
+                                value={lwEmittedFromSurface}/>
+                    <Label x={820} y={260} label={"Absorbed by greenhouse gases & clouds"}/>
                     <ValueLabel x={760} y={290} value={lwAbsorbedByAtmosphere}/>
                     <Label x={900} y={30} label={"Through window"} className={"white-label"}/>
                     <ValueLabel x={900} y={100} value={atmosphericWindow}/>
