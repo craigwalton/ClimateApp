@@ -42,7 +42,7 @@ function drawArrow(scattered, reflected, atmosphere) {
     const atmosphereY = 200;
     const atmosphereROut = 50;
     const atmosphereRIn = atmosphereROut - atmosphere;
-    const step = 5;
+    const step = 10;
     let data = `
                M 0 0
                l 0 ${scatteredY}

@@ -3,8 +3,8 @@ import './LongwaveToSpaceArrow.css';
 const LongwaveToSpaceArrow = ({x, y, value}) => {
 
     const halfWidth = value / 2;
-    const step = 5;
-    const arrowHead = halfWidth + 5;
+    const step = 10;
+    const arrowHead = halfWidth + step;
     return (
         <div className="arrow-container" style={{position: 'absolute', left: x, top: y}}>
             <svg width="120" height="210" viewBox="-60 0 120 210" style={{position: "relative", left: -60}}>
