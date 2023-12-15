@@ -1,6 +1,6 @@
 import './ValueLabel.css';
 
-const ValueLabel = ({x, y, value, valueSuffix="", label=""}) => {
+const ValueLabel = ({x=0, y=0, value, valueSuffix="", label=""}) => {
 
     const formattedValue = Math.round(value);
     const hasLabel = label !== "";

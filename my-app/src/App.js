@@ -161,7 +161,10 @@ function App() {
                     <Slider x={500} y={390} label={"Convection & Latent Heat"} value={convectionSlider} hideValue={true}
                             onChange={setConvectionSlider}/>
                     {/*Surface*/}
-                    <ValueLabel x={500} y={530} label={"GMST"} value={gmst} valueSuffix={" °C"}/>
+                    <div className={"tooltip-container"} style={{left: 500, top: 530}}>
+                        <ValueLabel label={"GMST"} value={gmst} valueSuffix={" °C"}/>
+                        <span className="tooltiptext">The Global Mean Surface Temperature</span>
+                    </div>
                     {/*Space*/}
                     <ValueLabel x={300} y={62} label={"Incoming solar radiation"} value={100}/>
                     {/*Other*/}
