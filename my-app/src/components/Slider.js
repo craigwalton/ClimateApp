@@ -1,6 +1,6 @@
 import './Slider.css';
 
-const Slider = ({x, y, label, value, onChange, hideValue=false}) => {
+const Slider = ({label, value, onChange, hideValue=false}) => {
 
     const handleSliderChange = (event) => {
         const valueInt = parseInt(event.target.value, 10);

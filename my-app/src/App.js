@@ -151,7 +151,7 @@ function App() {
                     <LongwaveToSpaceArrow x={580} y={0} value={lwEmittedToSpace}/>
                     <div className={"control-container"} style={{left: 515, top: 20}}>
                         <label className={"white-label"}>{"Emitted to space"}</label>
-                        <ValueLabel x={580} y={100} value={lwEmittedToSpace}/>
+                        <ValueLabel value={lwEmittedToSpace}/>
                     </div>
                     <BackRadiationArrow x={650} y={370} value={backRadiation}/>
                     <LongwaveFromSurfaceArrows x={650} y={50} emitted={lwEmittedFromSurface}
@@ -175,7 +175,7 @@ function App() {
                     <div className={"control-container"} style={{left: 585, top: 440}}>
                         <Slider label={"Back radiation"} value={backRadiationSlider}
                                 onChange={setBackRadiationSlider} hideValue={true}/>
-                        <ValueLabel x={650} y={450} value={backRadiation}/>
+                        <ValueLabel value={backRadiation}/>
                     </div>
                     {/*Convection & Latent Heat*/}
                     <ConvectionArrow x={500} y={300} value={convection}/>
