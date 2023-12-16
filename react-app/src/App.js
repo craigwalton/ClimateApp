@@ -145,7 +145,8 @@ function App() {
                          style={{left: 185 + (scattered + reflected + (100 - swAbsorbedByAtmosphere)) / 2, top: 450}}>
                         <ValueLabel label={"Absorbed by surface"} value={absorbedBySurface}/>
                     </div>
-                    <div className={"control-container"} style={{left: 45 - (scattered + reflected) / 2, top: 20}}>
+                    <div className={"control-container albedo-tooltip"}
+                         style={{left: 45 - (scattered + reflected) / 2, top: 20}}>
                         <label className={"white-label"}>{"Reflected to space"}</label>
                         <ValueLabel value={scattered + reflected}/>
                     </div>
@@ -207,18 +208,24 @@ function App() {
                     <button type="button" onClick={reset} style={{position: 'relative', top: 10, left: -40}}>Reset
                     </button>
                 </div>
+                <Tooltip anchorSelect=".incoming-solar-radiation-tooltip" place="top" style={{zIndex: 10}}>
+                    The amount of solar <b className="shortwave-text">shortwave</b> radiation from the Sun which is intercepted by the Earth.<br/>
+                    It is approximately 342 Wm<sup>-2</sup>.
+                </Tooltip>
                 <Tooltip anchorSelect=".scattered-tooltip" place="top" style={{zIndex: 10}}>
-                    The amount of incoming solar radiation which is scattered by clouds back into space.<br/>
+                    The amount of <b className="shortwave-text">shortwave</b> solar radiation which is scattered by
+                    clouds back into space.<br/>
                     This, along with the radiation reflected by earth's surface, makes up the Earth's
                     albedo.
                 </Tooltip>
                 <Tooltip anchorSelect=".reflected-tooltip" place="top" style={{zIndex: 10}}>
-                    The amount of incoming solar radiation which is reflected by the earth's surface back into space.
+                    The amount of <b className="shortwave-text">shortwave</b> solar radiation which is reflected by the
+                    earth's surface back into space.
                     <br/>This, along with the radiation scattered by clouds, makes up the Earth's albedo.
                 </Tooltip>
-                <Tooltip anchorSelect=".incoming-solar-radiation-tooltip" place="top" style={{zIndex: 10}}>
-                    The amount of solar radiation from the Sun which is intercepted by the Earth.<br/>
-                    It is approximately 342 Wm<sup>-2</sup>.
+                <Tooltip anchorSelect=".albedo-tooltip" place="top" style={{zIndex: 10}}>
+                    The combination of <b className="shortwave-text">shortwave</b> solar radiation which is returned to
+                    space due to the Earth's albedo: reflected by clouds and surface.
                 </Tooltip>
                 <Tooltip anchorSelect=".gmst-tooltip" place="top" style={{zIndex: 10}}>
                     The Global Mean Surface Temperature
