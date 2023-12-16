@@ -90,8 +90,15 @@ html, body, #root {
 }
 
 .shortwave-text {
-    font-weight: bold;
     color: gold;
+}
+
+.longwave-text {
+    color: #ce8479;
+}
+
+.convection-text {
+    color: #5bbda8;
 }
 
 .custom-tooltip {
