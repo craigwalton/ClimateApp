@@ -208,26 +208,26 @@ function App() {
                     <button type="button" onClick={reset} style={{position: 'relative', top: 10, left: -40}}>Reset
                     </button>
                 </div>
-                <Tooltip anchorSelect=".incoming-solar-radiation-tooltip" place="top" style={{zIndex: 10}}>
+                <Tooltip anchorSelect=".incoming-solar-radiation-tooltip" place="top" className="custom-tooltip">
                     The amount of solar <b className="shortwave-text">shortwave</b> radiation from the Sun which is intercepted by the Earth.<br/>
                     It is approximately 342 Wm<sup>-2</sup>.
                 </Tooltip>
-                <Tooltip anchorSelect=".scattered-tooltip" place="top" style={{zIndex: 10}}>
+                <Tooltip anchorSelect=".scattered-tooltip" place="top" className="custom-tooltip">
                     The amount of <b className="shortwave-text">shortwave</b> solar radiation which is scattered by
                     clouds back into space.<br/>
                     This, along with the radiation reflected by earth's surface, makes up the Earth's
                     albedo.
                 </Tooltip>
-                <Tooltip anchorSelect=".reflected-tooltip" place="top" style={{zIndex: 10}}>
+                <Tooltip anchorSelect=".reflected-tooltip" place="top" className="custom-tooltip">
                     The amount of <b className="shortwave-text">shortwave</b> solar radiation which is reflected by the
                     earth's surface back into space.
                     <br/>This, along with the radiation scattered by clouds, makes up the Earth's albedo.
                 </Tooltip>
-                <Tooltip anchorSelect=".albedo-tooltip" place="top" style={{zIndex: 10}}>
+                <Tooltip anchorSelect=".albedo-tooltip" place="top" className="custom-tooltip">
                     The combination of <b className="shortwave-text">shortwave</b> solar radiation which is returned to
                     space due to the Earth's albedo: reflected by clouds and surface.
                 </Tooltip>
-                <Tooltip anchorSelect=".gmst-tooltip" place="top" style={{zIndex: 10}}>
+                <Tooltip anchorSelect=".gmst-tooltip" place="top" className="custom-tooltip">
                     The Global Mean Surface Temperature
                 </Tooltip>
             </div>

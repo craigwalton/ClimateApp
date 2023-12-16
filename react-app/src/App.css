@@ -93,3 +93,8 @@ html, body, #root {
     font-weight: bold;
     color: gold;
 }
+
+.custom-tooltip {
+    max-width: 200px;
+    z-index: 10;
+}
