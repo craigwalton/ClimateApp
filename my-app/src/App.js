@@ -120,29 +120,48 @@ function App() {
                     {/*Shortwave*/}
                     <ShortwaveArrows x={0} y={0} scattered={scattered} reflected={reflected}
                                      atmosphere={swAbsorbedByAtmosphere}/>
+                    <div className={"control-container tooltip-container"} style={{left: 250, top: 62, width: 100}}>
+                        <ValueLabel label={"Incoming solar radiation"} value={100}/>
+                        <div className={"tooltip-anchor"}>
+                            <span className="tooltip-text">
+                                The amount of solar radiation from the Sun which is intercepted by the Earth.<br/>
+                                It is approximately 342 Wm<sup>-2</sup>.
+                            </span>
+                        </div>
+                    </div>
                     <div className={"control-container tooltip-container"}
                          style={{left: 115, top: 220 + scattered / 2}}>
                         <ValueLabel value={scattered}/>
                         <Slider label={"Reflected by clouds"}
                                 value={scatteredSlider} onChange={setScatteredSlider} hideValue={true}/>
                         <div className={"tooltip-anchor"}>
-                            <span className="tooltip-text tooltiptext-top">The amount of incoming solar radiation which is
-                                    scattered by clouds back into space. This, along with the radiation reflected by earth's surface,
-                                    makes up the earth's albedo.
+                            <span className="tooltip-text">
+                                The amount of incoming solar radiation which is scattered by clouds back into space.
+                                This, along with the radiation reflected by earth's surface, makes up the Earth's
+                                albedo.
                             </span>
                         </div>
                     </div>
-                    <div className={"control-container"} style={{left: 115, top: 490 - reflected / 2}}>
+                    <div className={"control-container tooltip-container"}
+                         style={{left: 115, top: 490 - reflected / 2}}>
                         <ValueLabel value={reflected}/>
                         <Slider label={"Reflected by surface"}
                                 value={reflectedSlider} onChange={setReflectedSlider} hideValue={true}/>
+                        <div className={"tooltip-anchor"}>
+                            <span className="tooltip-text">
+                                The amount of incoming solar radiation which is reflected by the earth's surface back
+                                into space. This, along with the radiation scattered by clouds, makes up the Earth's
+                                albedo.
+                            </span>
+                        </div>
                     </div>
                     <div className={"control-container"} style={{left: 350, top: 290}}>
                         <ValueLabel value={swAbsorbedByAtmosphere}/>
                         <Slider label={"Absorbed by atmosphere"} value={swAbsorbedByAtmosphereSlider}
                                 hideValue={true} onChange={setSwAbsorbedByAtmosphereSlider}/>
                     </div>
-                    <div className={"control-container"} style={{left: 185 + (scattered + reflected + (100 - swAbsorbedByAtmosphere)) / 2, top: 450}}>
+                    <div className={"control-container"}
+                         style={{left: 185 + (scattered + reflected + (100 - swAbsorbedByAtmosphere)) / 2, top: 450}}>
                         <ValueLabel label={"Absorbed by surface"} value={absorbedBySurface}/>
                     </div>
                     <div className={"control-container"} style={{left: 45 - (scattered + reflected) / 2, top: 20}}>
@@ -158,7 +177,8 @@ function App() {
                     <BackRadiationArrow x={650} y={370} value={backRadiation}/>
                     <LongwaveFromSurfaceArrows x={650} y={50} emitted={lwEmittedFromSurface}
                                                absorbed={lwAbsorbedByAtmosphere} window={atmosphericWindow}/>
-                    <div className={"control-container"} style={{left: 835 - lwEmittedFromSurface / 2 + atmosphericWindow / 2, top: 430}}>
+                    <div className={"control-container"}
+                         style={{left: 835 - lwEmittedFromSurface / 2 + atmosphericWindow / 2, top: 430}}>
                         <ValueLabel value={lwEmittedFromSurface}/>
                         <label>{"Radiated from surface"}</label>
                     </div>
@@ -192,10 +212,6 @@ function App() {
                         <div className={"tooltip-anchor"}>
                             <span className="tooltip-text">The Global Mean Surface Temperature</span>
                         </div>
-                    </div>
-                    {/*Space*/}
-                    <div className={"control-container"} style={{left: 250, top: 62, width: 100}}>
-                        <ValueLabel label={"Incoming solar radiation"} value={100}/>
                     </div>
                     {/*Other*/}
                     <div style={{position: 'absolute', left: 460, top: 230, width: 220}}>
