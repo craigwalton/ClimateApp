@@ -1,7 +1,6 @@
 import React, {useEffect, useState} from 'react';
 import './App.css';
 import Slider from './components/Slider';
-import Label from './components/Label';
 import ValueLabel from './components/ValueLabel';
 import ShortwaveArrows from './components/ShortwaveArrows';
 import ConvectionArrow from "./components/ConvectionArrow";
