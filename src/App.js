@@ -165,11 +165,11 @@ function App() {
                         <ValueLabel value={lwEmittedFromSurface}/>
                         <label>{"Radiated from surface"}</label>
                     </div>
-                    <div className={"control-container"} style={{left: 750, top: 270, width: 150}}>
-                        <div style={{marginTop: 20, float: "left"}}>
+                    <div className={"control-container lw-absorbed-tooltip"} style={{left: 750, top: 280, width: 150}}>
+                        <div style={{marginTop: 10, float: "left"}}>
                             <ValueLabel value={lwAbsorbedByAtmosphere}/>
                         </div>
-                        <label>{"Absorbed by greenhouse gases & clouds"}</label>
+                        <label>{"Absorbed by atmosphere"}</label>
                     </div>
                     <div className={"control-container window-tooltip"} style={{left: 835, top: 20}}>
                         <label className={"white-label"}>{"Through window"}</label>
@@ -249,6 +249,9 @@ function App() {
                 <Tooltip anchorSelect=".lw-surface-tooltip" place="top" className="custom-tooltip">
                     <b className="longwave-text">Longwave</b> radiation emitted by Earth's surface as a function of its
                     temperature.
+                </Tooltip>
+                <Tooltip anchorSelect=".lw-absorbed-tooltip" place="top" className="custom-tooltip">
+                    <b className="longwave-text">Longwave</b> radiation absorbed by greenhouse gases and clouds.
                 </Tooltip>
                 <Tooltip anchorSelect=".window-tooltip" place="top" className="custom-tooltip">
                     Some of the <b className="longwave-text">longwave</b> radiation from Earth's surface (between 8 and
