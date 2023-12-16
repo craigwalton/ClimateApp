@@ -1,0 +1,15 @@
+{
+  "files": {
+    "main.css": "/ClimateApp/static/css/main.522387c1.css",
+    "main.js": "/ClimateApp/static/js/main.29924be3.js",
+    "static/js/787.a4b45000.chunk.js": "/ClimateApp/static/js/787.a4b45000.chunk.js",
+    "index.html": "/ClimateApp/index.html",
+    "main.522387c1.css.map": "/ClimateApp/static/css/main.522387c1.css.map",
+    "main.29924be3.js.map": "/ClimateApp/static/js/main.29924be3.js.map",
+    "787.a4b45000.chunk.js.map": "/ClimateApp/static/js/787.a4b45000.chunk.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.522387c1.css",
+    "static/js/main.29924be3.js"
+  ]
+}
