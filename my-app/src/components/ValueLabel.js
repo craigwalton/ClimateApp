@@ -6,8 +6,8 @@ const ValueLabel = ({x=0, y=0, value, valueSuffix="", label=""}) => {
     const hasLabel = label !== "";
 
     return (
-        <div className="label-container" style={{position: 'absolute', left: x, top: y, width: 0}}>
-            <div style={{width: 100, position: 'absolute', left: -50}}>
+        <div>
+            <div style={{textAlign: "center"}}>
                 <label style={{display: hasLabel ? "block" : "none"}}>{label}</label>
                 <b>{formattedValue+valueSuffix}</b>
             </div>

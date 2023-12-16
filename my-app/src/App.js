@@ -121,52 +121,78 @@ function App() {
                     {/*Shortwave*/}
                     <ShortwaveArrows x={0} y={0} scattered={scattered} reflected={reflected}
                                      atmosphere={swAbsorbedByAtmosphere}/>
-                    <ValueLabel x={178} y={220 + scattered / 2} value={scattered}/>
-                    <Slider x={162} y={190 + scattered} label={"Reflected by clouds"}
-                            value={scatteredSlider} onChange={setScatteredSlider} hideValue={true}/>
-                    <ValueLabel x={178} y={490 - reflected / 2} value={reflected}/>
-                    <Slider x={162} y={460} label={"Reflected by surface"}
-                            value={reflectedSlider} onChange={setReflectedSlider} hideValue={true}/>
-                    <ValueLabel x={410} y={291} value={swAbsorbedByAtmosphere}/>
-                    <Slider x={400} y={280} label={"Absorbed by atmosphere"} value={swAbsorbedByAtmosphereSlider}
-                            hideValue={true} onChange={setSwAbsorbedByAtmosphereSlider}/>
-                    <ValueLabel x={250 + (scattered + reflected + (100 - swAbsorbedByAtmosphere)) / 2} y={450}
-                                label={"Absorbed by surface"} value={absorbedBySurface}/>
-                    <ValueLabel x={110 - (scattered + reflected) / 2} y={100} value={scattered + reflected}/>
-                    <Label x={110 - (scattered + reflected) / 2} y={30} label={"Reflected to space"}
-                           className={"white-label"}/>
+                    <div className={"control-container tooltip-container"} style={{left: 115, top: 220 + scattered / 2}}>
+                        <ValueLabel value={scattered}/>
+                        <span className="tooltiptext tooltiptext-top">The amount of incoming solar radiation which is
+                                scattered by clouds back into space. This, along with the radiation reflected by earth's surface,
+                                makes up the earth's albedo.
+                        </span>
+                        <Slider label={"Reflected by clouds"}
+                                value={scatteredSlider} onChange={setScatteredSlider} hideValue={true}/>
+                    </div>
+                    <div className={"control-container"} style={{left: 115, top: 490 - reflected / 2}}>
+                        <ValueLabel value={reflected}/>
+                        <Slider label={"Reflected by surface"}
+                                value={reflectedSlider} onChange={setReflectedSlider} hideValue={true}/>
+                    </div>
+                    <div className={"control-container"} style={{left: 350, top: 290}}>
+                        <ValueLabel value={swAbsorbedByAtmosphere}/>
+                        <Slider label={"Absorbed by atmosphere"} value={swAbsorbedByAtmosphereSlider}
+                                hideValue={true} onChange={setSwAbsorbedByAtmosphereSlider}/>
+                    </div>
+                    <div className={"control-container"} style={{left: 185 + (scattered + reflected + (100 - swAbsorbedByAtmosphere)) / 2, top: 450}}>
+                        <ValueLabel label={"Absorbed by surface"} value={absorbedBySurface}/>
+                    </div>
+                    <div className={"control-container"} style={{left: 45 - (scattered + reflected) / 2, top: 20}}>
+                        <label className={"white-label"}>{"Reflected to space"}</label>
+                        <ValueLabel value={scattered + reflected}/>
+                    </div>
                     {/*Longwave*/}
                     <LongwaveToSpaceArrow x={580} y={0} value={lwEmittedToSpace}/>
-                    <Label x={580} y={30} label={"Emitted to space"} className={"white-label"}/>
-                    <ValueLabel x={580} y={100} value={lwEmittedToSpace}/>
+                    <div className={"control-container"} style={{left: 515, top: 20}}>
+                        <label className={"white-label"}>{"Emitted to space"}</label>
+                        <ValueLabel x={580} y={100} value={lwEmittedToSpace}/>
+                    </div>
                     <BackRadiationArrow x={650} y={370} value={backRadiation}/>
-                    <ValueLabel x={650} y={450} label={"Back radiation"} value={backRadiation}/>
                     <LongwaveFromSurfaceArrows x={650} y={50} emitted={lwEmittedFromSurface}
                                                absorbed={lwAbsorbedByAtmosphere} window={atmosphericWindow}/>
-                    <Label x={900 - lwEmittedFromSurface / 2 + atmosphericWindow / 2} y={450}
-                                label={"Radiated from surface"}/>
-                    <ValueLabel x={900 - lwEmittedFromSurface / 2 + atmosphericWindow / 2} y={430}
-                                value={lwEmittedFromSurface}/>
-                    <Label x={820} y={260} label={"Absorbed by greenhouse gases & clouds"}/>
-                    <ValueLabel x={760} y={290} value={lwAbsorbedByAtmosphere}/>
-                    <Label x={900} y={30} label={"Through window"} className={"white-label"}/>
-                    <ValueLabel x={900} y={100} value={atmosphericWindow}/>
-                    <Slider x={630} y={300} label={"Back radiation"} value={backRadiationSlider}
-                            onChange={setBackRadiationSlider} hideValue={true}/>
-                    <Slider x={880} y={100} label={"Atmospheric window"} value={atmosphericWindowSlider}
-                            onChange={setAtmosphericWindowSlider} hideValue={true}/>
+                    <div className={"control-container"} style={{left: 835 - lwEmittedFromSurface / 2 + atmosphericWindow / 2, top: 430}}>
+                        <ValueLabel value={lwEmittedFromSurface}/>
+                        <label>{"Radiated from surface"}</label>
+                    </div>
+                    <div className={"control-container"} style={{left: 750, top: 270, width: 150}}>
+                        <div style={{marginTop: 20, float: "left"}}>
+                            <ValueLabel value={lwAbsorbedByAtmosphere}/>
+                        </div>
+                        <label>{"Absorbed by greenhouse gases & clouds"}</label>
+                    </div>
+                    <div className={"control-container"} style={{left: 835, top: 20}}>
+                        <label className={"white-label"}>{"Through window"}</label>
+                        <ValueLabel value={atmosphericWindow}/>
+                        <Slider label={"Atmospheric window"} value={atmosphericWindowSlider}
+                                onChange={setAtmosphericWindowSlider} hideValue={true}/>
+                    </div>
+                    <div className={"control-container"} style={{left: 585, top: 440}}>
+                        <Slider label={"Back radiation"} value={backRadiationSlider}
+                                onChange={setBackRadiationSlider} hideValue={true}/>
+                        <ValueLabel x={650} y={450} value={backRadiation}/>
+                    </div>
                     {/*Convection & Latent Heat*/}
                     <ConvectionArrow x={500} y={300} value={convection}/>
-                    <ValueLabel x={520} y={392} value={convection}/>
-                    <Slider x={500} y={390} label={"Convection & Latent Heat"} value={convectionSlider} hideValue={true}
-                            onChange={setConvectionSlider}/>
+                    <div className={"control-container"} style={{left: 455, top: 392}}>
+                        <ValueLabel value={convection}/>
+                        <Slider label={"Convection & Latent Heat"} value={convectionSlider} hideValue={true}
+                                onChange={setConvectionSlider}/>
+                    </div>
                     {/*Surface*/}
-                    <div className={"tooltip-container"} style={{left: 500, top: 530}}>
+                    <div className={"control-container tooltip-container"} style={{left: 400, top: 455, width: 100}}>
                         <ValueLabel label={"GMST"} value={gmst} valueSuffix={" °C"}/>
                         <span className="tooltiptext">The Global Mean Surface Temperature</span>
                     </div>
                     {/*Space*/}
-                    <ValueLabel x={300} y={62} label={"Incoming solar radiation"} value={100}/>
+                    <div className={"control-container"} style={{left: 250, top: 62, width: 100}}>
+                        <ValueLabel label={"Incoming solar radiation"} value={100}/>
+                    </div>
                     {/*Other*/}
                     <div style={{position: 'absolute', left: 460, top: 230, width: 220}}>
                         {/*https://www.freepik.com/free-vector/collection-3d-white-clouds-isolated-white_20111680.htm#query=3d%20cloud&position=0&from_view=keyword&track=ais&uuid=492040cd-bdb2-485d-b6ae-ed471f741f63">Image by bs_k1d*/}
@@ -180,7 +206,8 @@ function App() {
                     {/*Second cloud has greater z-index with opacity 0.5.*/}
                     <img src={"/graphics/cloud-2.png"} alt={"cloud Image by bs_k1d"} className={"cloud-image"}
                          style={{zIndex: 1, left: 110, top: 250, width: 140, opacity: 0.5}}/>
-                    <button type="button" onClick={reset} style={{position: 'relative', top: 10, left: -40}}>Reset</button>
+                    <button type="button" onClick={reset} style={{position: 'relative', top: 10, left: -40}}>Reset
+                    </button>
                 </div>
             </div>
         </div>

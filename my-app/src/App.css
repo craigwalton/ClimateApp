@@ -38,6 +38,13 @@ html, body, #root {
     width: 100%;
 }
 
+.control-container {
+    z-index: 2;
+    width: 130px;
+    position: absolute;
+    background: rgba(199, 136, 75, 0.26);
+}
+
 .arrow-container {
     z-index: 1;
 }
@@ -53,6 +60,8 @@ html, body, #root {
 .white-label {
     color: white;
     text-shadow: 0 0 3px #000000;
+    display: block;
+    height: 75px;
 }
 
 .black-label {

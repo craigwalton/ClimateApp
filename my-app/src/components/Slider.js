@@ -9,8 +9,8 @@ const Slider = ({x, y, label, value, onChange, hideValue=false}) => {
 
     var labelDisplay = hideValue ? 'none' : 'block';
     return (
-        <div className="slider-container" style={{position: 'absolute', left: x, top: y, width: 0}}>
-            <div style={{width: 130, position: 'absolute', left: -65}}>
+        <div className="slider-container">
+            <div style={{width: 130, left: -65}}>
                 <div style={{height: 20, marginTop: 10, display: labelDisplay}}>
                     <b>{value}</b>
                 </div>
