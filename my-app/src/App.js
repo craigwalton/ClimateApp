@@ -120,14 +120,17 @@ function App() {
                     {/*Shortwave*/}
                     <ShortwaveArrows x={0} y={0} scattered={scattered} reflected={reflected}
                                      atmosphere={swAbsorbedByAtmosphere}/>
-                    <div className={"control-container tooltip-container"} style={{left: 115, top: 220 + scattered / 2}}>
+                    <div className={"control-container tooltip-container"}
+                         style={{left: 115, top: 220 + scattered / 2}}>
                         <ValueLabel value={scattered}/>
-                        <span className="tooltiptext tooltiptext-top">The amount of incoming solar radiation which is
-                                scattered by clouds back into space. This, along with the radiation reflected by earth's surface,
-                                makes up the earth's albedo.
-                        </span>
                         <Slider label={"Reflected by clouds"}
                                 value={scatteredSlider} onChange={setScatteredSlider} hideValue={true}/>
+                        <div className={"tooltip-anchor"}>
+                            <span className="tooltip-text tooltiptext-top">The amount of incoming solar radiation which is
+                                    scattered by clouds back into space. This, along with the radiation reflected by earth's surface,
+                                    makes up the earth's albedo.
+                            </span>
+                        </div>
                     </div>
                     <div className={"control-container"} style={{left: 115, top: 490 - reflected / 2}}>
                         <ValueLabel value={reflected}/>
@@ -184,9 +187,11 @@ function App() {
                                 onChange={setConvectionSlider}/>
                     </div>
                     {/*Surface*/}
-                    <div className={"control-container tooltip-container"} style={{left: 400, top: 455, width: 100}}>
+                    <div className={"control-container tooltip-container"} style={{left: 420, top: 530, width: 100}}>
                         <ValueLabel label={"GMST"} value={gmst} valueSuffix={" °C"}/>
-                        <span className="tooltiptext">The Global Mean Surface Temperature</span>
+                        <div className={"tooltip-anchor"}>
+                            <span className="tooltip-text">The Global Mean Surface Temperature</span>
+                        </div>
                     </div>
                     {/*Space*/}
                     <div className={"control-container"} style={{left: 250, top: 62, width: 100}}>

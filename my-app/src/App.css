@@ -90,26 +90,29 @@ html, body, #root {
     left: 0;
 }
 
-.tooltip-container {
-    position: relative;
-}
-
-.tooltip-container .tooltiptext {
+.tooltip-container .tooltip-text {
     visibility: hidden;
-    width: 120px;
+    width: 200px;
     background-color: rgba(0, 0, 0, 0.8);
     color: white;
     text-align: center;
     padding: 5px 0;
     border-radius: 6px;
     position: absolute;
-    left: 0;
-    margin-left: -60px;
-    bottom: 10px;
+    left: -100px;
+    top: 10px;
     z-index: 5;
     filter: drop-shadow( 0px 0px 2px rgba(0, 0, 0, .3));
 }
 
-.tooltip-container:hover .tooltiptext {
+.tooltip-container:hover .tooltip-text {
     visibility: visible;
+}
+
+.tooltip-anchor {
+    width: 0;
+    height: 0;
+    margin-left: auto;
+    margin-right: auto;
+    position: relative;
 }
