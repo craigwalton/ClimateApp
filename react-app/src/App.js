@@ -7,6 +7,7 @@ import ConvectionArrow from "./components/ConvectionArrow";
 import LongwaveToSpaceArrow from "./components/LongwaveToSpaceArrow";
 import BackRadiationArrow from "./components/BackRadiationArrow";
 import LongwaveFromSurfaceArrows from "./components/LongwaveFromSurfaceArrows";
+import {Tooltip} from "react-tooltip";
 
 function App() {
     const solarInput = 100;
@@ -120,40 +121,20 @@ function App() {
                     {/*Shortwave*/}
                     <ShortwaveArrows x={0} y={0} scattered={scattered} reflected={reflected}
                                      atmosphere={swAbsorbedByAtmosphere}/>
-                    <div className={"control-container tooltip-container"} style={{left: 250, top: 62, width: 100}}>
+                    <div className={"control-container incoming-solar-radiation-tooltip"} style={{left: 250, top: 62, width: 100}}>
                         <ValueLabel label={"Incoming solar radiation"} value={100}/>
-                        <div className={"tooltip-anchor"}>
-                            <span className="tooltip-text">
-                                The amount of solar radiation from the Sun which is intercepted by the Earth.<br/>
-                                It is approximately 342 Wm<sup>-2</sup>.
-                            </span>
-                        </div>
                     </div>
-                    <div className={"control-container tooltip-container"}
+                    <div className={"control-container scattered-tooltip"}
                          style={{left: 115, top: 220 + scattered / 2}}>
                         <ValueLabel value={scattered}/>
                         <Slider label={"Reflected by clouds"}
                                 value={scatteredSlider} onChange={setScatteredSlider} hideValue={true}/>
-                        <div className={"tooltip-anchor"}>
-                            <span className="tooltip-text">
-                                The amount of incoming solar radiation which is scattered by clouds back into space.
-                                This, along with the radiation reflected by earth's surface, makes up the Earth's
-                                albedo.
-                            </span>
-                        </div>
                     </div>
-                    <div className={"control-container tooltip-container"}
+                    <div className={"control-container reflected-tooltip"}
                          style={{left: 115, top: 490 - reflected / 2}}>
                         <ValueLabel value={reflected}/>
                         <Slider label={"Reflected by surface"}
                                 value={reflectedSlider} onChange={setReflectedSlider} hideValue={true}/>
-                        <div className={"tooltip-anchor"}>
-                            <span className="tooltip-text">
-                                The amount of incoming solar radiation which is reflected by the earth's surface back
-                                into space. This, along with the radiation scattered by clouds, makes up the Earth's
-                                albedo.
-                            </span>
-                        </div>
                     </div>
                     <div className={"control-container"} style={{left: 350, top: 290}}>
                         <ValueLabel value={swAbsorbedByAtmosphere}/>
@@ -207,11 +188,8 @@ function App() {
                                 onChange={setConvectionSlider}/>
                     </div>
                     {/*Surface*/}
-                    <div className={"control-container tooltip-container"} style={{left: 420, top: 530, width: 100}}>
+                    <div className={"control-container gmst-tooltip"} style={{left: 420, top: 530, width: 100}}>
                         <ValueLabel label={"GMST"} value={gmst} valueSuffix={" °C"}/>
-                        <div className={"tooltip-anchor"}>
-                            <span className="tooltip-text">The Global Mean Surface Temperature</span>
-                        </div>
                     </div>
                     {/*Other*/}
                     <div style={{position: 'absolute', left: 460, top: 230, width: 220}}>
@@ -229,6 +207,22 @@ function App() {
                     <button type="button" onClick={reset} style={{position: 'relative', top: 10, left: -40}}>Reset
                     </button>
                 </div>
+                <Tooltip anchorSelect=".scattered-tooltip" place="top" style={{zIndex: 10}}>
+                    The amount of incoming solar radiation which is scattered by clouds back into space.<br/>
+                    This, along with the radiation reflected by earth's surface, makes up the Earth's
+                    albedo.
+                </Tooltip>
+                <Tooltip anchorSelect=".reflected-tooltip" place="top" style={{zIndex: 10}}>
+                    The amount of incoming solar radiation which is reflected by the earth's surface back into space.
+                    <br/>This, along with the radiation scattered by clouds, makes up the Earth's albedo.
+                </Tooltip>
+                <Tooltip anchorSelect=".incoming-solar-radiation-tooltip" place="top" style={{zIndex: 10}}>
+                    The amount of solar radiation from the Sun which is intercepted by the Earth.<br/>
+                    It is approximately 342 Wm<sup>-2</sup>.
+                </Tooltip>
+                <Tooltip anchorSelect=".gmst-tooltip" place="top" style={{zIndex: 10}}>
+                    The Global Mean Surface Temperature
+                </Tooltip>
             </div>
         </div>
     );
