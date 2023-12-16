@@ -45,7 +45,7 @@ function App() {
     const [convection, setConvection] = useState(null);
     useEffect(() => {
         setConvection((convectionSlider / 100) * absorbedBySurface);
-    });
+    }, [convectionSlider, absorbedBySurface]);
     const [lwEmittedFromSurface, setLwEmittedFromSurface] = useState(null);
     const [atmosphericWindow, setAtmosphericWindow] = useState(null);
     const [lwAbsorbedByAtmosphere, setLwAbsorbedByAtmosphere] = useState(null);
