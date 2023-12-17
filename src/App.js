@@ -208,6 +208,13 @@ function App() {
                          style={{zIndex: 1, left: 110, top: 250, width: 140, opacity: 0.5}}/>
                     <button type="button" onClick={reset} style={{position: 'relative', top: 10, left: -40}}>Reset
                     </button>
+                    <div className={"footer"}>
+                        <div className={"footer-content"}>
+                            <span>&copy; Craig Walton 2023</span>
+                            <span><a href={"https://github.com/craigwalton/ClimateApp"}>Source on GitHub</a></span>
+                            <span><span className={"ack ack-tooltip"}>Acknowledgments</span></span>
+                        </div>
+                    </div>
                 </div>
                 <Tooltip anchorSelect=".incoming-solar-tooltip" place="bottom" className="custom-tooltip">
                     The amount of solar radiation from the Sun which is intercepted by the Earth.<br/>
@@ -268,6 +275,12 @@ function App() {
                     className="longwave-text">longwave</b> and <b className="convection-text">convection &amp; latent
                     heat</b>) <i>back</i> to Earth's surface. This is the greenhouse effect, which keeps the GMST over
                     30 °C warmer than it otherwise would be.
+                </Tooltip>
+                <Tooltip anchorSelect=".ack-tooltip" place="top" className="custom-tooltip" clickable>
+                    Diagram inspiration: <a href={"https://www.open.edu/openlearn/nature-environment/climate-change/"}>OpenLearn Climate Change</a><br/>
+                    Cloud images: <a href={"https://www.freepik.com/free-vector/collection-3d-white-clouds-isolated-white_20111680.htm#query=3d%20cloud&position=0&from_view=keyword&track=ais&uuid=492040cd-bdb2-485d-b6ae-ed471f741f63"}>
+                        Image by bs_k1d on Freepik
+                    </a>
                 </Tooltip>
             </div>
         </div>
