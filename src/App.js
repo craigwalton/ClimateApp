@@ -209,11 +209,11 @@ function App() {
                     <button type="button" onClick={reset} style={{position: 'relative', top: 10, left: -40}}>Reset
                     </button>
                     <div className={"footer"}>
-                        <div className={"footer-content"}>
-                            <span>&copy; Craig Walton 2023</span>
-                            <span><a href={"https://github.com/craigwalton/ClimateApp"}>Source on GitHub</a></span>
-                            <span><span className={"ack ack-tooltip"}>Acknowledgments</span></span>
-                        </div>
+                        <ul className={"footer-content"}>
+                            <li>&copy; Craig Walton 2023</li>
+                            <li><a href={"https://github.com/craigwalton/ClimateApp"}>Source on GitHub</a></li>
+                            <li><span className={"ack ack-tooltip"}>Acknowledgments</span></li>
+                        </ul>
                     </div>
                 </div>
                 <Tooltip anchorSelect=".incoming-solar-tooltip" place="bottom" className="custom-tooltip">

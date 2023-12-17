@@ -47,16 +47,33 @@ html, body, #root {
 }
 
 .footer-content {
-    margin: auto;
+    margin: 0;
+    padding: 0;
     color: #575757;
     line-height: 30px;
+    list-style: none;
+}
+
+.footer-content li {
+    display: inline-block;
+    padding-left: 1em;
+    margin-left: 1em;
+    border-left: solid 1px #000000;
+    line-height: 1;
+}
+
+.footer-content li:first-child {
+    padding-left: 0;
+    margin-left: 0;
+    border-left: 0;
+    line-height: 1;
 }
 
 .footer-content > span {
     padding: 0 5px;
 }
 
-.footer-content > span > a {
+.footer-content > li > a {
     color: #67919b;
 }
 
@@ -129,7 +146,7 @@ html, body, #root {
 }
 
 .ack {
-    border-bottom: 1px dotted gray;
+    border-bottom: 1px dotted #67919b;
     color: #67919b;
 }
 
