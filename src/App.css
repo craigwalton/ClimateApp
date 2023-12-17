@@ -165,3 +165,13 @@ html, body, #root {
 .custom-tooltip > a {
     color: #b4ccef;
 }
+
+.longwave-gradient-light {
+    stop-color: rgb(197,141,128);
+    stop-opacity: 1;
+}
+
+.longwave-gradient-dark {
+    stop-color: rgb(228,122,106);
+    stop-opacity: 1;
+}
