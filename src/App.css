@@ -126,6 +126,13 @@ html, body, #root {
     transform-origin: top left;
 }
 
+#reset-button {
+    position: relative;
+    top: 10px;
+    left: -40px;
+    z-index: 4;
+}
+
 .cloud-image {
     filter: drop-shadow( 0px 0px 2px rgba(0, 0, 0, .3));
     width: 100%;

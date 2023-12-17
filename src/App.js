@@ -213,7 +213,7 @@ function App() {
                     {/*Second cloud has greater z-index with opacity 0.5.*/}
                     <img src={"graphics/cloud-2.png"} alt={"cloud"} className={"cloud-image"}
                          style={{zIndex: 1, left: 110, top: 250, width: 140, opacity: 0.5}}/>
-                    <button type="button" onClick={reset} style={{position: 'relative', top: 10, left: -40}}>Reset
+                    <button type="button" id={"reset-button"} onClick={reset}>Reset
                     </button>
                     <div className={"footer"}>
                         <ul className={"footer-content"}>
