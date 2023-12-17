@@ -139,7 +139,9 @@ function App() {
                     </div>
                     <div className={"control-container albedo-tooltip"}
                          style={{left: 45 - (scattered + reflected) / 2, top: 20}}>
-                        <label className={"white-label"}>{"Reflected to space"}</label>
+                        <div className={"space-label-container"}>
+                            <div className={"space-label"} style={{bottom: 10 + (scattered + reflected) / 2}}>{"Reflected to space"}</div>
+                        </div>
                         <ValueLabel value={scattered + reflected}/>
                     </div>
                     <div className={"control-container sw-absorbed-atmosphere-tooltip"} style={{left: 350, top: 290}}>
@@ -154,7 +156,10 @@ function App() {
                     {/*Longwave*/}
                     <LongwaveToSpaceArrow x={580} y={0} value={lwEmittedToSpace}/>
                     <div className={"control-container lw-space-tooltip"} style={{left: 515, top: 20}}>
-                        <label className={"white-label"}>{"Emitted to space"}</label>
+                        <div className={"space-label-container"}>
+                            <div className={"space-label"}
+                                 style={{bottom: 10 + lwEmittedToSpace / 2}}>{"Emitted to space"}</div>
+                        </div>
                         <ValueLabel value={lwEmittedToSpace}/>
                     </div>
                     <BackRadiationArrow x={650} y={370} value={backRadiation}/>
@@ -172,7 +177,10 @@ function App() {
                         <label>{"Absorbed by atmosphere"}</label>
                     </div>
                     <div className={"control-container window-tooltip"} style={{left: 835, top: 20}}>
-                        <label className={"white-label"}>{"Through window"}</label>
+                        <div className={"space-label-container"}>
+                            <div className={"space-label"}
+                                 style={{bottom: 10 + atmosphericWindow / 2}}>{"Through window"}</div>
+                        </div>
                         <ValueLabel value={atmosphericWindow}/>
                         <Slider label={"Atmospheric window"} value={atmosphericWindowSlider}
                                 onChange={setAtmosphericWindowSlider} hideValue={true}/>

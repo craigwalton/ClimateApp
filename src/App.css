@@ -95,11 +95,16 @@ html, body, #root {
     z-index: 3;
 }
 
-.white-label {
+.space-label-container {
+    height: 75px;
+    position: relative;
+}
+
+.space-label {
     color: white;
     text-shadow: 0 0 3px #000000;
-    display: block;
-    height: 75px;
+    position: absolute;
+    bottom: 0;
 }
 
 .black-label {
