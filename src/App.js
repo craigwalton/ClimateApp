@@ -278,7 +278,7 @@ function App() {
                 </Tooltip>
                 <Tooltip anchorSelect=".ack-tooltip" place="top" className="custom-tooltip" clickable>
                     Diagram inspiration: <a href={"https://www.open.edu/openlearn/nature-environment/climate-change/"}>OpenLearn Climate Change</a><br/>
-                    Cloud images: <a href={"https://www.freepik.com/free-vector/collection-3d-white-clouds-isolated-white_20111680.htm#query=3d%20cloud&position=0&from_view=keyword&track=ais&uuid=492040cd-bdb2-485d-b6ae-ed471f741f63"}>
+                    Cloud images: <a href={"https://www.freepik.com/free-vector/collection-3d-white-clouds-isolated-white_20111680.htm"} target={"_blank"}>
                         Image by bs_k1d on Freepik
                     </a>
                 </Tooltip>
