@@ -129,13 +129,13 @@ function App() {
                          style={{left: 115, top: 220 + scattered / 2}}>
                         <ValueLabel value={scattered}/>
                         <Slider label={"Reflected by clouds"}
-                                value={scatteredSlider} onChange={setScatteredSlider} hideValue={true}/>
+                                value={scatteredSlider} onChange={setScatteredSlider}/>
                     </div>
                     <div className={"control-container reflected-tooltip"}
                          style={{left: 115, top: 490 - reflected / 2}}>
                         <ValueLabel value={reflected}/>
                         <Slider label={"Reflected by surface"}
-                                value={reflectedSlider} onChange={setReflectedSlider} hideValue={true}/>
+                                value={reflectedSlider} onChange={setReflectedSlider}/>
                     </div>
                     <div className={"control-container albedo-tooltip"}
                          style={{left: 45 - (scattered + reflected) / 2, top: 20}}>
@@ -147,7 +147,7 @@ function App() {
                     <div className={"control-container sw-absorbed-atmosphere-tooltip"} style={{left: 350, top: 290}}>
                         <ValueLabel value={swAbsorbedByAtmosphere}/>
                         <Slider label={"Absorbed by atmosphere"} value={swAbsorbedByAtmosphereSlider}
-                                hideValue={true} onChange={setSwAbsorbedByAtmosphereSlider}/>
+                                onChange={setSwAbsorbedByAtmosphereSlider}/>
                     </div>
                     <div className={"control-container sw-absorbed-surface-tooltip"}
                          style={{left: 185 + (scattered + reflected + (100 - swAbsorbedByAtmosphere)) / 2, top: 450}}>
@@ -183,18 +183,17 @@ function App() {
                         </div>
                         <ValueLabel value={atmosphericWindow}/>
                         <Slider label={"Atmospheric window"} value={atmosphericWindowSlider}
-                                onChange={setAtmosphericWindowSlider} hideValue={true}/>
+                                onChange={setAtmosphericWindowSlider}/>
                     </div>
                     <div className={"control-container back-radiation-tooltip"} style={{left: 585, top: 450}}>
-                        <Slider label={"Back radiation"} value={backRadiationSlider}
-                                onChange={setBackRadiationSlider} hideValue={true}/>
+                        <Slider label={"Back radiation"} value={backRadiationSlider} onChange={setBackRadiationSlider}/>
                         <ValueLabel value={backRadiation}/>
                     </div>
                     {/*Convection & Latent Heat*/}
                     <ConvectionArrow x={500} y={300} value={convection}/>
                     <div className={"control-container convection-tooltip"} style={{left: 455, top: 392}}>
                         <ValueLabel value={convection}/>
-                        <Slider label={"Convection & Latent Heat"} value={convectionSlider} hideValue={true}
+                        <Slider label={"Convection & Latent Heat"} value={convectionSlider}
                                 onChange={setConvectionSlider}/>
                     </div>
                     {/*Surface*/}
