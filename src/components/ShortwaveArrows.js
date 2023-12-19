@@ -1,6 +1,7 @@
 import './ShortwaveArrows.css';
 
 const ShortwaveArrows = ({x, y, scattered, reflected, atmosphere}) => {
+    const initialArrowHeight = 65;
     return (
         <div className="arrow-container" style={{position: 'absolute', left: x, top: y}}>
             <svg width="500" height="600" viewBox="-250 -100 500 600">
@@ -13,14 +14,14 @@ const ShortwaveArrows = ({x, y, scattered, reflected, atmosphere}) => {
                 <path className={"shortwave-path"}
                       d={drawArrow(scattered, reflected, atmosphere)}/>
                 <path className={"shortwave-path"}
-                      d="M 0 -40
-                         l 0 40
+                      d={`M 0 ${-initialArrowHeight}
+                         l 0 ${initialArrowHeight}
                          l -10 0
                          l 60 50
                          l 60 -50
                          l -10 0
-                         l 0 -40
-                         Z"/>
+                         l 0 ${-initialArrowHeight}
+                         Z`}/>
             </svg>
         </div>
     );

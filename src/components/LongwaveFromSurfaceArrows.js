@@ -18,12 +18,12 @@ const LongwaveFromSurfaceArrows = ({x, y, emitted, absorbed, window}) => {
                       d={data}/>
                 <path className={"longwave-from-surface-path"}
                       d={`M ${200 + window / 2} 450
-                          l 0 -60
+                          l 0 -70
                           l ${step} 0
                           l ${-emittedArrow} ${-emittedArrow}
                           l ${-emittedArrow} ${emittedArrow}
                           l ${step} 0
-                          l 0 60
+                          l 0 70
                           Z`}/>
             </svg>
         </div>

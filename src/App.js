@@ -133,8 +133,9 @@ function App() {
                     {/*Shortwave*/}
                     <ShortwaveArrows x={0} y={0} scattered={scattered} reflected={reflected}
                                      atmosphere={swAbsorbedByAtmosphere}/>
-                    <div className={"control-container incoming-solar-tooltip"}
-                         style={{left: 250, top: 62, width: 100}}>
+                    <div className={"control-container"}
+                         style={{left: 250, top: 40, width: 100}}>
+                        <div className={"incoming-solar-tooltip"}>&#9432;</div>
                         <ValueLabel label={"Incoming solar radiation"} value={100}/>
                     </div>
                     <div className={"control-container"}
@@ -142,7 +143,7 @@ function App() {
                         <ValueLabel value={scattered}/>
                         <Slider label={"Reflected by clouds"}
                                 value={scatteredSlider} onChange={setScatteredSlider}/>
-                        <span className={"scattered-tooltip"}>&#9432;</span>
+                        <div className={"scattered-tooltip"}>&#9432;</div>
                     </div>
                     <div className={"control-container"}
                          style={{left: 115, top: 490 - reflected / 2}}>
@@ -151,7 +152,7 @@ function App() {
                             <Slider value={reflectedSlider} onChange={setReflectedSlider}/>
                         </div>
                         <div>{"Reflected by surface"}</div>
-                        <span className={"reflected-tooltip"}>&#9432;</span>
+                        <div className={"reflected-tooltip"}>&#9432;</div>
                     </div>
                     <div className={"control-container"}
                          style={{left: 45 - (scattered + reflected) / 2, top: 20}}>
@@ -168,7 +169,7 @@ function App() {
                         <ValueLabel value={swAbsorbedByAtmosphere}/>
                         <Slider label={"Absorbed by atmosphere"} value={swAbsorbedByAtmosphereSlider}
                                 onChange={setSwAbsorbedByAtmosphereSlider}/>
-                        <span className={"sw-absorbed-atmosphere-tooltip"}>&#9432;</span>
+                        <div className={"sw-absorbed-atmosphere-tooltip"}>&#9432;</div>
                     </div>
                     <div className={"control-container"}
                          style={{left: 185 + (scattered + reflected + (100 - swAbsorbedByAtmosphere)) / 2, top: 490, height: 70}}>
@@ -176,42 +177,52 @@ function App() {
                             <ValueLabel value={absorbedBySurface}/>
                         </div>
                         <div>{"Absorbed by surface"}</div>
-                        <span className={"sw-absorbed-surface-tooltip"}>&#9432;</span>
+                        <div className={"sw-absorbed-surface-tooltip"}>&#9432;</div>
                     </div>
                     {/*Longwave*/}
                     <LongwaveToSpaceArrow x={580} y={0} value={lwEmittedToSpace}/>
-                    <div className={"control-container lw-space-tooltip"} style={{left: 515, top: 20}}>
+                    <div className={"control-container"} style={{left: 515, top: 20}}>
                         <div className={"space-label-container"}>
                             <div className={"space-label"}
-                                 style={{bottom: 10 + lwEmittedToSpace / 2}}>{"Emitted to space"}</div>
+                                 style={{bottom: 10 + lwEmittedToSpace / 2}}>
+                                <div className={"lw-space-tooltip"}>&#9432;</div>
+                                {"Emitted to space"}
+                            </div>
                         </div>
                         <ValueLabel value={lwEmittedToSpace}/>
                     </div>
                     <BackRadiationArrow x={650} y={370} value={backRadiation}/>
                     <LongwaveFromSurfaceArrows x={650} y={50} emitted={lwEmittedFromSurface}
                                                absorbed={lwAbsorbedByAtmosphere} window={atmosphericWindow}/>
-                    <div className={"control-container lw-surface-tooltip"}
-                         style={{left: 835 - lwEmittedFromSurface / 2 + atmosphericWindow / 2, top: 430}}>
+                    <div className={"control-container"}
+                         style={{left: 835 - lwEmittedFromSurface / 2 + atmosphericWindow / 2, top: 420}}>
                         <ValueLabel value={lwEmittedFromSurface}/>
-                        <label>{"Radiated from surface"}</label>
+                        <label>{"Radiated from surface"}</label><br/>
+                        <div className={"lw-surface-tooltip"}>&#9432;</div>
                     </div>
-                    <div className={"control-container lw-absorbed-tooltip"} style={{left: 750, top: 280, width: 150}}>
+                    <div className={"control-container"} style={{left: 750, top: 280, width: 150}}>
                         <div style={{marginTop: 10, float: "left"}}>
                             <ValueLabel value={lwAbsorbedByAtmosphere}/>
                         </div>
-                        <label>{"Absorbed by atmosphere"}</label>
+                        <label>{"Absorbed by atmosphere"}</label><br/>
+                        <div className={"lw-absorbed-tooltip"}>&#9432;</div>
                     </div>
-                    <div className={"control-container window-tooltip"} style={{left: 835, top: 20}}>
+                    <div className={"control-container"} style={{left: 835, top: 20}}>
                         <div className={"space-label-container"}>
                             <div className={"space-label"}
-                                 style={{bottom: 10 + atmosphericWindow / 2}}>{"Through window"}</div>
+                                 style={{bottom: 10 + atmosphericWindow / 2}}>
+                                <div className={"window-tooltip"}>&#9432;</div>
+                                {"Through window"}
+                            </div>
                         </div>
                         <ValueLabel value={atmosphericWindow}/>
                         <Slider label={"Atmospheric window"} value={atmosphericWindowSlider}
                                 onChange={setAtmosphericWindowSlider}/>
                     </div>
-                    <div className={"control-container back-radiation-tooltip"} style={{left: 585, top: 450}}>
-                        <Slider label={"Back radiation"} value={backRadiationSlider} onChange={setBackRadiationSlider}/>
+                    <div className={"control-container"} style={{left: 585, top: 410}}>
+                        <div className={"back-radiation-tooltip"}>&#9432;</div>
+                        <div style={{height: 40}}>Back<br/>radiation</div>
+                        <Slider value={backRadiationSlider} onChange={setBackRadiationSlider}/>
                         <ValueLabel value={backRadiation}/>
                     </div>
                     {/*Convection & Latent Heat*/}
@@ -220,12 +231,12 @@ function App() {
                         <ValueLabel value={convection}/>
                         <Slider label={"Convection & Latent Heat"} value={convectionSlider}
                                 onChange={setConvectionSlider}/>
-                        <span className={"convection-tooltip"}>&#9432;</span>
+                        <div className={"convection-tooltip"}>&#9432;</div>
                     </div>
                     {/*Surface*/}
                     <div className={"control-container"} style={{left: 420, top: 540, width: 100}}>
                         <ValueLabel label={"GMST"} value={gmst} valueSuffix={" °C"}/>
-                        <span className={"gmst-tooltip"}>&#9432;</span>
+                        <div className={"gmst-tooltip"}>&#9432;</div>
                     </div>
                     {/*Other*/}
                     <div style={{position: 'absolute', left: 460, top: 230, width: 220}}>
@@ -249,7 +260,7 @@ function App() {
                         </ul>
                     </div>
                 </footer>
-                <Tooltip anchorSelect=".incoming-solar-tooltip" place="bottom" className="custom-tooltip">
+                <Tooltip anchorSelect=".incoming-solar-tooltip" place="top" className="custom-tooltip">
                     The amount of solar radiation from the Sun which is intercepted by the Earth.<br/>
                     This is <b className="shortwave-text">shortwave</b> radiation.
                     It is approximately 342 Wm<sup>-2</sup>.
@@ -286,11 +297,11 @@ function App() {
                     The evaporation of water extracts heat from Earth's surface and when it condenses in the atmosphere,
                     releases the heat.
                 </Tooltip>
-                <Tooltip anchorSelect=".lw-surface-tooltip" place="top" className="custom-tooltip">
+                <Tooltip anchorSelect=".lw-surface-tooltip" place="bottom" className="custom-tooltip">
                     <b className="longwave-text">Longwave</b> radiation emitted by Earth's surface as a function of its
                     temperature.
                 </Tooltip>
-                <Tooltip anchorSelect=".lw-absorbed-tooltip" place="top" className="custom-tooltip">
+                <Tooltip anchorSelect=".lw-absorbed-tooltip" place="bottom" className="custom-tooltip">
                     <b className="longwave-text">Longwave</b> radiation absorbed by greenhouse gases and clouds.
                 </Tooltip>
                 <Tooltip anchorSelect=".window-tooltip" place="top" className="custom-tooltip">
