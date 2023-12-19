@@ -200,12 +200,14 @@ function App() {
                         <label>{"Radiated from surface"}</label><br/>
                         <div className={"lw-surface-tooltip"}>&#9432;</div>
                     </div>
-                    <div className={"control-container"} style={{left: 750, top: 280, width: 150}}>
+                    <div className={"control-container"} style={{left: 750, top: 280, width: 155}}>
                         <div style={{marginTop: 10, float: "left"}}>
                             <ValueLabel value={lwAbsorbedByAtmosphere}/>
                         </div>
-                        <label>{"Absorbed by atmosphere"}</label><br/>
-                        <div className={"lw-absorbed-tooltip"}>&#9432;</div>
+                        <div style={{width: 140, position: "absolute", right: 0}}>
+                            <label>{"Absorbed by atmosphere"}</label><br/>
+                            <div className={"lw-absorbed-tooltip"}>&#9432;</div>
+                        </div>
                     </div>
                     <div className={"control-container"} style={{left: 835, top: 20}}>
                         <div className={"space-label-container"}>
