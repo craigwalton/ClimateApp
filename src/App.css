@@ -24,7 +24,7 @@ html, body, #root {
     background: linear-gradient(to bottom, #d6c695, #b99064);
 }
 
-#centered {
+.centered {
     position: relative;
     margin-left: auto;
     margin-right: auto;
@@ -34,12 +34,17 @@ html, body, #root {
 
 #main-content {
     position: absolute;
-    top: 0;
+    top: 130px;
     height: 640px;
     width: 100%;
 }
 
-.footer {
+header {
+    height: 130px;
+    text-align: left;
+}
+
+footer {
     position: absolute;
     bottom: 0;
     height: 30px;
@@ -125,10 +130,12 @@ html, body, #root {
 }
 
 #reset-button {
-    position: relative;
-    top: 10px;
-    left: -40px;
+    position: absolute;
+    top: 15px;
+    right: 10px;
     z-index: 4;
+    width: 100px;
+    height: 30px;
 }
 
 .cloud-image {

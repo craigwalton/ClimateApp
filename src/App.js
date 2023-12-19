@@ -108,11 +108,21 @@ function App() {
 
     return (
         <div className="App">
+            <header>
+                <div className="centered" style={{paddingTop: 10}}>
+                    <div style={{fontSize: 30, fontWeight: "bold"}}>Earth's temperature</div>
+                    <br/>
+                    Adjust the sliders to see the effect that each system has on Earth's Global Mean Surface Temperature
+                    (GMST).
+                    Tap or hover over the &#9432; icons to learn more about each system.
+                    <button type="button" id={"reset-button"} onClick={reset} title={"Reset sliders (R)"}>Reset</button>
+                </div>
+            </header>
             <div id="space-background"></div>
             <div id="atmosphere-background"></div>
             <div id="earth-background"></div>
             <div id="main-content">
-                <div id="centered">
+                <div className="centered">
                     <div className={"layer-label-container"}>
                         <label className={"layer-text"} style={{left: 505, color: "white"}}>Space</label>
                         <label className={"layer-text"} style={{left: 225}}>Atmosphere</label>
@@ -223,16 +233,16 @@ function App() {
                     {/*Second cloud has greater z-index with opacity 0.5.*/}
                     <img src={"graphics/cloud-2.png"} alt={"cloud"} className={"cloud-image"}
                          style={{zIndex: 1, left: 110, top: 250, width: 140, opacity: 0.5}}/>
-                    <button type="button" id={"reset-button"} onClick={reset}>Reset
-                    </button>
-                    <div className={"footer"}>
+                </div>
+                <footer>
+                    <div className="centered">
                         <ul className={"footer-content"}>
                             <li>&copy; Craig Walton 2023</li>
                             <li><a href={"https://github.com/craigwalton/ClimateApp"}>Source on GitHub</a></li>
                             <li><span className={"ack ack-tooltip"}>Acknowledgments</span></li>
                         </ul>
                     </div>
-                </div>
+                </footer>
                 <Tooltip anchorSelect=".incoming-solar-tooltip" place="bottom" className="custom-tooltip">
                     The amount of solar radiation from the Sun which is intercepted by the Earth.<br/>
                     This is <b className="shortwave-text">shortwave</b> radiation.
@@ -294,10 +304,13 @@ function App() {
                     30 °C warmer than it otherwise would be.
                 </Tooltip>
                 <Tooltip anchorSelect=".ack-tooltip" place="top" className="custom-tooltip" clickable>
-                    Diagram inspiration: <a href={"https://www.open.edu/openlearn/nature-environment/climate-change/"}>OpenLearn Climate Change</a><br/>
-                    Cloud images: <a href={"https://www.freepik.com/free-vector/collection-3d-white-clouds-isolated-white_20111680.htm"} target={"_blank"}>
-                        Image by bs_k1d on Freepik
-                    </a>
+                    Diagram inspiration: <a href={"https://www.open.edu/openlearn/nature-environment/climate-change/"}>OpenLearn
+                    Climate Change</a><br/>
+                    Cloud images: <a
+                    href={"https://www.freepik.com/free-vector/collection-3d-white-clouds-isolated-white_20111680.htm"}
+                    target={"_blank"}>
+                    Image by bs_k1d on Freepik
+                </a>
                 </Tooltip>
             </div>
         </div>
