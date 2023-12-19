@@ -114,9 +114,9 @@ function App() {
             <div id="main-content">
                 <div id="centered">
                     <div className={"layer-label-container"}>
-                        <label className={"layer-text"} style={{left: 495, color: "white"}}>Space</label>
-                        <label className={"layer-text"} style={{left: 220}}>Atmosphere</label>
-                        <label className={"layer-text"} style={{left: 0}}>Earth</label>
+                        <label className={"layer-text"} style={{left: 505, color: "white"}}>Space</label>
+                        <label className={"layer-text"} style={{left: 225}}>Atmosphere</label>
+                        <label className={"layer-text"} style={{left: 5}}>Earth</label>
                     </div>
                     {/*Shortwave*/}
                     <ShortwaveArrows x={0} y={0} scattered={scattered} reflected={reflected}

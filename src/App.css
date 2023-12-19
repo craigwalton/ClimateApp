@@ -20,7 +20,7 @@ html, body, #root {
 }
 
 #earth-background {
-    height: 100px;
+    height: 110px;
     background: linear-gradient(to bottom, #d6c695, #b99064);
 }
 
@@ -35,7 +35,7 @@ html, body, #root {
 #main-content {
     position: absolute;
     top: 0;
-    height: 630px;
+    height: 640px;
     width: 100%;
 }
 
@@ -118,9 +118,7 @@ html, body, #root {
 
 .layer-label-container {
     position: absolute;
-    left: 0;
     bottom: 30px;
-    width: 600px;
     height: 30px;
     transform: rotate(-90deg);
     transform-origin: top left;
