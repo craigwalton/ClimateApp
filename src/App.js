@@ -148,7 +148,7 @@ function App() {
                     <div className={"control-container"}
                          style={{left: 115, top: 490 - reflected / 2}}>
                         <ValueLabel value={reflected}/>
-                        <div style={{height: 35}}>
+                        <div style={{height: 30, paddingTop: 5}}>
                             <Slider value={reflectedSlider} onChange={setReflectedSlider}/>
                         </div>
                         <div>{"Reflected by surface"}</div>
