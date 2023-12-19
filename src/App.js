@@ -94,7 +94,15 @@ function App() {
         setConvectionSlider(defaultConvectionSlider);
         setBackRadiationSlider(defaultBackRadiation);
         setAtmosphericWindowSlider(defaultAtmosphericWindow);
-    }
+    };
+
+    const noGreenhouseEffect = () => {
+        setReflectedSlider(12);
+        setSwAbsorbedByAtmosphereSlider(0);
+        setBackRadiationSlider(0);
+        setAtmosphericWindowSlider(100);
+        setConvectionSlider(0);
+    };
 
     useEffect(() => {
         const listener = event => {
@@ -115,8 +123,11 @@ function App() {
                     <div style={{fontSize: 30, fontWeight: "bold"}}>Earth's temperature</div>
                     <br/>
                     Adjust the sliders to see the effect that each system has on Earth's Global Mean Surface Temperature
-                    (GMST).
+                    (GMST). All numbers shown are relative to 100 units representing the total incoming solar radiation
+                    (342 Wm<sup>-2</sup>).
                     Tap or hover over the &#9432; icons to learn more about each system.
+                    <br/>
+                    <a href={"javascript:;"} onClick={noGreenhouseEffect}>What if there was no greenhouse effect?</a><br/>
                     <button type="button" id={"reset-button"} onClick={reset} title={"Reset sliders (R)"}>Reset</button>
                 </div>
             </header>
@@ -158,7 +169,7 @@ function App() {
                          style={{left: 45 - (scattered + reflected) / 2, top: 20}}>
                         <div className={"space-label-container"}>
                             <div className={"space-label"}
-                                 style={{bottom: 10 + (scattered + reflected) / 2}}>
+                                 style={{bottom: Math.min(10 + (scattered + reflected) / 2, 35)}}>
                                 <div className={"albedo-tooltip"}>&#9432;</div>
                                 {"Reflected to space"}
                             </div>
@@ -184,7 +195,7 @@ function App() {
                     <div className={"control-container"} style={{left: 515, top: 20}}>
                         <div className={"space-label-container"}>
                             <div className={"space-label"}
-                                 style={{bottom: 10 + lwEmittedToSpace / 2}}>
+                                 style={{bottom: Math.min(10 + lwEmittedToSpace / 2, 50)}}>
                                 <div className={"lw-space-tooltip"}>&#9432;</div>
                                 {"Emitted to space"}
                             </div>
