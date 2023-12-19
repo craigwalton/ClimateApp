@@ -147,8 +147,10 @@ function App() {
                     <div className={"control-container"}
                          style={{left: 115, top: 490 - reflected / 2}}>
                         <ValueLabel value={reflected}/>
-                        <Slider label={"Reflected by surface"}
-                                value={reflectedSlider} onChange={setReflectedSlider}/>
+                        <div style={{height: 35}}>
+                            <Slider value={reflectedSlider} onChange={setReflectedSlider}/>
+                        </div>
+                        <div>{"Reflected by surface"}</div>
                         <span className={"reflected-tooltip"}>&#9432;</span>
                     </div>
                     <div className={"control-container"}
@@ -169,9 +171,11 @@ function App() {
                         <span className={"sw-absorbed-atmosphere-tooltip"}>&#9432;</span>
                     </div>
                     <div className={"control-container"}
-                         style={{left: 185 + (scattered + reflected + (100 - swAbsorbedByAtmosphere)) / 2, top: 490}}>
-                        <ValueLabel value={absorbedBySurface}/>
-                        <div style={{paddingTop: Math.min(5 + absorbedBySurface / 2, 30)}}>{"Absorbed by surface"}</div>
+                         style={{left: 185 + (scattered + reflected + (100 - swAbsorbedByAtmosphere)) / 2, top: 490, height: 70}}>
+                        <div style={{height: 50}}>
+                            <ValueLabel value={absorbedBySurface}/>
+                        </div>
+                        <div>{"Absorbed by surface"}</div>
                         <span className={"sw-absorbed-surface-tooltip"}>&#9432;</span>
                     </div>
                     {/*Longwave*/}

@@ -7,7 +7,7 @@ const ValueLabel = ({value, valueSuffix="", label=""}) => {
 
     return (
         <div>
-            <div style={{textAlign: "center"}}>
+            <div>
                 <label style={{display: hasLabel ? "block" : "none"}}>{label}</label>
                 <b>{formattedValue+valueSuffix}</b>
             </div>
