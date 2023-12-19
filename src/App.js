@@ -125,33 +125,42 @@ function App() {
                          style={{left: 250, top: 62, width: 100}}>
                         <ValueLabel label={"Incoming solar radiation"} value={100}/>
                     </div>
-                    <div className={"control-container scattered-tooltip"}
+                    <div className={"control-container"}
                          style={{left: 115, top: 220 + scattered / 2}}>
                         <ValueLabel value={scattered}/>
                         <Slider label={"Reflected by clouds"}
                                 value={scatteredSlider} onChange={setScatteredSlider}/>
+                        <span className={"scattered-tooltip"}>&#9432;</span>
                     </div>
-                    <div className={"control-container reflected-tooltip"}
+                    <div className={"control-container"}
                          style={{left: 115, top: 490 - reflected / 2}}>
                         <ValueLabel value={reflected}/>
                         <Slider label={"Reflected by surface"}
                                 value={reflectedSlider} onChange={setReflectedSlider}/>
+                        <span className={"reflected-tooltip"}>&#9432;</span>
                     </div>
-                    <div className={"control-container albedo-tooltip"}
+                    <div className={"control-container"}
                          style={{left: 45 - (scattered + reflected) / 2, top: 20}}>
                         <div className={"space-label-container"}>
-                            <div className={"space-label"} style={{bottom: 10 + (scattered + reflected) / 2}}>{"Reflected to space"}</div>
+                            <div className={"space-label"}
+                                 style={{bottom: 10 + (scattered + reflected) / 2}}>
+                                <div className={"albedo-tooltip"}>&#9432;</div>
+                                {"Reflected to space"}
+                            </div>
                         </div>
                         <ValueLabel value={scattered + reflected}/>
                     </div>
-                    <div className={"control-container sw-absorbed-atmosphere-tooltip"} style={{left: 350, top: 290}}>
+                    <div className={"control-container"} style={{left: 350, top: 290}}>
                         <ValueLabel value={swAbsorbedByAtmosphere}/>
                         <Slider label={"Absorbed by atmosphere"} value={swAbsorbedByAtmosphereSlider}
                                 onChange={setSwAbsorbedByAtmosphereSlider}/>
+                        <span className={"sw-absorbed-atmosphere-tooltip"}>&#9432;</span>
                     </div>
-                    <div className={"control-container sw-absorbed-surface-tooltip"}
-                         style={{left: 185 + (scattered + reflected + (100 - swAbsorbedByAtmosphere)) / 2, top: 450}}>
-                        <ValueLabel label={"Absorbed by surface"} value={absorbedBySurface}/>
+                    <div className={"control-container"}
+                         style={{left: 185 + (scattered + reflected + (100 - swAbsorbedByAtmosphere)) / 2, top: 490}}>
+                        <ValueLabel value={absorbedBySurface}/>
+                        <div style={{paddingTop: Math.min(5 + absorbedBySurface / 2, 30)}}>{"Absorbed by surface"}</div>
+                        <span className={"sw-absorbed-surface-tooltip"}>&#9432;</span>
                     </div>
                     {/*Longwave*/}
                     <LongwaveToSpaceArrow x={580} y={0} value={lwEmittedToSpace}/>
@@ -191,14 +200,16 @@ function App() {
                     </div>
                     {/*Convection & Latent Heat*/}
                     <ConvectionArrow x={500} y={300} value={convection}/>
-                    <div className={"control-container convection-tooltip"} style={{left: 455, top: 392}}>
+                    <div className={"control-container"} style={{left: 455, top: 392}}>
                         <ValueLabel value={convection}/>
                         <Slider label={"Convection & Latent Heat"} value={convectionSlider}
                                 onChange={setConvectionSlider}/>
+                        <span className={"convection-tooltip"}>&#9432;</span>
                     </div>
                     {/*Surface*/}
-                    <div className={"control-container gmst-tooltip"} style={{left: 420, top: 530, width: 100}}>
+                    <div className={"control-container"} style={{left: 420, top: 530, width: 100}}>
                         <ValueLabel label={"GMST"} value={gmst} valueSuffix={" °C"}/>
+                        <span className={"gmst-tooltip"}>&#9432;</span>
                     </div>
                     {/*Other*/}
                     <div style={{position: 'absolute', left: 460, top: 230, width: 220}}>
@@ -227,13 +238,13 @@ function App() {
                     This is <b className="shortwave-text">shortwave</b> radiation.
                     It is approximately 342 Wm<sup>-2</sup>.
                 </Tooltip>
-                <Tooltip anchorSelect=".scattered-tooltip" place="top" className="custom-tooltip">
+                <Tooltip anchorSelect=".scattered-tooltip" place="bottom" className="custom-tooltip">
                     The amount of <b className="shortwave-text">shortwave</b> solar radiation which is scattered by
                     clouds back into space.<br/>
                     This, along with the radiation reflected by earth's surface, makes up the Earth's
                     albedo.
                 </Tooltip>
-                <Tooltip anchorSelect=".sw-absorbed-atmosphere-tooltip" place="top" className="custom-tooltip">
+                <Tooltip anchorSelect=".sw-absorbed-atmosphere-tooltip" place="bottom" className="custom-tooltip">
                     The amount of solar radiation (<b className="shortwave-text">shortwave</b>) which is absorbed by
                     water vapour (clouds) and aerosols.
                 </Tooltip>
@@ -250,10 +261,10 @@ function App() {
                     The amount of solar radiation (<b className="shortwave-text">shortwave</b>) which is absorbed by
                     Earth's surface.
                 </Tooltip>
-                <Tooltip anchorSelect=".gmst-tooltip" place="top" className="custom-tooltip">
+                <Tooltip anchorSelect=".gmst-tooltip" place="bottom" className="custom-tooltip">
                     The Global Mean Surface Temperature
                 </Tooltip>
-                <Tooltip anchorSelect=".convection-tooltip" place="top" className="custom-tooltip">
+                <Tooltip anchorSelect=".convection-tooltip" place="bottom" className="custom-tooltip">
                     A combination of conduction and convection transfers heat from Earth's surface to the
                     atmosphere.<br/>
                     The evaporation of water extracts heat from Earth's surface and when it condenses in the atmosphere,
