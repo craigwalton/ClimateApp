@@ -85,6 +85,8 @@ function App() {
         return kelvin - 273.15;
     }
 
+    const graphicsPath = process.env.PUBLIC_URL + "/graphics/";
+
     const reset = () => {
         setScatteredSlider(defaultScatteredValue);
         setReflectedSlider(defaultReflectedValue);
@@ -217,21 +219,21 @@ function App() {
                         <span className={"convection-tooltip"}>&#9432;</span>
                     </div>
                     {/*Surface*/}
-                    <div className={"control-container"} style={{left: 420, top: 530, width: 100}}>
+                    <div className={"control-container"} style={{left: 420, top: 540, width: 100}}>
                         <ValueLabel label={"GMST"} value={gmst} valueSuffix={" °C"}/>
                         <span className={"gmst-tooltip"}>&#9432;</span>
                     </div>
                     {/*Other*/}
                     <div style={{position: 'absolute', left: 460, top: 230, width: 220}}>
-                        <img src={"graphics/cloud-1.png"} alt={"cloud"} className={"cloud-image"}/>
+                        <img src={graphicsPath + "cloud-1.png"} alt={"cloud"} className={"cloud-image"}/>
                         <div style={{position: "absolute", top: 48, width: '100%', fontWeight: "bold"}}>
                             Greenhouse gases<br/>&amp; clouds
                         </div>
                     </div>
-                    <img src={"graphics/cloud-2.png"} alt={"cloud"} className={"cloud-image"}
+                    <img src={graphicsPath + "cloud-2.png"} alt={"cloud"} className={"cloud-image"}
                          style={{zIndex: 0, left: 110, top: 250, width: 140}}/>
                     {/*Second cloud has greater z-index with opacity 0.5.*/}
-                    <img src={"graphics/cloud-2.png"} alt={"cloud"} className={"cloud-image"}
+                    <img src={graphicsPath + "cloud-2.png"} alt={"cloud"} className={"cloud-image"}
                          style={{zIndex: 1, left: 110, top: 250, width: 140, opacity: 0.5}}/>
                 </div>
                 <footer>
