@@ -225,7 +225,7 @@ function App() {
                     <div style={{position: 'absolute', left: 460, top: 230, width: 220}}>
                         <img src={"graphics/cloud-1.png"} alt={"cloud"} className={"cloud-image"}/>
                         <div style={{position: "absolute", top: 48, width: '100%', fontWeight: "bold"}}>
-                            Greenhouse gases<br/>& clouds
+                            Greenhouse gases<br/>&amp; clouds
                         </div>
                     </div>
                     <img src={"graphics/cloud-2.png"} alt={"cloud"} className={"cloud-image"}
@@ -307,8 +307,7 @@ function App() {
                     Diagram inspiration: <a href={"https://www.open.edu/openlearn/nature-environment/climate-change/"}>OpenLearn
                     Climate Change</a><br/>
                     Cloud images: <a
-                    href={"https://www.freepik.com/free-vector/collection-3d-white-clouds-isolated-white_20111680.htm"}
-                    target={"_blank"}>
+                    href={"https://www.freepik.com/free-vector/collection-3d-white-clouds-isolated-white_20111680.htm"}>
                     Image by bs_k1d on Freepik
                 </a>
                 </Tooltip>
