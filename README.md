@@ -2,6 +2,8 @@
 
 ## Introduction
 
+Hosted at [craigwalton.github.io/ClimateApp](https://craigwalton.github.io/ClimateApp).
+
 An interactive infographic implemented as a React app which provides an overview of the global energy budget from an
 Earth climate perspective. It aims to help a user understand the systems which affect the Earth's climate including the
 greenhouse effect and how they interact by allowing them to see the effects of changing the values of the various
