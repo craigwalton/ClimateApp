@@ -120,11 +120,13 @@ function App() {
         <div className="App">
             <header>
                 <div className="centered" style={{paddingTop: 10}}>
-                    <div style={{fontSize: 30, fontWeight: "bold"}}>Earth's temperature</div>
+                    <div style={{fontSize: 30, fontWeight: "bold"}}>
+                        Climate Explorer: what affects Earth's temperature?
+                    </div>
                     <br/>
                     Adjust the sliders to see the effect that each system has on Earth's Global Mean Surface Temperature
-                    (GMST). All numbers shown are relative to 100 units representing the total incoming solar radiation
-                    (342 Wm<sup>-2</sup>).
+                    (GMST). The numbers shown are percentages relative to the incoming solar radiation (342
+                    Wm<sup>-2</sup>).
                     Tap or hover over the &#9432; icons to learn more about each system.
                     <br/>
                     <a href={"javascript:;"} onClick={noGreenhouseEffect}>What if there was no greenhouse effect?</a><br/>
