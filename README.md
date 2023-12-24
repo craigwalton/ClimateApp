@@ -1,8 +1,8 @@
-# Climate App
+# Climate Explorer
 
 ## Introduction
 
-Hosted at [craigwalton.github.io/ClimateApp](https://craigwalton.github.io/ClimateApp).
+Hosted at [craigwalton.github.io/ClimateExplorer](https://craigwalton.github.io/ClimateExplorer).
 
 An interactive infographic implemented as a React app which provides an overview of the global energy budget from an
 Earth climate perspective. It aims to help a user understand the systems which affect the Earth's climate including the
@@ -29,4 +29,4 @@ You may also see any lint errors in the console.
 
 Deploy to GitHub Pages.
 
-https://craigwalton.github.io/ClimateApp
+https://craigwalton.github.io/ClimateExplorer

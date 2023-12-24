@@ -268,7 +268,7 @@ function App() {
                     <div className="centered">
                         <ul className={"footer-content"}>
                             <li>&copy; Craig Walton 2023</li>
-                            <li><a href={"https://github.com/craigwalton/ClimateApp"}>Source on GitHub</a></li>
+                            <li><a href={"https://github.com/craigwalton/ClimateExplorer"}>Source on GitHub</a></li>
                             <li><span className={"ack ack-tooltip"}>Acknowledgments</span></li>
                         </ul>
                     </div>
