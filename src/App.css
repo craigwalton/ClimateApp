@@ -32,21 +32,17 @@ html, body, #root {
     height: 100%;
 }
 
-#main-content {
-    position: absolute;
-    top: 200px;
-    height: 640px;
+main {
+    position: relative;
+    height: 610px;
     width: 100%;
 }
 
 header {
-    height: 200px;
     text-align: left;
 }
 
 footer {
-    position: absolute;
-    bottom: 0;
     height: 30px;
     width: 100%;
 }
@@ -124,10 +120,11 @@ footer {
 
 .layer-label-container {
     position: absolute;
-    bottom: 30px;
+    bottom: 0;
     height: 30px;
     transform: rotate(-90deg);
     transform-origin: top left;
+    z-index: 1;
 }
 
 #reset-button {

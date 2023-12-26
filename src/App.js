@@ -97,12 +97,22 @@ function App() {
     };
 
     const noGreenhouseEffect = () => {
+        setScatteredSlider(defaultScatteredValue);
         setReflectedSlider(12);
         setSwAbsorbedByAtmosphereSlider(0);
         setBackRadiationSlider(0);
         setAtmosphericWindowSlider(100);
         setConvectionSlider(0);
     };
+
+    const moreCloudAlbedo = () => {
+        setScatteredSlider(26.4);
+        setReflectedSlider(defaultReflectedValue);
+        setSwAbsorbedByAtmosphereSlider(defaultSwAbsorbedByAtmosphere);
+        setConvectionSlider(defaultConvectionSlider);
+        setBackRadiationSlider(defaultBackRadiation);
+        setAtmosphericWindowSlider(defaultAtmosphericWindow);
+    }
 
     useEffect(() => {
         const listener = event => {
@@ -132,14 +142,21 @@ function App() {
                     <p>
                         Tap or hover over the &#9432; icons to learn more about each system.
                     </p>
-                    <a href={"javascript:;"} onClick={noGreenhouseEffect}>What if there was no greenhouse effect?</a><br/>
+                    <details style={{textAlign: "left"}}>
+                        <summary>What if...</summary>
+                        <ul>
+                            <li><a href={"javascript:;"} onClick={noGreenhouseEffect}>...there was no greenhouse
+                                effect?</a></li>
+                            <li><a href={"javascript:;"} onClick={moreCloudAlbedo}>...clouds reflected 20% more
+                                solar
+                                radiation without absorbing more shortwave radiation?</a></li>
+                        </ul>
+                    </details>
+                    <br/>
                     <button type="button" id={"reset-button"} onClick={reset} title={"Reset sliders (R)"}>Reset</button>
                 </div>
             </header>
-            <div id="space-background"></div>
-            <div id="atmosphere-background"></div>
-            <div id="earth-background"></div>
-            <div id="main-content">
+            <main>
                 <div className="centered">
                     <div className={"layer-label-container"}>
                         <label className={"layer-text"} style={{left: 505, color: "white"}}>Space</label>
@@ -188,7 +205,11 @@ function App() {
                         <div className={"sw-absorbed-atmosphere-tooltip"}>&#9432;</div>
                     </div>
                     <div className={"control-container"}
-                         style={{left: 185 + (scattered + reflected + (100 - swAbsorbedByAtmosphere)) / 2, top: 490, height: 70}}>
+                         style={{
+                             left: 185 + (scattered + reflected + (100 - swAbsorbedByAtmosphere)) / 2,
+                             top: 490,
+                             height: 70
+                         }}>
                         <div style={{height: 50}}>
                             <ValueLabel value={absorbedBySurface}/>
                         </div>
@@ -269,15 +290,20 @@ function App() {
                     <img src={graphicsPath + "cloud-2.png"} alt={"cloud"} className={"cloud-image"}
                          style={{zIndex: 1, left: 110, top: 250, width: 140, opacity: 0.5}}/>
                 </div>
-                <footer>
-                    <div className="centered">
-                        <ul className={"footer-content"}>
-                            <li>&copy; Craig Walton 2023</li>
-                            <li><a href={"https://github.com/craigwalton/ClimateExplorer"}>Source on GitHub</a></li>
-                            <li><span className={"ack ack-tooltip"}>Acknowledgments</span></li>
-                        </ul>
-                    </div>
-                </footer>
+                <div style={{position: "absolute", top: 0, width:"100%"}}>
+                    <div id="space-background"></div>
+                    <div id="atmosphere-background"></div>
+                    <div id="earth-background"></div>
+                </div>
+            </main>
+            <footer>
+                <ul className={"footer-content"}>
+                    <li>&copy; Craig Walton 2023</li>
+                    <li><a href={"https://github.com/craigwalton/ClimateExplorer"}>Source on GitHub</a></li>
+                    <li><span className={"ack ack-tooltip"}>Acknowledgments</span></li>
+                </ul>
+            </footer>
+            <div id={"tooltips"}>
                 <Tooltip anchorSelect=".incoming-solar-tooltip" place="top" className="custom-tooltip">
                     The amount of solar radiation from the Sun which is intercepted by the Earth.<br/>
                     This is <b className="shortwave-text">shortwave</b> radiation.
@@ -294,12 +320,14 @@ function App() {
                     water vapour (clouds) and aerosols.
                 </Tooltip>
                 <Tooltip anchorSelect=".reflected-tooltip" place="bottom" className="custom-tooltip">
-                    The amount of <b className="shortwave-text">shortwave</b> solar radiation which is reflected by the
+                    The amount of <b className="shortwave-text">shortwave</b> solar radiation which is reflected by
+                    the
                     earth's surface back into space.
                     <br/>This, along with the radiation scattered by clouds, makes up the Earth's albedo.
                 </Tooltip>
                 <Tooltip anchorSelect=".albedo-tooltip" place="top" className="custom-tooltip">
-                    The combination of <b className="shortwave-text">shortwave</b> solar radiation which is returned to
+                    The combination of <b className="shortwave-text">shortwave</b> solar radiation which is returned
+                    to
                     space due to the Earth's albedo: reflected by clouds and surface.
                 </Tooltip>
                 <Tooltip anchorSelect=".sw-absorbed-surface-tooltip" place="top" className="custom-tooltip">
@@ -312,34 +340,42 @@ function App() {
                 <Tooltip anchorSelect=".convection-tooltip" place="bottom" className="custom-tooltip">
                     A combination of conduction and convection transfers heat from Earth's surface to the
                     atmosphere.<br/>
-                    The evaporation of water extracts heat from Earth's surface and when it condenses in the atmosphere,
+                    The evaporation of water extracts heat from Earth's surface and when it condenses in the
+                    atmosphere,
                     releases the heat.
                 </Tooltip>
                 <Tooltip anchorSelect=".lw-surface-tooltip" place="bottom" className="custom-tooltip">
-                    <b className="longwave-text">Longwave</b> radiation emitted by Earth's surface as a function of its
+                    <b className="longwave-text">Longwave</b> radiation emitted by Earth's surface as a function of
+                    its
                     temperature.
                 </Tooltip>
                 <Tooltip anchorSelect=".lw-absorbed-tooltip" place="bottom" className="custom-tooltip">
                     <b className="longwave-text">Longwave</b> radiation absorbed by greenhouse gases and clouds.
                 </Tooltip>
                 <Tooltip anchorSelect=".window-tooltip" place="top" className="custom-tooltip">
-                    Some of the <b className="longwave-text">longwave</b> radiation from Earth's surface (between 8 and
+                    Some of the <b className="longwave-text">longwave</b> radiation from Earth's surface (between 8
+                    and
                     13 μm wavelength) is not absorbed by greenhouse gases so escapes directly to space.
                 </Tooltip>
                 <Tooltip anchorSelect=".lw-space-tooltip" place="top" className="custom-tooltip">
-                    Some of the heat absorbed by the atmosphere (from <b className="shortwave-text">shortwave</b>, <b
-                    className="longwave-text">longwave</b> and <b className="convection-text">convection &amp; latent
+                    Some of the heat absorbed by the atmosphere (from <b
+                    className="shortwave-text">shortwave</b>, <b
+                    className="longwave-text">longwave</b> and <b
+                    className="convection-text">convection &amp; latent
                     heat</b>) is emitted as <b className="longwave-text">longwave</b> radiation into space.
                 </Tooltip>
                 <Tooltip anchorSelect=".back-radiation-tooltip" place="top" className="custom-tooltip">
                     The <b className="longwave-text">longwave</b> radiation emitted by the atmosphere (from <b
                     className="shortwave-text">shortwave</b>, <b
-                    className="longwave-text">longwave</b> and <b className="convection-text">convection &amp; latent
-                    heat</b>) <i>back</i> to Earth's surface. This is the greenhouse effect, which keeps the GMST over
+                    className="longwave-text">longwave</b> and <b
+                    className="convection-text">convection &amp; latent
+                    heat</b>) <i>back</i> to Earth's surface. This is the greenhouse effect, which keeps the GMST
+                    over
                     30 °C warmer than it otherwise would be.
                 </Tooltip>
                 <Tooltip anchorSelect=".ack-tooltip" place="top" className="custom-tooltip" clickable>
-                    Diagram inspiration: <a href={"https://www.open.edu/openlearn/nature-environment/climate-change/"}>OpenLearn
+                    Diagram inspiration: <a
+                    href={"https://www.open.edu/openlearn/nature-environment/climate-change/"}>OpenLearn
                     Climate Change</a><br/>
                     Cloud images: <a
                     href={"https://www.freepik.com/free-vector/collection-3d-white-clouds-isolated-white_20111680.htm"}>
