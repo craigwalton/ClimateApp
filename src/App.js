@@ -121,14 +121,17 @@ function App() {
             <header>
                 <div className="centered" style={{paddingTop: 10}}>
                     <div style={{fontSize: 30, fontWeight: "bold"}}>
-                        Climate Explorer: what affects Earth's temperature?
+                        Climate Explorer: what governs Earth's temperature?
                     </div>
-                    <br/>
-                    Adjust the sliders to see the effect that each system has on Earth's Global Mean Surface Temperature
-                    (GMST). The numbers shown are percentages relative to the incoming solar radiation (342
-                    Wm<sup>-2</sup>).
-                    Tap or hover over the &#9432; icons to learn more about each system.
-                    <br/>
+                    <p>
+                        Adjust the sliders to visualise the effect that each system has on Earth's Global Mean Surface
+                        Temperature (GMST), and the interplay between them.
+                        The numbers shown are percentages relative to the incoming solar radiation
+                        (342 Wm<sup>-2</sup>).
+                    </p>
+                    <p>
+                        Tap or hover over the &#9432; icons to learn more about each system.
+                    </p>
                     <a href={"javascript:;"} onClick={noGreenhouseEffect}>What if there was no greenhouse effect?</a><br/>
                     <button type="button" id={"reset-button"} onClick={reset} title={"Reset sliders (R)"}>Reset</button>
                 </div>

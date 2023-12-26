@@ -34,13 +34,13 @@ html, body, #root {
 
 #main-content {
     position: absolute;
-    top: 130px;
+    top: 200px;
     height: 640px;
     width: 100%;
 }
 
 header {
-    height: 130px;
+    height: 200px;
     text-align: left;
 }
 
