@@ -240,7 +240,7 @@ function App() {
                     <div className={"control-container"} style={{left: 585, top: 410}}>
                         <div className={"back-radiation-tooltip"}>&#9432;</div>
                         <div style={{height: 40}}>Back<br/>radiation</div>
-                        <Slider value={backRadiationSlider} onChange={setBackRadiationSlider}/>
+                        <Slider value={backRadiationSlider} max={70} onChange={setBackRadiationSlider}/>
                         <ValueLabel value={backRadiation}/>
                     </div>
                     {/*Convection & Latent Heat*/}

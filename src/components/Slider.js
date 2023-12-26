@@ -1,6 +1,6 @@
 import './Slider.css';
 
-const Slider = ({label, value, onChange}) => {
+const Slider = ({label, value, max=100, onChange}) => {
 
     const handleSliderChange = (event) => {
         const valueInt = parseInt(event.target.value, 10);
@@ -13,7 +13,7 @@ const Slider = ({label, value, onChange}) => {
                 <input
                     type="range"
                     min="0"
-                    max="100"
+                    max={max}
                     value={value}
                     onChange={handleSliderChange}
                     className={"slider"}/>
