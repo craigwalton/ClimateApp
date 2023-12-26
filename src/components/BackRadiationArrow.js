@@ -7,7 +7,7 @@ const BackRadiationArrow = ({x, y, value}) => {
     const arrowHead = halfWidth + 5;
     return (
         <div className="arrow-container" style={{position: 'absolute', left: x, top: y}}>
-            <svg width="120" height="200" viewBox="-60 -50 120 200" style={{position: "relative", left: -60}}>
+            <svg width="300" height="240" viewBox="-150 -50 300 240" style={{position: "relative", left: -150}}>
                 <defs>
                     <linearGradient id="back-radiation-gradient" x1="0%" y1="0%" x2="0%" y2="100%">
                         <stop offset="0%" className={"longwave-gradient-dark"}/>
