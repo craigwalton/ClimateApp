@@ -1,6 +1,6 @@
 import './Arrows.css'
 import './ShortwaveArrows.css';
-import { headStep } from './Arrows';
+import {headStep, SvgDefs} from './Arrows';
 
 const ShortwaveArrows = ({x, y, scattered, reflected, atmosphere}) => {
 
@@ -12,12 +12,7 @@ const ShortwaveArrows = ({x, y, scattered, reflected, atmosphere}) => {
     return (
         <div className="arrow-container" style={{left: x, top: y}}>
             <svg width={viewWidth} height={viewHeight} viewBox={`${-viewWidth / 2} -100 ${viewWidth} ${viewHeight}`}>
-                <defs>
-                    <linearGradient id="shortwave-gradient" x1="0%" y1="0%" x2="0%" y2="100%">
-                        <stop offset="0%" className="shortwave-light"/>
-                        <stop offset="100%" className="shortwave-dark"/>
-                    </linearGradient>
-                </defs>
+                <SvgDefs start="shortwave-light" end="shortwave-dark" id="shortwave-gradient"/>
                 <path className="shortwave-path"
                       d={drawArrows(scattered, reflected, atmosphere)}/>
                 <path className="shortwave-path"

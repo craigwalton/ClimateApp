@@ -1,6 +1,6 @@
 import './Arrows.css'
 import './ConvectionArrow.css';
-import { headStep } from './Arrows';
+import {headStep, SvgDefs} from './Arrows';
 
 const ConvectionArrow = ({x, y, value}) => {
 
@@ -15,12 +15,7 @@ const ConvectionArrow = ({x, y, value}) => {
             <svg width={viewWidth} height={viewHeight}
                  viewBox={`${-viewWidth / 2} ${-viewHeight} ${viewWidth} ${viewHeight}`}
                 style={{top: -viewHeight}}>
-                <defs>
-                    <linearGradient id="convection-gradient" x1="0%" y1="0%" x2="0%" y2="100%">
-                        <stop offset="0%" className="convection-light"/>
-                        <stop offset="100%" className="convection-dark"/>
-                    </linearGradient>
-                </defs>
+                <SvgDefs start="convection-light" end="convection-dark" id="convection-gradient"/>
                 <path className="convection-path"
                       d={`M ${-halfWidth} 0
                           l 0 ${-arrowHeight}

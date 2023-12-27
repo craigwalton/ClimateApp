@@ -1,6 +1,6 @@
 import './Arrows.css';
 import './BackRadiationArrow.css';
-import { headStep } from './Arrows';
+import { headStep, SvgDefs } from './Arrows';
 
 const BackRadiationArrow = ({x, y, value}) => {
 
@@ -14,12 +14,7 @@ const BackRadiationArrow = ({x, y, value}) => {
         <div className="arrow-container" style={{left: x, top: y}}>
             <svg width={viewWidth} height={viewHeight} viewBox={`${-viewWidth / 2} -10 ${viewWidth} ${viewHeight}`}
                  style={{left: -viewWidth / 2, top: -arrowHeight - 10}}>
-                <defs>
-                    <linearGradient id="back-radiation-gradient" x1="0%" y1="0%" x2="0%" y2="100%">
-                        <stop offset="0%" className="longwave-gradient-dark"/>
-                        <stop offset="100%" className="longwave-gradient-light"/>
-                    </linearGradient>
-                </defs>
+                <SvgDefs start="longwave-gradient-dark" end="longwave-gradient-light" id="back-radiation-gradient"/>
                 <path className="back-radiation-path"
                       d={`M ${-halfWidth} 0
                           l 0 ${arrowHeight}

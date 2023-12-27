@@ -1,6 +1,6 @@
 import './Arrows.css'
 import './LongwaveFromSurfaceArrows.css';
-import { headStep } from './Arrows';
+import {headStep, SvgDefs} from './Arrows';
 
 const LongwaveFromSurfaceArrows = ({x, y, emitted, absorbed, window}) => {
 
@@ -14,12 +14,8 @@ const LongwaveFromSurfaceArrows = ({x, y, emitted, absorbed, window}) => {
     return (
         <div className="arrow-container" style={{left: x, top: y}}>
             <svg width={viewWidth} height={viewHeight} viewBox={`-50 0 ${viewWidth} ${viewHeight}`}>
-                <defs>
-                    <linearGradient id="longwave-from-surface-gradient" x1="0%" y1="0%" x2="0%" y2="100%">
-                        <stop offset="0%" className="longwave-gradient-light"/>
-                        <stop offset="100%" className="longwave-gradient-dark"/>
-                    </linearGradient>
-                </defs>
+                <SvgDefs start="longwave-gradient-light" end="longwave-gradient-dark"
+                         id="longwave-from-surface-gradient"/>
                 <path className="longwave-from-surface-path"
                       d={mainArrow}/>
                 <path className="longwave-from-surface-path"

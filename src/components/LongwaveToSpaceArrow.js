@@ -1,6 +1,6 @@
 import './Arrows.css'
 import './LongwaveToSpaceArrow.css';
-import { headStep } from './Arrows';
+import {headStep, SvgDefs} from './Arrows';
 
 const LongwaveToSpaceArrow = ({x, y, value}) => {
 
@@ -15,12 +15,7 @@ const LongwaveToSpaceArrow = ({x, y, value}) => {
         <div className="arrow-container" style={{left: x, top: y}}>
             <svg width={viewWidth} height={viewHeight} viewBox={`${-viewWidth / 2} 0 ${viewWidth} ${viewHeight}`}
                  style={{top: -100, left: -viewWidth / 2}}>
-                <defs>
-                    <linearGradient id="longwave-to-space-gradient" x1="0%" y1="0%" x2="0%" y2="100%">
-                        <stop offset="0%" className="longwave-gradient-light"/>
-                        <stop offset="100%" className="longwave-gradient-dark"/>
-                    </linearGradient>
-                </defs>
+                <SvgDefs start="longwave-gradient-light" end="longwave-gradient-dark" id="longwave-to-space-gradient"/>
                 <path className="longwave-to-space-path"
                       d={`M ${-halfWidth} ${startY}
                           l 0 ${-arrowHeight}
