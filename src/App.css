@@ -78,6 +78,10 @@ footer {
     color: #67919b;
 }
 
+a {
+    color: #67919b;
+}
+
 .control-container {
     z-index: 2;
     width: 130px;
