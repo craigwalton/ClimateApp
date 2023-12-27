@@ -8,17 +8,15 @@ const Slider = ({label, value, max=100, onChange}) => {
     };
 
     return (
-        <div className="slider-container">
-            <div style={{width: 130, left: -65}}>
-                <input
-                    type="range"
-                    min="0"
-                    max={max}
-                    value={value}
-                    onChange={handleSliderChange}
-                    className={"slider"}/>
-                <div>{label}</div>
-            </div>
+        <div className={"slider-container"}>
+            <input
+                type="range"
+                min="0"
+                max={max}
+                value={value}
+                onChange={handleSliderChange}
+                className={"slider"}/>
+            <div>{label}</div>
         </div>
     );
 };
