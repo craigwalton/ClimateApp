@@ -14,7 +14,7 @@ const ConvectionArrow = ({x, y, value}) => {
                         <stop offset="100%" style={{stopColor: 'rgb(103,180,139)', stopOpacity: 1}}/>
                     </linearGradient>
                 </defs>
-                <path className={"convection-path"}
+                <path className="convection-path"
                       d={`M ${-halfWidth} 0
                           l 0 -100
                           l ${-step} 0

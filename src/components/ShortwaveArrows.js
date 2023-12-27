@@ -11,9 +11,9 @@ const ShortwaveArrows = ({x, y, scattered, reflected, atmosphere}) => {
                         <stop offset="100%" style={{stopColor: 'rgb(218,166,98)', stopOpacity: 1}}/>
                     </linearGradient>
                 </defs>
-                <path className={"shortwave-path"}
+                <path className="shortwave-path"
                       d={drawArrow(scattered, reflected, atmosphere)}/>
-                <path className={"shortwave-path"}
+                <path className="shortwave-path"
                       d={`M 0 ${-initialArrowHeight}
                          l 0 ${initialArrowHeight}
                          l -10 0

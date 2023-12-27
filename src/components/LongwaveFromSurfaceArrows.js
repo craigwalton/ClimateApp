@@ -10,13 +10,13 @@ const LongwaveFromSurfaceArrows = ({x, y, emitted, absorbed, window}) => {
             <svg width="300" height="450" viewBox="-50 0 300 450">
                 <defs>
                     <linearGradient id="longwave-from-surface-gradient" x1="0%" y1="0%" x2="0%" y2="100%">
-                        <stop offset="0%" className={"longwave-gradient-light"}/>
-                        <stop offset="100%" className={"longwave-gradient-dark"}/>
+                        <stop offset="0%" className="longwave-gradient-light"/>
+                        <stop offset="100%" className="longwave-gradient-dark"/>
                     </linearGradient>
                 </defs>
-                <path className={"longwave-from-surface-path"}
+                <path className="longwave-from-surface-path"
                       d={data}/>
-                <path className={"longwave-from-surface-path"}
+                <path className="longwave-from-surface-path"
                       d={`M ${200 + window / 2} 450
                           l 0 -70
                           l ${step} 0

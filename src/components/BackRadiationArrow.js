@@ -10,11 +10,11 @@ const BackRadiationArrow = ({x, y, value}) => {
             <svg width="300" height="240" viewBox="-150 -50 300 240" style={{position: "relative", left: -150}}>
                 <defs>
                     <linearGradient id="back-radiation-gradient" x1="0%" y1="0%" x2="0%" y2="100%">
-                        <stop offset="0%" className={"longwave-gradient-dark"}/>
-                        <stop offset="100%" className={"longwave-gradient-light"}/>
+                        <stop offset="0%" className="longwave-gradient-dark"/>
+                        <stop offset="100%" className="longwave-gradient-light"/>
                     </linearGradient>
                 </defs>
-                <path className={"back-radiation-path"}
+                <path className="back-radiation-path"
                       d={`M ${-halfWidth} -30
                           l 0 110
                           l ${-step} 0
