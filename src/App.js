@@ -273,7 +273,7 @@ function App() {
                         <div className={"convection-tooltip"}>&#9432;</div>
                     </div>
                     {/*Surface*/}
-                    <div className={"control-container"} style={{left: 420, top: 540, width: 100}}>
+                    <div className={"control-container"} style={{left: 450, top: 540, width: 100}}>
                         <ValueLabel label={"GMST"} value={gmst} valueSuffix={" °C"}/>
                         <div className={"gmst-tooltip"}>&#9432;</div>
                     </div>
