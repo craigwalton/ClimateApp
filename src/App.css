@@ -164,18 +164,9 @@ footer {
     color: #5bbda8;
 }
 
-.custom-tooltip {
-    max-width: 200px;
-    z-index: 10;
-}
-
 .ack {
     border-bottom: 1px dotted #67919b;
     color: #67919b;
-}
-
-.custom-tooltip > a {
-    color: #b4ccef;
 }
 
 .longwave-gradient-light {
