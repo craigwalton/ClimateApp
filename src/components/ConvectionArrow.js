@@ -1,12 +1,12 @@
 import './Arrows.css'
 import './ConvectionArrow.css';
+import { headStep } from './Arrows';
 
 const ConvectionArrow = ({x, y, value}) => {
 
     const viewWidth = 120;
     const viewHeight = 200;
     const arrowHeight = 100;
-    const headStep = 10;
     const halfWidth = value / 2;
     const arrowHead = halfWidth + headStep
 

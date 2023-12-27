@@ -1,11 +1,11 @@
 import './Arrows.css'
 import './ShortwaveArrows.css';
+import { headStep } from './Arrows';
 
 const ShortwaveArrows = ({x, y, scattered, reflected, atmosphere}) => {
 
     const viewWidth = 500;
     const viewHeight = 600;
-    const headStep = 10;
     const halfIncoming = 50;
     const incomingArrowHeight = 65;
 
@@ -50,7 +50,6 @@ function drawArrows(scattered, reflected, atmosphere) {
     const atmosphereY = 200;
     const atmosphereROut = 50;
     const atmosphereRIn = atmosphereROut - atmosphere;
-    const headStep = 10;
     let path = `
                M 0 0
                l 0 ${scatteredY}

@@ -1,13 +1,13 @@
 import './Arrows.css'
 import './LongwaveFromSurfaceArrows.css';
+import { headStep } from './Arrows';
 
 const LongwaveFromSurfaceArrows = ({x, y, emitted, absorbed, window}) => {
 
     const viewWidth = 300;
     const viewHeight = 450;
-    const headStep = 10;
     const startX = 200 + window / 2;
-    const mainArrow = drawArrows(startX, headStep, viewHeight, emitted, absorbed, window);
+    const mainArrow = drawArrows(startX, viewHeight, emitted, absorbed, window);
     const emittedArrow = (emitted) / 2 + headStep;
     const emittedArrowHeight = 70;
 
@@ -36,7 +36,7 @@ const LongwaveFromSurfaceArrows = ({x, y, emitted, absorbed, window}) => {
     );
 };
 
-function drawArrows(startX, headStep, viewHeight, emitted, absorbed, window) {
+function drawArrows(startX, viewHeight, emitted, absorbed, window) {
     // Through window arrow.
     const windowArrow = window / 2 + headStep;
     const windowY = 400;

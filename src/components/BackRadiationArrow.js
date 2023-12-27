@@ -1,11 +1,11 @@
 import './Arrows.css';
 import './BackRadiationArrow.css';
+import { headStep } from './Arrows';
 
 const BackRadiationArrow = ({x, y, value}) => {
 
     const viewWidth = 300;
     const viewHeight = 240;
-    const headStep = 10;
     const halfWidth = value / 2;
     const arrowHead = halfWidth + headStep;
     const arrowHeight = 110;

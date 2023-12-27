@@ -1,11 +1,11 @@
 import './Arrows.css'
 import './LongwaveToSpaceArrow.css';
+import { headStep } from './Arrows';
 
 const LongwaveToSpaceArrow = ({x, y, value}) => {
 
     const viewWidth = 120;
     const viewHeight = 210;
-    const headStep = 10;
     const halfWidth = value / 2;
     const arrowHead = halfWidth + headStep;
     const arrowHeight = 100;
