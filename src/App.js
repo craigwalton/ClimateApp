@@ -2,11 +2,11 @@ import React, {useEffect, useState} from 'react';
 import './App.css';
 import Slider from './components/Slider';
 import ValueLabel from './components/ValueLabel';
-import ShortwaveArrows from './components/ShortwaveArrows';
-import ConvectionArrow from "./components/ConvectionArrow";
-import LongwaveToSpaceArrow from "./components/LongwaveToSpaceArrow";
-import BackRadiationArrow from "./components/BackRadiationArrow";
-import LongwaveFromSurfaceArrows from "./components/LongwaveFromSurfaceArrows";
+import ShortwaveArrows from './components/Arrows/ShortwaveArrows';
+import ConvectionArrow from "./components/Arrows/ConvectionArrow";
+import LongwaveToSpaceArrow from "./components/Arrows/LongwaveToSpaceArrow";
+import BackRadiationArrow from "./components/Arrows/BackRadiationArrow";
+import LongwaveFromSurfaceArrows from "./components/Arrows/LongwaveFromSurfaceArrows";
 import Tooltips from "./components/Tooltips";
 
 function App() {
