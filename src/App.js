@@ -157,7 +157,7 @@ function App() {
                 </div>
             </header>
             <main>
-                <div className="centered">
+                <div className="centered" style={{zIndex: 1}}>
                     <div className={"layer-label-container"}>
                         <label className={"layer-text"} style={{left: 505, color: "white"}}>Space</label>
                         <label className={"layer-text"} style={{left: 225}}>Atmosphere</label>
