@@ -172,15 +172,13 @@ function App() {
                         <div className="incoming-solar-tooltip">&#9432;</div>
                         <ValueLabel label="Incoming solar radiation" value={100}/>
                     </div>
-                    <div className="control-container"
-                         style={{left: 115, top: 220 + scattered / 2}}>
+                    <div className="control-container" style={{left: 115, top: 220 + scattered / 2}}>
                         <ValueLabel value={scattered}/>
                         <Slider label="Reflected by clouds"
                                 value={scatteredSlider} onChange={setScatteredSlider}/>
                         <div className="scattered-tooltip">&#9432;</div>
                     </div>
-                    <div className="control-container"
-                         style={{left: 115, top: 490 - reflected / 2}}>
+                    <div className="control-container" style={{left: 115, top: 490 - reflected / 2}}>
                         <ValueLabel value={reflected}/>
                         <div style={{height: 30, paddingTop: 5}}>
                             <Slider value={reflectedSlider} onChange={setReflectedSlider}/>
@@ -221,8 +219,7 @@ function App() {
                     <LongwaveToSpaceArrow x={580} y={0} value={lwEmittedToSpace}/>
                     <div className="control-container" style={{left: 515, top: 20}}>
                         <div className="space-label-container">
-                            <div className="space-label"
-                                 style={{bottom: Math.min(10 + lwEmittedToSpace / 2, 50)}}>
+                            <div className="space-label" style={{bottom: Math.min(10 + lwEmittedToSpace / 2, 50)}}>
                                 <div className="lw-space-tooltip">&#9432;</div>
                                 Emitted to space
                             </div>
@@ -249,8 +246,7 @@ function App() {
                     </div>
                     <div className="control-container" style={{left: 835, top: 20}}>
                         <div className="space-label-container">
-                            <div className="space-label"
-                                 style={{bottom: 10 + atmosphericWindow / 2}}>
+                            <div className="space-label" style={{bottom: 10 + atmosphericWindow / 2}}>
                                 <div className="window-tooltip">&#9432;</div>
                                 Through window
                             </div>
