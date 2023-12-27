@@ -133,9 +133,8 @@ a {
 
 #reset-button {
     position: absolute;
-    top: 15px;
+    bottom: 15px;
     right: 10px;
-    z-index: 4;
     width: 100px;
     height: 30px;
 }
