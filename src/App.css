@@ -80,6 +80,8 @@ footer {
 
 a {
     color: #67919b;
+    text-decoration: underline;
+    cursor: pointer;
 }
 
 .control-container {
