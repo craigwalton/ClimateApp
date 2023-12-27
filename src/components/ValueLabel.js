@@ -1,5 +1,3 @@
-import './ValueLabel.css';
-
 const ValueLabel = ({value, valueSuffix="", label=""}) => {
 
     const formattedValue = Math.round(value);
