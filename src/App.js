@@ -145,9 +145,12 @@ function App() {
                     <details style={{textAlign: "left"}}>
                         <summary>What if...</summary>
                         <ul>
-                            <li><a onClick={noGreenhouseEffect}>...there was no greenhouse effect?</a></li>
-                            <li><a onClick={moreCloudAlbedo}>...clouds reflected 20% more solar radiation without
-                                absorbing more shortwave radiation?</a></li>
+                            <li><button className={"link-button"} onClick={noGreenhouseEffect}>
+                                ...there was no greenhouse effect?
+                            </button></li>
+                            <li><button className={"link-button"} onClick={moreCloudAlbedo}>
+                                ...clouds reflected 20% more solar radiation without absorbing more shortwave radiation?
+                            </button></li>
                         </ul>
                     </details>
                     <br/>

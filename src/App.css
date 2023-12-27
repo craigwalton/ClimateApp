@@ -78,10 +78,14 @@ footer {
     color: #67919b;
 }
 
-a {
+.link-button {
+    background: none!important;
+    border: none;
+    padding: 0!important;
     color: #67919b;
     text-decoration: underline;
     cursor: pointer;
+    font-size: medium;
 }
 
 .control-container {
