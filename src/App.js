@@ -216,7 +216,7 @@ function App() {
                         <div className="sw-absorbed-surface-tooltip">&#9432;</div>
                     </div>
                     {/*Longwave*/}
-                    <LongwaveToSpaceArrow x={580} y={0} value={lwEmittedToSpace}/>
+                    <LongwaveToSpaceArrow x={580} y={100} value={lwEmittedToSpace}/>
                     <div className="control-container" style={{left: 515, top: 20}}>
                         <div className="space-label-container">
                             <div className="space-label" style={{bottom: Math.min(10 + lwEmittedToSpace / 2, 50)}}>
@@ -226,7 +226,7 @@ function App() {
                         </div>
                         <ValueLabel value={lwEmittedToSpace}/>
                     </div>
-                    <BackRadiationArrow x={650} y={370} value={backRadiation}/>
+                    <BackRadiationArrow x={650} y={500} value={backRadiation}/>
                     <LongwaveFromSurfaceArrows x={650} y={50} emitted={lwEmittedFromSurface}
                                                absorbed={lwAbsorbedByAtmosphere} window={atmosphericWindow}/>
                     <div className="control-container"
@@ -262,7 +262,7 @@ function App() {
                         <ValueLabel value={backRadiation}/>
                     </div>
                     {/*Convection & Latent Heat*/}
-                    <ConvectionArrow x={500} y={300} value={convection}/>
+                    <ConvectionArrow x={460} y={500} value={convection}/>
                     <div className="control-container" style={{left: 455, top: 392}}>
                         <ValueLabel value={convection}/>
                         <Slider label="Convection & Latent Heat" value={convectionSlider}

@@ -1,14 +1,19 @@
+import './Arrows.css';
 import './BackRadiationArrow.css';
 
 const BackRadiationArrow = ({x, y, value}) => {
 
+    const viewWidth = 300;
+    const viewHeight = 240;
+    const headStep = 10;
     const halfWidth = value / 2;
-    const step = 5;
-    const arrowHead = halfWidth + 5;
+    const arrowHead = halfWidth + headStep;
+    const arrowHeight = 110;
 
     return (
-        <div className="arrow-container" style={{position: 'absolute', left: x, top: y}}>
-            <svg width="300" height="240" viewBox="-150 -50 300 240" style={{position: "relative", left: -150}}>
+        <div className="arrow-container" style={{left: x, top: y}}>
+            <svg width={viewWidth} height={viewHeight} viewBox={`${-viewWidth / 2} -10 ${viewWidth} ${viewHeight}`}
+                 style={{left: -viewWidth / 2, top: -arrowHeight - 10}}>
                 <defs>
                     <linearGradient id="back-radiation-gradient" x1="0%" y1="0%" x2="0%" y2="100%">
                         <stop offset="0%" className="longwave-gradient-dark"/>
@@ -16,13 +21,13 @@ const BackRadiationArrow = ({x, y, value}) => {
                     </linearGradient>
                 </defs>
                 <path className="back-radiation-path"
-                      d={`M ${-halfWidth} -30
-                          l 0 110
-                          l ${-step} 0
+                      d={`M ${-halfWidth} 0
+                          l 0 ${arrowHeight}
+                          l ${-headStep} 0
                           l ${arrowHead} ${arrowHead}
                           l ${arrowHead} ${-arrowHead}
-                          l ${-step} 0
-                          l 0 -110
+                          l ${-headStep} 0
+                          l 0 ${-arrowHeight}
                           Z`}/>
             </svg>
         </div>

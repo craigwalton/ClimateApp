@@ -94,10 +94,6 @@ footer {
     position: absolute;
 }
 
-.arrow-container {
-    z-index: 1;
-}
-
 .label-container {
     z-index: 2;
 }
@@ -167,14 +163,4 @@ footer {
 .ack {
     border-bottom: 1px dotted #67919b;
     color: #67919b;
-}
-
-.longwave-gradient-light {
-    stop-color: rgb(197,141,128);
-    stop-opacity: 1;
-}
-
-.longwave-gradient-dark {
-    stop-color: rgb(228,122,106);
-    stop-opacity: 1;
 }
