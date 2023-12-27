@@ -2,3 +2,11 @@
     fill: url(#convection-gradient);
     stroke: #30883e;
 }
+
+.convection-light {
+    stop-color: rgb(92,199,179);
+}
+
+.convection-dark {
+    stop-color: rgb(103,180,139);
+}

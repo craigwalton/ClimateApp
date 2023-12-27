@@ -14,8 +14,8 @@ const ShortwaveArrows = ({x, y, scattered, reflected, atmosphere}) => {
             <svg width={viewWidth} height={viewHeight} viewBox={`${-viewWidth / 2} -100 ${viewWidth} ${viewHeight}`}>
                 <defs>
                     <linearGradient id="shortwave-gradient" x1="0%" y1="0%" x2="0%" y2="100%">
-                        <stop offset="0%" style={{stopColor: 'rgb(220,188,111)', stopOpacity: 1}}/>
-                        <stop offset="100%" style={{stopColor: 'rgb(218,166,98)', stopOpacity: 1}}/>
+                        <stop offset="0%" className="shortwave-light"/>
+                        <stop offset="100%" className="shortwave-dark"/>
                     </linearGradient>
                 </defs>
                 <path className="shortwave-path"

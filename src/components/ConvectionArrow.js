@@ -17,8 +17,8 @@ const ConvectionArrow = ({x, y, value}) => {
                 style={{top: -viewHeight}}>
                 <defs>
                     <linearGradient id="convection-gradient" x1="0%" y1="0%" x2="0%" y2="100%">
-                        <stop offset="0%" style={{stopColor: 'rgb(92,199,179)', stopOpacity: 1}}/>
-                        <stop offset="100%" style={{stopColor: 'rgb(103,180,139)', stopOpacity: 1}}/>
+                        <stop offset="0%" className="convection-light"/>
+                        <stop offset="100%" className="convection-dark"/>
                     </linearGradient>
                 </defs>
                 <path className="convection-path"

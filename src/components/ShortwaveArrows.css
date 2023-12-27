@@ -3,3 +3,11 @@
     fill-rule: evenodd;
     stroke: #c7884b;
 }
+
+.shortwave-light {
+    stop-color: rgb(220,188,111);
+}
+
+.shortwave-dark {
+    stop-color: rgb(218,166,98);
+}
