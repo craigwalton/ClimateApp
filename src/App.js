@@ -10,6 +10,7 @@ import LongwaveFromSurfaceArrows from "./components/LongwaveFromSurfaceArrows";
 import {Tooltip} from "react-tooltip";
 
 function App() {
+    // Constants.
     const solarInput = 100;
     const defaultScatteredValue = 22;
     const defaultSwAbsorbedByAtmosphere = 20 * 100 / 78;
@@ -17,8 +18,9 @@ function App() {
     const defaultConvectionSlider = 100 * 30 / 49;
     const defaultBackRadiation = 100 * 95 / (95 + 57);
     const defaultAtmosphericWindow = (12 * 100) / 114;
+    const graphicsPath = process.env.PUBLIC_URL + "/graphics/";
 
-    // User input
+    // Sliders.
     const [scatteredSlider, setScatteredSlider] = useState(defaultScatteredValue);
     const [reflectedSlider, setReflectedSlider] = useState(defaultReflectedValue);
     const [swAbsorbedByAtmosphereSlider, setSwAbsorbedByAtmosphereSlider] = useState(defaultSwAbsorbedByAtmosphere);
@@ -84,8 +86,6 @@ function App() {
     function toCelsius(kelvin) {
         return kelvin - 273.15;
     }
-
-    const graphicsPath = process.env.PUBLIC_URL + "/graphics/";
 
     const reset = () => {
         setScatteredSlider(defaultScatteredValue);

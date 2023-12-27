@@ -1,7 +1,9 @@
 import './ShortwaveArrows.css';
 
 const ShortwaveArrows = ({x, y, scattered, reflected, atmosphere}) => {
+
     const initialArrowHeight = 65;
+
     return (
         <div className="arrow-container" style={{position: 'absolute', left: x, top: y}}>
             <svg width="500" height="600" viewBox="-250 -100 500 600">

@@ -1,4 +1,4 @@
-const ValueLabel = ({value, valueSuffix="", label=""}) => {
+const ValueLabel = ({value, valueSuffix = "", label = ""}) => {
 
     const formattedValue = Math.round(value);
     const hasLabel = label !== "";
@@ -6,7 +6,7 @@ const ValueLabel = ({value, valueSuffix="", label=""}) => {
     return (
         <div>
             <label style={{display: hasLabel ? "block" : "none"}}>{label}</label>
-            <b>{formattedValue+valueSuffix}</b>
+            <b>{formattedValue + valueSuffix}</b>
         </div>
     );
 };

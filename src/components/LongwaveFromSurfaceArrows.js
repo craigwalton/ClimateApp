@@ -5,6 +5,7 @@ const LongwaveFromSurfaceArrows = ({x, y, emitted, absorbed, window}) => {
     const data = drawArrow(emitted, absorbed, window);
     const step = 10;
     const emittedArrow = (emitted) / 2 + step;
+
     return (
         <div className="arrow-container" style={{position: 'absolute', left: x, top: y}}>
             <svg width="300" height="450" viewBox="-50 0 300 450">

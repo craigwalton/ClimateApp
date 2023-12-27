@@ -5,6 +5,7 @@ const ConvectionArrow = ({x, y, value}) => {
     const halfWidth = value / 2;
     const step = 10;
     const arrowHead = halfWidth + step
+
     return (
         <div className="arrow-container" style={{position: 'absolute', left: x, top: y}}>
             <svg width="120" height="200" viewBox="-60 -200 120 200" style={{position: "relative", left: -40}}>

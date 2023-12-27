@@ -5,6 +5,7 @@ const BackRadiationArrow = ({x, y, value}) => {
     const halfWidth = value / 2;
     const step = 5;
     const arrowHead = halfWidth + 5;
+
     return (
         <div className="arrow-container" style={{position: 'absolute', left: x, top: y}}>
             <svg width="300" height="240" viewBox="-150 -50 300 240" style={{position: "relative", left: -150}}>
