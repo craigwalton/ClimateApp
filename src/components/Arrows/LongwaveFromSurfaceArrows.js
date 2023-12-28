@@ -44,11 +44,11 @@ function drawArrows(startX, viewHeight, emitted, absorbed, window) {
                 l ${headStep} 0`;
     // Absorbed arrow.
     const absorbedArrow = (absorbed) / 2 + headStep;
-    const absorbedROut = 50;
+    const absorbedROut = 105;
     const absorbedRIn = absorbedROut - absorbed;
     const absorbedY = 250;
-    const absorbedX = 60;
-    data += `l 0 ${absorbedY - absorbed / 2}
+    const absorbedX = 40;
+    data += `l 0 ${absorbedY - absorbed / 2 + absorbedROut - viewHeight + windowY}
              a ${absorbedROut} ${absorbedROut} 0 0 0 ${-absorbedROut} ${-absorbedROut}
              L ${absorbedX} ${absorbedY - absorbed / 2}
              l 0 ${-headStep}

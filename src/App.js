@@ -197,7 +197,7 @@ function App() {
                         </div>
                         <ValueLabel value={scattered + reflected}/>
                     </div>
-                    <div className="control-container" style={{left: 350, top: 290}}>
+                    <div className="control-container" style={{left: 355, top: 290}}>
                         <ValueLabel value={swAbsorbedByAtmosphere}/>
                         <Slider label="Absorbed by atmosphere" value={swAbsorbedByAtmosphereSlider}
                                 onChange={setSwAbsorbedByAtmosphereSlider}/>
@@ -227,10 +227,10 @@ function App() {
                         <ValueLabel value={lwEmittedToSpace}/>
                     </div>
                     <BackRadiationArrow x={650} y={500} value={backRadiation}/>
-                    <LongwaveFromSurfaceArrows x={650} y={50} emitted={lwEmittedFromSurface}
+                    <LongwaveFromSurfaceArrows x={670} y={50} emitted={lwEmittedFromSurface}
                                                absorbed={lwAbsorbedByAtmosphere} window={atmosphericWindow}/>
                     <div className="control-container"
-                         style={{left: 835 - lwEmittedFromSurface / 2 + atmosphericWindow / 2, top: 420}}>
+                         style={{left: 855 - lwEmittedFromSurface / 2 + atmosphericWindow / 2, top: 420}}>
                         <ValueLabel value={lwEmittedFromSurface}/>
                         <label>Radiated from surface</label><br/>
                         <div className="lw-surface-tooltip info">&#9432;</div>
@@ -244,7 +244,7 @@ function App() {
                             <div className="lw-absorbed-tooltip info">&#9432;</div>
                         </div>
                     </div>
-                    <div className="control-container" style={{left: 835, top: 20}}>
+                    <div className="control-container" style={{left: 855, top: 20}}>
                         <div className="space-label-container">
                             <div className="space-label" style={{bottom: 10 + atmosphericWindow / 2}}>
                                 <div className="window-tooltip info">&#9432;</div>
