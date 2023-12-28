@@ -164,3 +164,11 @@ footer {
     border-bottom: 1px dotted #67919b;
     color: #67919b;
 }
+
+.info:hover {
+    color: #5e5e5e;
+}
+
+.space-label > .info:hover {
+    color: #a2a2a2;
+}
