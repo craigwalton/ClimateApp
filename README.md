@@ -6,13 +6,14 @@ Hosted at [craigwalton.github.io/ClimateExplorer](https://craigwalton.github.io/
 
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 
-An interactive infographic implemented as a ReactJS app which provides an overview of the global energy budget from an
-Earth climate perspective.
+Explore Earth's climate's energy budget.
 
-It aims to help the user understand the systems which affect the Earth's climate including the greenhouse effect and how
-they interact by allowing the user change values of various parameters and see the resulting changes.
+This ReactJS app provides an overview of Earth's climate systems, including albedo and the greenhouse effect.
+Users can dynamically adjust parameters and observe the corresponding changes to Earth's Global Mean Surface Temperature
+(GMST), gaining insights into the interactions that shape our climate.
 
-My understanding of this basic climate model is from the Open University's [OpenLearn Climate Change](https://www.open.edu/openlearn/nature-environment/climate-change/) course. The
+My understanding of this basic climate model is from the Open
+University's [OpenLearn Climate Change](https://www.open.edu/openlearn/nature-environment/climate-change/) course. The
 infographic is inspired from course materials.
 
 ## Development
