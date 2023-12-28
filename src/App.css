@@ -12,6 +12,7 @@ html, body, #root {
 #space-background {
     height: 100px;
     background: linear-gradient(to bottom, #303334, #585b60);
+    border-bottom: solid 1px #000000;
 }
 
 #atmosphere-background {
@@ -22,6 +23,7 @@ html, body, #root {
 #earth-background {
     height: 110px;
     background: linear-gradient(to bottom, #d6c695, #b99064);
+    border-top: solid 1px #966a39;
 }
 
 .centered {
