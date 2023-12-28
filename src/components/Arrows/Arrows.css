@@ -1,6 +1,7 @@
 .arrow-container {
     position: absolute;
     z-index: 1;
+    width: 0;
 }
 
 .arrow-container > svg {
