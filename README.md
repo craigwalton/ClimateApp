@@ -30,3 +30,10 @@ You may also see any lint errors in the console.
 Deploy to GitHub Pages.
 
 https://craigwalton.github.io/ClimateExplorer
+
+## License
+
+This software project is licensed under the terms of the MIT license.
+
+The cloud graphics in `public/graphics` are licensed
+by [Freepik](https://www.freepik.com/free-vector/collection-3d-white-clouds-isolated-white_20111680.htm).
