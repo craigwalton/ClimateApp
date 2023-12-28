@@ -149,7 +149,7 @@ function App() {
                                 ...there was no greenhouse effect?
                             </button></li>
                             <li><button className="link-button" onClick={moreCloudAlbedo}>
-                                ...clouds reflected 20% more solar radiation without absorbing more shortwave radiation?
+                                ...clouds reflected 20% more solar radiation?
                             </button></li>
                         </ul>
                     </details>
