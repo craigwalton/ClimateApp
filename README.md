@@ -4,6 +4,8 @@
 
 Hosted at [craigwalton.github.io/ClimateExplorer](https://craigwalton.github.io/ClimateExplorer).
 
+[![App Screenshot](public/graphics/app-screenshot.png)](https://craigwalton.github.io/ClimateExplorer)
+
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 
 Explore Earth's climate's energy budget.
