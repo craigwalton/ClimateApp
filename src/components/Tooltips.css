@@ -3,6 +3,6 @@
     z-index: 10;
 }
 
-.custom-tooltip > a {
+.custom-tooltip a {
     color: #b4ccef;
 }

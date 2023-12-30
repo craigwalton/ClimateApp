@@ -75,13 +75,17 @@ const Tooltips = () => {
                 30 °C warmer than it otherwise would be.
             </Tooltip>
             <Tooltip anchorSelect=".ack-tooltip" place="top" className="custom-tooltip" clickable>
-                Diagram inspiration: <a
-                href="https://www.open.edu/openlearn/nature-environment/climate-change/">OpenLearn
-                Climate Change</a><br/>
-                Cloud images: <a
-                href="https://www.freepik.com/free-vector/collection-3d-white-clouds-isolated-white_20111680.htm">
-                Image by bs_k1d on Freepik
-            </a>
+                <p>
+                    Diagram inspiration: <a
+                    href="https://www.open.edu/openlearn/nature-environment/climate-change/">OpenLearn Climate
+                    Change</a>. An OpenLearn chunk used/reworked by permission of The Open University
+                    copyright &copy; 2016.
+                </p>
+                <p>
+                    Cloud images: <a
+                    href="https://www.freepik.com/free-vector/collection-3d-white-clouds-isolated-white_20111680.htm">
+                    Image by bs_k1d on Freepik</a>
+                </p>
             </Tooltip>
         </div>
     );

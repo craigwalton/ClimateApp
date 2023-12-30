@@ -37,3 +37,10 @@ This software project is licensed under the terms of the MIT license.
 
 The cloud graphics in `public/graphics` are licensed
 by [Freepik](https://www.freepik.com/free-vector/collection-3d-white-clouds-isolated-white_20111680.htm).
+
+The static [diagram](https://www.open.edu/openlearn/nature-environment/climate-change/content-section-1.4) on which the 
+infographic is based is licensed by the Open University under the terms of the Creative Commons
+Attribution-NonCommercial-ShareAlike 4.0 International
+License [CC BY-NC-SA 4.0 DEED](https://creativecommons.org/licenses/by-nc-sa/4.0/deed.en).
+
+    Climate Change. An OpenLearn chunk used/reworked by permission of The Open University copyright © 2016.
