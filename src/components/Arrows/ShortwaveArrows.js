@@ -7,7 +7,7 @@ const ShortwaveArrows = ({x, y, scattered, reflected, atmosphere}) => {
     const viewWidth = 500;
     const viewHeight = 600;
     const halfIncoming = 50;
-    const incomingArrowHeight = 65;
+    const incomingArrowHeight = 70;
 
     return (
         <div className="arrow-container" style={{left: x, top: y}}>

@@ -168,7 +168,7 @@ function App() {
                     <ShortwaveArrows x={0} y={0} scattered={scattered} reflected={reflected}
                                      atmosphere={swAbsorbedByAtmosphere}/>
                     <div className="control-container"
-                         style={{left: 250, top: 40, width: 100}}>
+                         style={{left: 250, top: 35, width: 100}}>
                         <div className="incoming-solar-tooltip info">&#9432;</div>
                         <ValueLabel label="Incoming solar radiation" value={100}/>
                     </div>
@@ -230,7 +230,7 @@ function App() {
                     <LongwaveFromSurfaceArrows x={670} y={50} emitted={lwEmittedFromSurface}
                                                absorbed={lwAbsorbedByAtmosphere} window={atmosphericWindow}/>
                     <div className="control-container"
-                         style={{left: 855 - lwEmittedFromSurface / 2 + atmosphericWindow / 2, top: 420}}>
+                         style={{left: 855 - lwEmittedFromSurface / 2 + atmosphericWindow / 2, top: 415}}>
                         <ValueLabel value={lwEmittedFromSurface}/>
                         <label>Radiated from surface</label><br/>
                         <div className="lw-surface-tooltip info">&#9432;</div>

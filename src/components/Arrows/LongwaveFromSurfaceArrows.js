@@ -9,7 +9,7 @@ const LongwaveFromSurfaceArrows = ({x, y, emitted, absorbed, window}) => {
     const startX = 200 + window / 2;
     const mainArrow = drawArrows(startX, viewHeight, emitted, absorbed, window);
     const emittedArrow = (emitted) / 2 + headStep;
-    const emittedArrowHeight = 70;
+    const emittedArrowHeight = 75;
 
     return (
         <div className="arrow-container" style={{left: x, top: y}}>
