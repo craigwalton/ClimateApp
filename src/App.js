@@ -295,7 +295,7 @@ function App() {
             </main>
             <footer>
                 <ul className="footer-content">
-                    <li>&copy; Craig Walton 2023</li>
+                    <li>&copy; Craig Walton 2024</li>
                     <li><a href="https://github.com/craigwalton/ClimateExplorer">Source on GitHub</a></li>
                     <li><span className="ack ack-tooltip">Acknowledgments</span></li>
                 </ul>
